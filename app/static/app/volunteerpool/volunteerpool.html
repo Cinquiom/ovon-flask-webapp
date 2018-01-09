@@ -1,0 +1,67 @@
+<div class="container">
+ <div class="row">
+  <div class="col-lg-12">
+   <ul class="list-inline">
+    <li class="list-inline-item" ng-repeat="nav in navtop">
+     <div class="list-group">
+	  <a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
+     </div>
+    </li>
+   </ul>
+  </div>
+ </div>
+ <div class="row">
+  <h1>{{title}}</h1>
+ </div>
+ <div class="row">
+  <div class="col-lg-3">
+   <div id="container" style="padding-top: 50px">
+    <h4>Filter Your Search</h4>
+    <div class="funkyradio" ng-repeat="filter in filters">
+     <div class="funkyradio-primary">
+      <input type="checkbox" name="checkbox" id="checkbox{{$index+1}}"/>
+      <label for="checkbox{{$index+1}}">{{filter}}</label>
+     </div>
+    </div>
+   </div>   
+  </div>
+  <div class="col-lg-9">
+   <div class="card mt-4" style="background: #2196F3">
+    <img class="card-img-top img-fluid" src="images/billyBob.png" alt="" style="width: 250px; height: 250px">
+                <div class="card-body">
+                    <h3 class="card-title">Billy Bob</h3>
+                    <h4>Monday - Friday, 5:30 AM - 8:00 PM</h4>
+                    <p class="card-text">I'm Billy Bob, but my friends call me Bob the builder, and I want to build things for people.  If you were to ask me can we build it, I'll always reply yes we can!</p>
+                    <p class="card-text"><a href="#">Read more</a> </p>
+                </div>
+            </div>
+            <!-- /.card -->
+
+            <div class="card mt-4" style="background: #2196F3">
+                <img class="card-img-top img-fluid" src="images/janeJohnson.png" alt="" style="width: 250px; height: 250px">
+                <div class="card-body">
+                    <h3 class="card-title">Jane Johnson</h3>
+                    <h4>Saturday, 2:00 PM - 5:00 PM</h4>
+                    <p class="card-text">I'm Jane and I have a soft spot for the elderly residents of our community.  If you need someone to keep old folks company, look no further!</p>
+                    <p class="card-text"><a href="#">Read more</a> </p>
+                </div>
+            </div>
+            <!-- /.card -->
+
+            <div class="card mt-4" style="background: #2196F3">
+                <img class="card-img-top img-fluid" src="images/jackDaniels.png" alt="" style="width: 250px; height: 250px">
+                <div class="card-body">
+                    <h3 class="card-title">Jack Daniels</h3>
+                    <h4>Tuesday-Wednesday, 9:00 AM - 12:00 PM</h4>
+                    <p class="card-text">I may be Jack Daniels, an icon in the world of whiskey, but I am passionately against drunk driving.  I want to speak to today's youth about the dangers of drunk driving.</p>
+                    <p class="card-text"><a href="#">Read more</a> </p>
+                </div>
+            </div>
+
+            <br/>
+            <!-- /.card -->
+
+            <!-- /.col-lg-9 -->
+        </div>
+    </div>
+</div>

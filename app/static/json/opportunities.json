@@ -1,0 +1,20 @@
+[
+	{
+		"name": "Regina Food Bank",
+		"schedule": "Monday - Friday, 8:00 AM - 5:00 PM",
+		"description": "We are looking for volunteers to join our team.  Activities include packaging food crates, washing dishes, and other custodial duties.",
+		"image": "foodbank.png"
+	},
+	{
+		"name": "College Park Retirement Residence",
+		"schedule": "Saturday - Sunday, 24 hours",
+		"description": "Do you enjoy working with people and creating relationships?  College Park is on the lookout for volunteers willing to spend time with our residents, organize activities, and plan events.  Volunteers should be able to work anytime on the weekends.",
+		"image": "collegepark.png"
+	},
+	{
+		"name": "Souls Harbour Rescue Mission",
+		"schedule": "Friday, 11:00 PM - 1:00 P",
+		"description": "We are looking for an experienced cook to make soup for our tenants.",
+		"image": "harbour.png"
+	}
+]

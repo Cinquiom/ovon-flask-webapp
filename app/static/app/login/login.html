@@ -1,0 +1,29 @@
+<div class="text-center" style="padding:50px 0">
+    <div class="logo">OVON</div>
+    <!-- Main Form -->
+    <div class="login-form-1" ng-controller="LoginController">
+        <form action="/" id="myLogin" class="text-left">
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+                <div class="login-group">
+                    <div class="form-group">
+                        <label for="username" class="sr-only">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="username" ng-model="user.username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="password" ng-model="user.password">
+                    </div>
+                    <div class="form-group login-group-checkbox">
+                        <input type="checkbox" id="lg_remember" name="lg_remember">
+                        <label for="lg_remember">remember</label>
+                    </div>
+                </div>
+                <button type="button" class="login-button" ng-click="submit()">><i class="fa fa-chevron-right"></i></button>
+            </div>
+            <div class="etc-login-form">
+                <p>forgot your password? <a href="#/forgotpassword">click here</a></p>
+                <p>new user? <a href="#/register">create new account</a></p>
+            </div>
+        </form>
+    </div>

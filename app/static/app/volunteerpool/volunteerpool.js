@@ -9,11 +9,11 @@ var VolunteerPoolController = function($scope, $http) {
 	// Typically how we will be pulling data, except
 	// the URL will be a REST endpoint with a dynamically-generated
 	// JSON object at that location
-	$http.get('json/navtop.json').then(function(response) {
+	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
 	});
 	
-	$http.get('json/volunteers.json').then(function(response) {
+	$http.get('/static/json/volunteers.json').then(function(response) {
 		$scope.volunteers = response.data;
 	});
 };

@@ -387,3 +387,28 @@ label:hover:before {
   font-family: Arial;
   color: #000000;
 }
+
+/* Profile Page Styles */
+
+.profileInfoField {
+	font-size: 20px;
+	
+}
+
+.editProfileButton {
+	background-color: #F7C32E;
+	border-radius: 8px;
+	border: 2px solid #555555;
+	transition-duration: .4s;
+	cursor: pointer;
+}
+
+.editProfileButton:hover {
+	font-size: 20px;
+	
+}
+
+.profileNameHeader {
+	text-align: left;
+	
+}

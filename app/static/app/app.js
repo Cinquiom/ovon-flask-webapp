@@ -29,16 +29,18 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
                             }
                         }
                     },
-                }).
+                })
+                .
         when('/profile', {
                     resolve: {
                         "check": function($location, $rootScope) {
                             if(!$rootScope.loggedIn) {
-                                $location.path('/login')
+                                $location.path('/profile')
                             }
                         }
                     },
-                });
+                })
+                ;
 
     $urlRouterProvider.otherwise("/opportunities");
 

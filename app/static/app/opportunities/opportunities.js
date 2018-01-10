@@ -9,11 +9,11 @@ var OpportunitiesController = function($scope, $http) {
 	// Typically how we will be pulling data, except
 	// the URL will be a REST endpoint with a dynamically-generated
 	// JSON object at that location
-	$http.get('json/navtop.json').then(function(response) {
+	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
 	});
 	
-	$http.get('json/opportunities.json').then(function(response) {
+	$http.get('/static/json/opportunities.json').then(function(response) {
 		$scope.ops = response.data;
 	});
 };

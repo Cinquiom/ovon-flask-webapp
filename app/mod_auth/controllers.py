@@ -1,32 +1,40 @@
-from flask import Blueprint, request, render_template, \
-                  flash, g, session, redirect, url_for
-
-from werkzeug import check_password_hash, generate_password_hash
+from flask import Blueprint, request, jsonify
+from flask_login import current_user, login_user
 
 from app import db
 from app.mod_auth.models import User
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
-# Set the route and accepted methods
 @mod_auth.route('/signin/', methods=['POST'])
 def signin():
-    # If sign in form is submitted
-    form = request.form
+    content = request.json
+    if current_user.is_authenticated:
+        return "", 204
+    
+    user = User.query.filter_by(username=content['username']).first()
+    
+    if user is None or not user.check_password(content['password']):
+        return jsonify({"errorMessage": "Username or password does not exist."}), 401
+    
+    login_user(user, remember = True)
+    return "", 200
 
-    # Verify the sign in form
-    if form.validate_on_submit():
+@mod_auth.route('/register/', methods=['POST'])
+def register():
+    content = request.json
+    errors = {}
+    
+    u = User(content['username'],
+             content['email'],
+             content['password'],
+             content['fullname'],
+             content['birthdate'],
+             True, 
+             content['agreed'])
+    
+    db.session.add(u)
+    db.session.commit()
 
-        user = User.query.filter_by(email=form.email.data).first()
-
-        if user and check_password_hash(user.password, form.password.data):
-
-            session['user_id'] = user.id
-
-            flash('Welcome %s' % user.name)
-
-            return redirect(url_for('auth.home'))
-
-        flash('Wrong email or password', 'error-message')
-
-    return render_template("auth/signin.html", form=form)
+    return "", 204
+    

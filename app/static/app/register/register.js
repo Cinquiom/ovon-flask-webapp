@@ -29,7 +29,7 @@ var RegisterController = function($scope, $http) {
 			console.log(errors);
 			alert("Invalid submission, try again.");
 		}	else {
-			 $http.post("https://ovon.club/api/v1/user/", user)
+			 $http.post("http://localhost:8090/auth/register/", user)
 			 	.then(
                   function (response) {
                       alert("Account created successfully!");

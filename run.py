@@ -1,2 +1,9 @@
+import os
 from app import app
-app.run(port=8090)
+
+if os.environ['OVON_ENV'] == 'prod':
+    app.config.from_object('config.ProductionConfig')
+else:
+    app.config.from_object('config.DevelopmentConfig')
+
+app.run(port=app.config['PORT'])

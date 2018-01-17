@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object('config.Config')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -14,8 +14,6 @@ from app.mod_auth.controllers import mod_auth as auth_module
 app.register_blueprint(auth_module)
 
 db.create_all()
-
-
 
 @app.errorhandler(404)
 def not_found(error):

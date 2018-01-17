@@ -1,7 +1,7 @@
 'use strict';
 
 // The main 'app' object
-var OVONApp = angular.module('OVONApp', ['ui.router', 'ngRoute']);
+var OVONApp = angular.module('OVONApp', ['ui.router', 'ngRoute', 'ngCookies', 'ngSQLite']);
 
 OVONApp.controller("OpportunitiesController", OpportunitiesController);
 OVONApp.controller("VolunteerPoolController", VolunteerPoolController);
@@ -14,8 +14,8 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
     $routeProvider.
         when('/opportunities', {
                       resolve: {
-                          "check": function($location, $rootScope) {
-                              if(!$rootScope.loggedIn) {
+                          "check": function($location, $rootScope, userPersistenceService, $cookies) {
+                              if(!($cookies.get('loggedInAlready') || userPersistenceService.getCookieData("loggedInAlready") == false)) {
                                   $location.path('/login')
                               }
                           }
@@ -23,8 +23,8 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
                   }).
         when('/volunteers', {
                     resolve: {
-                        "check": function($location, $rootScope) {
-                            if(!$rootScope.loggedIn) {
+                    	"check": function($location, $rootScope, userPersistenceService, $cookies) {
+                            if(!($cookies.get('loggedInAlready') || userPersistenceService.getCookieData("loggedInAlready") == false)) {
                                 $location.path('/login')
                             }
                         }
@@ -33,9 +33,9 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
                 .
         when('/profile', {
                     resolve: {
-                        "check": function($location, $rootScope) {
-                            if(!$rootScope.loggedIn) {
-                                $location.path('/profile')
+                    	"check": function($location, $rootScope, userPersistenceService, $cookies) {
+                            if(!($cookies.get('loggedInAlready') || userPersistenceService.getCookieData("loggedInAlready") == false)) {
+                                $location.path('/login')
                             }
                         }
                     },
@@ -79,6 +79,7 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
         });
 
     $locationProvider.hashPrefix('');
+    
 });
 
 
@@ -103,3 +104,48 @@ OVONApp.directive('header', [ '$rootScope', function ($rootScope) {
         }]
     }
 }]);
+
+//service to handle cookie data for user logged in status
+OVONApp.factory('userPersistenceService', ['$cookies', function($cookies) {
+	var loggedInAlready = false;
+	var cookieData;
+	var userName = "";
+	
+	return {
+			setCookieData_LoggedInAlready: function() {
+				
+				loggedInAlready = true;
+				$cookies.put("loggedInAlready", loggedInAlready);
+			},
+			
+			setCookieData_userName: function(username) {
+				
+				userName = username;
+				$cookies.put("userName", userName);
+			},
+			
+			getCookieData: function(desiredCookie) {
+				
+				if (desiredCookie == "loggedInAlready") {
+					cookieData = $cookies.get("loggedInAlready");
+					
+				}
+				else if (desiredCookie == "userName") {
+					cookieData = $cookies.get("userName");
+					
+				}
+				
+				return cookieData;				
+				
+			},
+			
+			clearCookieData: function() {
+				
+				loggedInAlready = false;
+				userName = "";
+				$cookies.remove("loggedInAlready");
+				$cookies.remove("userName");
+			}
+		}
+	}
+]);

@@ -38,3 +38,21 @@ def register():
 
     return "", 204
     
+@mod_auth.route('/getProfileEmail/', methods=['GET'])
+def getProfileEmail():
+    profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['email']
+    return profileInfo, 200
+
+@mod_auth.route('/getProfileFullName/', methods=['GET'])
+def getProfileFullName():
+    profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['fullname']
+    return profileInfo, 200
+    
+@mod_auth.route('/getProfileCreationDate/', methods=['GET'])
+def getProfileCreationDate():
+    profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['date_created']
+    creationDate = profileInfo.strftime('%d/%m/%Y')
+    return creationDate, 200
+    
+    
+    

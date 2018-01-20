@@ -36,7 +36,7 @@ class User(UserMixin, db.Model):
     def __init__(self, username, email, password, fullname, birthdate, gender,
                   agreedToTerms):
 
-        self.username     = username
+        self.username   = username
         self.email    = email
         self.fullname = fullname
         self.birthdate = birthdate
@@ -52,6 +52,9 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+    
+    def __getitem__(self, item):
+        return getattr(self, item)
     
 @login_manager.user_loader
 def load_user(id):

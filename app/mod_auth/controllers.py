@@ -37,7 +37,9 @@ def register():
     db.session.commit()
 
     return "", 204
-    
+
+
+#methods for user data retrieval on profile display page    
 @mod_auth.route('/getProfileEmail/', methods=['GET'])
 def getProfileEmail():
     profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['email']

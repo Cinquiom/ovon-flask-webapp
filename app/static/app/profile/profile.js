@@ -1,9 +1,14 @@
 'use strict';
 
-var ProfileController = function($scope, $http, userPersistenceService) {
+var ProfileController = function($scope, $http, userPersistenceService, $route) {
 	
 	$scope.profileImage = "person.png"
 	$scope.title = userPersistenceService.getCookieData("userName");
+	
+	$scope.logout = function() {
+		userPersistenceService.clearCookieData();
+		$route.reload();
+	}
 		
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;

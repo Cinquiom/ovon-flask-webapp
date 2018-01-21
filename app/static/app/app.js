@@ -9,6 +9,7 @@ OVONApp.controller("ProfileController", ProfileController);
 OVONApp.controller("RegisterController", RegisterController);
 OVONApp.controller("LoginController", LoginController);
 
+
 OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
 
     $routeProvider.

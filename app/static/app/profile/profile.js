@@ -1,12 +1,17 @@
 'use strict';
 
-var ProfileController = function($scope, $http, userPersistenceService, $route) {
+var ProfileController = function($scope, $http, userPersistenceService, $route, $location) {
 	
 	$scope.profileImage = "person.png"
 	$scope.title = userPersistenceService.getCookieData("userName");
 	
 	$scope.logout = function() {
 		userPersistenceService.clearCookieData();
+		$route.reload();
+	}
+	
+	$scope.linkToUpdateProfile = function() {
+		$location.path("/updateprofile");
 		$route.reload();
 	}
 		

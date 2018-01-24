@@ -61,6 +61,14 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
             templateUrl: "static/app/profile/profile.html",
             controller: "ProfileController"
         }).
+        state("/updateprofile", {
+            url: "/updateprofile",
+            templateUrl: "static/app/updateprofile/updateProfile.html"
+        }).
+        state("/changepassword", {
+            url: "/changepassword",
+            templateUrl: "static/app/changepassword/changepassword.html"
+        }).
         state("/login", {
             url: "/login",
             templateUrl: "static/app/login/login.html"

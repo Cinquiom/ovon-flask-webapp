@@ -18,11 +18,11 @@ class User(UserMixin, db.Model):
     # Identification Data: email & password
     email    = db.Column(db.String(128),  nullable=False,
                                             unique=True)
-    password_hash = db.Column(db.String(192),  nullable=False)
+    password = db.Column(db.String(192),  nullable=False)
     
     fullname = db.Column(db.String(192),  nullable=False)
     
-    birthdate = db.Column(db.Date,  nullable=False)
+    birthdate = db.Column(db.DateTime,  default=db.func.current_timestamp())
     
     gender = db.Column(db.Boolean, nullable=False)
     
@@ -36,7 +36,7 @@ class User(UserMixin, db.Model):
     def __init__(self, username, email, password, fullname, birthdate, gender,
                   agreedToTerms):
 
-        self.username     = username
+        self.username   = username
         self.email    = email
         self.fullname = fullname
         self.birthdate = birthdate
@@ -48,10 +48,13 @@ class User(UserMixin, db.Model):
         return '<User %r>' % (self.name)     
     
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return check_password_hash(self.password, password)
+    
+    def __getitem__(self, item):
+        return getattr(self, item)
     
 @login_manager.user_loader
 def load_user(id):

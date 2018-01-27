@@ -31,10 +31,26 @@ def register():
              content['fullname'],
              content['birthdate'],
              True, 
-             content['agreed'])
+             content['agreed'],
+             True)
     
     db.session.add(u)
     db.session.commit()
 
-    return "", 204
+    return "", 201 # Created
+
+"""
+    Returns the user's username.
+    Quick and dirty route used for testing login.
+"""
+
+@mod_auth.route('/whoami/', methods=['GET'])
+def whoami():
+    if current_user.is_anonymous:
+        return "anonymous"
+    return current_user.username
+
+@mod_auth.route('/forgotpassword/', methods=['POST'])
+def forgot_password():
+    pass
     

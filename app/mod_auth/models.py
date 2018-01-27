@@ -22,11 +22,13 @@ class User(UserMixin, db.Model):
     
     fullname = db.Column(db.String(192),  nullable=False)
     
-    birthdate = db.Column(db.Date,  nullable=False)
-    
     gender = db.Column(db.Boolean, nullable=False)
     
     agreedToTerms = db.Column(db.Boolean, nullable=False)
+    
+    enabled = db.Column(db.Boolean, nullable=False)
+    
+    verify_code =  db.Column(db.String(192),  nullable=True)
     
     date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
@@ -39,10 +41,11 @@ class User(UserMixin, db.Model):
         self.username     = username
         self.email    = email
         self.fullname = fullname
-        self.birthdate = birthdate
         self.gender = gender
         self.agreedToTerms = agreedToTerms
         self.set_password(password)
+        self.enabled = True
+        self.verify_code=None
 
     def __repr__(self):
         return '<User %r>' % (self.name)     

@@ -29,15 +29,34 @@ def register():
              content['email'],
              content['password'],
              content['fullname'],
-             content['birthdate'],
+             #content['birthdate'],
              True, 
-             content['agreed'])
+             content['agreed'],
+             True)
     
     db.session.add(u)
     db.session.commit()
 
-    return "", 204
+    return "", 201 # Created
 
+"""
+    Returns the user's username.
+    Quick and dirty route used for testing login.
+"""
+
+@mod_auth.route('/whoami/', methods=['GET'])
+def whoami():
+    if current_user.is_anonymous:
+        return "anonymous"
+    return current_user.username
+
+@mod_auth.route('/forgotpassword/', methods=['POST'])
+def forgotpassword():
+    pass
+
+@mod_auth.route('/resetpassword/', methods=['POST'])
+def resetpassword():
+    pass
 
 #methods for user data retrieval on profile display page    
 @mod_auth.route('/getProfileEmail/', methods=['GET'])
@@ -55,6 +74,3 @@ def getProfileCreationDate():
     profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['date_created']
     creationDate = profileInfo.strftime('%d/%m/%Y')
     return creationDate, 200
-    
-    
-    

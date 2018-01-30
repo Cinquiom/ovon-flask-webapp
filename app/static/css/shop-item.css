@@ -217,6 +217,11 @@ a:hover {
   color: #000000;
   transform: rotate(450deg);
 }
+
+.login-button {
+	font-size: 15px;
+}
+
 .login-form-1 .login-button.clicked {
   color: #555555;
 }
@@ -418,6 +423,15 @@ label:hover:before {
 	
 }
 
+.list-group-item {
+	transition-duration: .3s;
+	cursor: pointer;
+}
+
+.list-group-item:hover {
+	color: #F7C32E;
+}
+
 .profileNameHeader {
 	text-align: left;
 	
@@ -430,7 +444,8 @@ label:hover:before {
 #scrollableFeedParent {
 	overflow: hidden;
 	position: relative;
-	height: 100vh;	
+	height: 100vh;
+	border: 1px solid black;	
 }
 
 #scrollableFeedChild {

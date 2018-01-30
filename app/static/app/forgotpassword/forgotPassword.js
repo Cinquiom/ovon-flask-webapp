@@ -19,7 +19,9 @@ var ForgotPasswordController = function($scope, $http) {
 			console.log(errors);
 			alert("Invalid submission, try again.");
 		} else {
-			$http.post("http://localhost:8090/auth/forgotpassword/", userEmail)
+			
+			var userEmailObject = JSON.stringify({email: userEmail.email});
+			$http.post("http://localhost:8090/auth/forgotpassword/", userEmailObject)
 			.then(
                   function (response) {
                       alert("Please check your email for a password reset code!");

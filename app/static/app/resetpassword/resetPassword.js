@@ -17,7 +17,9 @@ var ResetPasswordController = function($scope, $http) {
 			console.log(errors);
 			alert("Invalid submission, try again.");
 		} else {
-			$http.post("http://localhost:8090/auth/resetpassword/", userPassword)
+			
+			var userPasswordObject = JSON.stringify({password: userPassword.password, password2: userPassword.password2});
+			$http.post("http://localhost:8090/auth/resetpassword/", userPasswordObject)
 			.then(
                   function (response) {
                       alert("Your Password has been reset!");

@@ -29,7 +29,7 @@ def register():
              content['email'],
              content['password'],
              content['fullname'],
-             content['birthdate'],
+             #content['birthdate'],
              True, 
              content['agreed'])
     

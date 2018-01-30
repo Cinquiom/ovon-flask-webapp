@@ -51,6 +51,9 @@ def whoami():
     return current_user.username
 
 @mod_auth.route('/forgotpassword/', methods=['POST'])
-def forgot_password():
+def forgotpassword():
     pass
-    
+
+@mod_auth.route('/resetpassword/', methods=['POST'])
+def resetpassword():
+    pass

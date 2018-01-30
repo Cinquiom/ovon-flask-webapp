@@ -8,6 +8,9 @@ OVONApp.controller("VolunteerPoolController", VolunteerPoolController);
 OVONApp.controller("ProfileController", ProfileController);
 OVONApp.controller("RegisterController", RegisterController);
 OVONApp.controller("LoginController", LoginController);
+//OVONApp.controller("ForgotPasswordController", ForgotPasswordController);
+OVONApp.controller("ResetPasswordController", ResetPasswordController);
+
 
 
 OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
@@ -90,9 +93,15 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
         }).
         state("/forgotpassword", {
             url: "/forgotpassword",
-            templateUrl: "static/app/forgotpassword/forgotpassword.html"
-        })
-        .state("/loginTest", {
+            templateUrl: "static/app/forgotpassword/forgotPassword.html"
+            //controller:	"ForgotPasswordController"
+        }).
+        state("/resetpassword", {
+            url: "/resetpassword",
+            templateUrl: "static/app/resetpassword/resetPassword.html"
+            controller:	"ResetPasswordController"
+        }).
+        state("/loginTest", {
             url: "/loginTest",
             templateUrl: "static/app/login/loginTest.html"
         });

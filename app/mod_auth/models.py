@@ -18,7 +18,7 @@ class User(UserMixin, db.Model):
     # Identification Data: email & password
     email    = db.Column(db.String(128),  nullable=False,
                                             unique=True)
-    password_hash = db.Column(db.String(192),  nullable=False)
+    password = db.Column(db.String(192),  nullable=False)
     
     fullname = db.Column(db.String(192),  nullable=False)
     
@@ -35,10 +35,10 @@ class User(UserMixin, db.Model):
                                            onupdate=db.func.current_timestamp())
 
     # New instance instantiation procedure
-    def __init__(self, username, email, password, fullname, birthdate, gender,
-                  agreedToTerms):
+    def __init__(self, username, email, password, fullname, gender,
+                  agreedToTerms, enabled):
 
-        self.username     = username
+        self.username   = username
         self.email    = email
         self.fullname = fullname
         self.gender = gender
@@ -46,15 +46,19 @@ class User(UserMixin, db.Model):
         self.set_password(password)
         self.enabled = True
         self.verify_code=None
+        self.enabled=enabled
 
     def __repr__(self):
         return '<User %r>' % (self.name)     
     
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return check_password_hash(self.password, password)
+    
+    def __getitem__(self, item):
+        return getattr(self, item)
     
 @login_manager.user_loader
 def load_user(id):

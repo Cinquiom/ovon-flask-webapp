@@ -22,7 +22,7 @@ class User(UserMixin, db.Model):
     
     fullname = db.Column(db.String(192),  nullable=False)
     
-    birthdate = db.Column(db.DateTime,  default=db.func.current_timestamp())
+    #birthdate = db.Column(db.DateTime,  default=db.func.current_timestamp())
     
     gender = db.Column(db.Boolean, nullable=False)
     
@@ -33,13 +33,13 @@ class User(UserMixin, db.Model):
                                            onupdate=db.func.current_timestamp())
 
     # New instance instantiation procedure
-    def __init__(self, username, email, password, fullname, birthdate, gender,
+    def __init__(self, username, email, password, fullname, gender,
                   agreedToTerms):
 
         self.username   = username
         self.email    = email
         self.fullname = fullname
-        self.birthdate = birthdate
+        #self.birthdate = birthdate
         self.gender = gender
         self.agreedToTerms = agreedToTerms
         self.set_password(password)

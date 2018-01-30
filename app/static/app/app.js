@@ -41,6 +41,16 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
                         }
                     },
                 })
+                .
+                when('/updateprofile', {
+                resolve: {
+                	"check": function($location, $rootScope, userPersistenceService, $cookies) {
+                        if(!($cookies.get('loggedInAlready') || userPersistenceService.getCookieData("loggedInAlready") == false)) {
+                            $location.path('/login')
+                        }
+                    }
+                },
+            })
                 ;
 
     $urlRouterProvider.otherwise("/opportunities");
@@ -60,6 +70,14 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
             url: "/profile",
             templateUrl: "static/app/profile/profile.html",
             controller: "ProfileController"
+        }).
+        state("/updateprofile", {
+            url: "/updateprofile",
+            templateUrl: "static/app/updateprofile/updateProfile.html"
+        }).
+        state("/changepassword", {
+            url: "/changepassword",
+            templateUrl: "static/app/changepassword/changepassword.html"
         }).
         state("/login", {
             url: "/login",

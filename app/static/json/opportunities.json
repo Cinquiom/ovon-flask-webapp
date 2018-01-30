@@ -13,8 +13,14 @@
 	},
 	{
 		"name": "Souls Harbour Rescue Mission",
-		"schedule": "Friday, 11:00 PM - 1:00 P",
+		"schedule": "Friday, 11:00 PM - 1:00 PM",
 		"description": "We are looking for an experienced cook to make soup for our tenants.",
+		"image": "harbour.png"
+	},
+	{
+		"name": "Generic Volunteer Opportunity",
+		"schedule": "Friday, 11:00 PM - 3:00 PM",
+		"description": "We need generic volunteers for generic opportunities.",
 		"image": "harbour.png"
 	}
 ]

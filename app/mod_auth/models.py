@@ -18,43 +18,43 @@ class User(UserMixin, db.Model):
     # Identification Data: email & password
     email    = db.Column(db.String(128),  nullable=False,
                                             unique=True)
-    password = db.Column(db.String(192),  nullable=False)
+    password_hash = db.Column(db.String(192),  nullable=False)
     
     fullname = db.Column(db.String(192),  nullable=False)
-    
-    #birthdate = db.Column(db.DateTime,  default=db.func.current_timestamp())
     
     gender = db.Column(db.Boolean, nullable=False)
     
     agreedToTerms = db.Column(db.Boolean, nullable=False)
+    
+    enabled = db.Column(db.Boolean, nullable=False)
+    
+    verify_code =  db.Column(db.String(192),  nullable=True)
     
     date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
                                            onupdate=db.func.current_timestamp())
 
     # New instance instantiation procedure
-    def __init__(self, username, email, password, fullname, gender,
+    def __init__(self, username, email, password, fullname, birthdate, gender,
                   agreedToTerms):
 
-        self.username   = username
+        self.username     = username
         self.email    = email
         self.fullname = fullname
-        #self.birthdate = birthdate
         self.gender = gender
         self.agreedToTerms = agreedToTerms
         self.set_password(password)
+        self.enabled = True
+        self.verify_code=None
 
     def __repr__(self):
         return '<User %r>' % (self.name)     
     
     def set_password(self, password):
-        self.password = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.password, password)
-    
-    def __getitem__(self, item):
-        return getattr(self, item)
+        return check_password_hash(self.password_hash, password)
     
 @login_manager.user_loader
 def load_user(id):

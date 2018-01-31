@@ -56,6 +56,15 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
                     }
                 },
             })
+            .
+            when('/resetpassword/:url', {
+                resolve: {
+                	"check": function($location, $route) {
+                        $location.path('/resetpassword')
+                        $route.reload()
+                    }
+                },
+            })
                 ;
 
     $urlRouterProvider.otherwise("/opportunities");

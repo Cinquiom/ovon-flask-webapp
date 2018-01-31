@@ -10,7 +10,9 @@ OVONApp.controller("RegisterController", RegisterController);
 OVONApp.controller("LoginController", LoginController);
 OVONApp.controller("ForgotPasswordController", ForgotPasswordController);
 OVONApp.controller("ResetPasswordController", ResetPasswordController);
-
+OVONApp.controller("UpdateProfileController", UpdateProfileController);
+OVONApp.controller("ChangePasswordController", ChangePasswordController);
+OVONApp.controller("UploadProfilePictureController", UploadProfilePictureController);
 
 
 OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
@@ -76,11 +78,13 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
         }).
         state("/updateprofile", {
             url: "/updateprofile",
-            templateUrl: "static/app/updateprofile/updateProfile.html"
+            templateUrl: "static/app/updateprofile/updateProfile.html",
+            controller: "UpdateProfileController"
         }).
         state("/changepassword", {
             url: "/changepassword",
-            templateUrl: "static/app/changepassword/changepassword.html"
+            templateUrl: "static/app/changepassword/changepassword.html",
+            controller: "ChangePasswordController"
         }).
         state("/login", {
             url: "/login",
@@ -96,9 +100,10 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
             templateUrl: "static/app/forgotpassword/forgotPassword.html",
             controller:	"ForgotPasswordController"
         }).
-        state("/upload", {
-            url: "/upload",
-            templateUrl: "static/app/uploadprofilepicture/upload.html",
+        state("/uploadprofilepicture", {
+            url: "/uploadprofilepicture",
+            templateUrl: "static/app/uploadprofilepicture/uploadprofilepicture.html",
+            controller: "UploadProfilePictureController"
         }).
         state("/resetpassword", {
             url: "/resetpassword",

@@ -96,6 +96,10 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
             templateUrl: "static/app/forgotpassword/forgotPassword.html",
             controller:	"ForgotPasswordController"
         }).
+        state("/upload", {
+            url: "/upload",
+            templateUrl: "static/app/uploadprofilepicture/upload.html",
+        }).
         state("/resetpassword", {
             url: "/resetpassword",
             templateUrl: "static/app/resetpassword/resetPassword.html",

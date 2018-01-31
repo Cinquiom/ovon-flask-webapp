@@ -1,8 +1,11 @@
+import string, random
+
 from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_user
 
 from app import db
 from app.mod_auth.models import User
+from app.mod_email.SMTPEmailer import SMTPEmailer
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -52,11 +55,24 @@ def whoami():
 
 @mod_auth.route('/forgotpassword/', methods=['POST'])
 def forgotpassword():
-    pass
+    content = request.json
+    user = User.query.filter_by(email=content['email']).first()
+    if user:
+        user.verify_code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(32))
+        db.session.commit()
+        SMTPEmailer().sendmail(user.username, content['email'], user.verify_code)
+    return "", 202 # Always return successful, even if we don't find an email address
 
-@mod_auth.route('/resetpassword/', methods=['POST'])
-def resetpassword():
-    pass
+@mod_auth.route('/resetpassword/<code>', methods=['POST'])
+def resetpassword(code):
+    content = request.json
+    print code
+    print content.keys()
+    user = User.query.filter_by(verify_code=code).first()
+    if user and content['password'] == content['password2']:
+        user.set_password(content['password'])
+        db.session.commit()
+    return "", 204
 
 #methods for user data retrieval on profile display page    
 @mod_auth.route('/getProfileEmail/', methods=['GET'])

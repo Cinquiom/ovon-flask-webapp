@@ -14,15 +14,13 @@ class SMTPEmailer:
         self.smtpObj.ehlo()
         self.smtpObj.login("ovondev@airmail.cc", "3QdPou9MyoVaODlh")
     def sendmail(self, username, email, code):
-        email = [email]
-        
         msg = MIMEMultipart()
-        msg['From'] = "Online Volunteer Opportunity Network <ekuz@kuzer200.ursse.org>"
+        msg['From'] = "Online Volunteer Opportunity Network <ovondev@airmail.cc>"
         msg['To'] = "%s <%s>" % (username, email)
         msg['Subject'] = "Password reset for %s" % username
         body = """Someone has requested a password reset for this account.
 Please visit this link to verify your account:
-http://localhost:8090/auth/resetpassword/%s
+http://localhost:8090/#/resetpassword/%s
 
 If you did not request a password reset, please disregard this email.
 """ % code

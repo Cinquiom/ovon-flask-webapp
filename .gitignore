@@ -1,4 +1,8 @@
 .project
 .pydevproject
+
 *.pyc
+
 env/*
+
+app.db

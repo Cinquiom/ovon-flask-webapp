@@ -12,8 +12,6 @@ mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 @mod_auth.route('/signin/', methods=['POST'])
 def signin():
     content = request.json
-    if current_user.is_authenticated:
-        return "", 204
     
     user = User.query.filter_by(username=content['username']).first()
     
@@ -22,6 +20,9 @@ def signin():
     
     login_user(user, remember = True)
     return "", 200
+
+    if current_user.is_authenticated:
+        return "", 204
 
 @mod_auth.route('/register/', methods=['POST'])
 def register():

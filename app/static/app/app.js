@@ -53,17 +53,7 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
                         }
                     }
                 },
-            })
-            .
-            when('/resetpassword/:url', {
-                resolve: {
-                	"check": function($location, $route) {
-                        $location.path('/resetpassword')
-                        $route.reload()
-                    }
-                },
-            })
-                ;
+            });
 
     $urlRouterProvider.otherwise("/opportunities");
 
@@ -109,8 +99,8 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
             url: "/upload",
             templateUrl: "static/app/uploadprofilepicture/upload.html",
         }).
-        state("/resetpassword", {
-            url: "/resetpassword",
+        state("/resetpassword/:param1", {
+            url: "/resetpassword/:param1",
             templateUrl: "static/app/resetpassword/resetPassword.html",
             controller:	"ResetPasswordController"
         }).

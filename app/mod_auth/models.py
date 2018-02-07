@@ -56,6 +56,12 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
     
+    def set_email(self, email):
+        self.email = email
+        
+    def set_fullName(self, fullName):
+        self.fullname = fullName
+    
     def __getitem__(self, item):
         return getattr(self, item)
     

@@ -85,6 +85,15 @@ def updateProfile():
         db.session.commit()
     return "", 202
 
+@mod_auth.route('/changePassword/', methods=['POST'])
+def changePassword():
+    content = request.json
+    user = User.query.filter_by(username=request.cookies.get('userName')).first()
+    if user and content['newPassword1'] == content['newPassword2']:
+        user.set_password(content['newPassword1'])
+        db.session.commit()
+    return "", 202
+
 #methods for user data retrieval on profile display page    
 @mod_auth.route('/getProfileEmail/', methods=['GET'])
 def getProfileEmail():

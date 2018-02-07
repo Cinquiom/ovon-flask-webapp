@@ -43,7 +43,7 @@ var UpdateProfileController = function($scope, $http, $route, $location) {
         //Checking if the error list is not empty
         if(!angular.equals(errors, {})) {
             console.log(errors);
-            alert("Ensure no fields are empty");
+            alert("Ensure no fields are empty"); //Eventually change this from being an alert
         }
         else{
             var profileInfoObject = JSON.stringify({

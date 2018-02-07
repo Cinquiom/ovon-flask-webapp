@@ -1,6 +1,6 @@
 'use strict';
 
-var ResetPasswordController = function($scope, $http, $location) {
+var ResetPasswordController = function($scope, $http, $location, $stateParams, $state) {
 	
 	$scope.errors = {};
 	
@@ -19,12 +19,12 @@ var ResetPasswordController = function($scope, $http, $location) {
 		} else {
 			
 			var userPasswordObject = JSON.stringify({password: userPassword.password, password2: userPassword.password2});
-			$http.post("http://localhost:8090/auth/resetpassword/<code>", userPasswordObject)
+			$http.post("http://localhost:8090/auth/resetpassword/"+ $stateParams.param1, userPasswordObject)
 			.then(
                   function (response) {
+                	  alert("Your Password has been reset!");
                 	  $location.path("/login");
-                      $route.reload();
-                      alert("Your Password has been reset!");
+                      $route.reload();                      
                   },
                   function (errResponse) {
                   	 console.log(errResponse);

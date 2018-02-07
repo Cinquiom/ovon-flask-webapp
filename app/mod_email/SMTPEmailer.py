@@ -20,7 +20,7 @@ class SMTPEmailer:
         msg['Subject'] = "Password reset for %s" % username
         body = """Someone has requested a password reset for this account.
 Please visit this link to verify your account:
-http://localhost:8090/#/resetpassword?code=%s
+http://localhost:8090/#/resetpassword/%s
 
 If you did not request a password reset, please disregard this email.
 """ % code

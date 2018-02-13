@@ -18,8 +18,6 @@ from app.mod_activityfeed.controllers import ActivityModule as activityfeed_modu
 app.register_blueprint(auth_module)
 api.add_resource(activityfeed_module, '/api/activity/', '/api/activity/<int:post_id>')
 
-db.create_all()
-
 # @app.errorhandler(404)
 # def not_found(error):
 #     return render_template('404.html'), 404

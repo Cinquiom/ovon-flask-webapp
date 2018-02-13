@@ -67,8 +67,6 @@ def forgotpassword():
 @mod_auth.route('/resetpassword/<code>', methods=['POST'])
 def resetpassword(code):
     content = request.json
-    print code
-    print content.keys()
     user = User.query.filter_by(verify_code=code).first()
     if user and content['password'] == content['password2']:
         user.set_password(content['password'])

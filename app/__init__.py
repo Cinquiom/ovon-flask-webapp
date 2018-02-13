@@ -24,4 +24,4 @@ api.add_resource(activityfeed_module, '/api/activity/', '/api/activity/<int:post
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', env="dev")

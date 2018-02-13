@@ -3,9 +3,6 @@
 // The main 'app' object
 var OVONApp = angular.module('OVONApp', ['ui.router', 'ngRoute', 'ngCookies', 'ngSQLite']);
 
-//setting Angular API URL global variable
-var apiURL = 'http://localhost:8090';
-
 OVONApp.constant('api', {
 	signIn: apiURL + '/auth/signin/',
     register: apiURL + '/auth/register/',
@@ -27,7 +24,7 @@ OVONApp.controller("ResetPasswordController", ResetPasswordController);
 OVONApp.controller("UpdateProfileController", UpdateProfileController);
 OVONApp.controller("ChangePasswordController", ChangePasswordController);
 OVONApp.controller("UploadProfilePictureController", UploadProfilePictureController);
-OVONApp.controller("CreatePostController", CreatePostController);
+//OVONApp.controller("CreatePostController", CreatePostController);
 
 
 OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {

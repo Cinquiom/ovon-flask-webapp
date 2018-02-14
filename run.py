@@ -2,8 +2,8 @@
 from app import app, db
 
 # if os.environ['OVON_ENV'] == 'prod':
-
-db.create_all()
 app.config.from_object('config.DevelopmentConfig')
+db.create_all()
+
 
 app.run(host="localhost", port=app.config['PORT'])

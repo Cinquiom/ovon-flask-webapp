@@ -4,8 +4,8 @@ from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_user
 
 from app import db
-from app.mod_auth.models import User
-from app.mod_email.SMTPEmailer import SMTPEmailer
+from app.modules.user import User
+from app.modules.util.email.SMTPEmailer import SMTPEmailer
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 

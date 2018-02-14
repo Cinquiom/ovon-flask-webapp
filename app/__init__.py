@@ -12,15 +12,16 @@ api = Api(app)
 # Must go before controller imports
 db = SQLAlchemy(app)
 
-from app.mod_auth.controllers import mod_auth as auth_module
-from app.mod_activityfeed.controllers import ActivityModule as activityfeed_module
+from app.modules.user import UserResource, CurrentUserResource
+from app.modules.organization import OrganizationResource
+from app.modules.auth.controllers import mod_auth as auth_module
+from app.modules.user_activity_post.controllers import ActivityModule as activityfeed_module
 
 app.register_blueprint(auth_module)
-api.add_resource(activityfeed_module, '/api/activity/', '/api/activity/<int:post_id>')
-
-# @app.errorhandler(404)
-# def not_found(error):
-#     return render_template('404.html'), 404
+api.add_resource(activityfeed_module,   '/api/activity/', '/api/activity/<int:post_id>')
+api.add_resource(UserResource,          '/api/users/', '/api/users/<int:user_id>')
+api.add_resource(CurrentUserResource,   '/api/currentuser')
+api.add_resource(OrganizationResource,  '/api/organizations/', '/api/organizations/<int:org_id>')
 
 @app.route('/')
 def index():

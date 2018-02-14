@@ -210,12 +210,14 @@ a:hover {
   height: 50px;
   margin-top: -25px;
   border: 3px solid #000000;
-  border-radius: 50%;
-  transition: all ease-in-out 500ms;
+  border-radius: 25%;
+  transition: all ease-in-out 400ms;
 }
 .login-form-1 .login-button:hover {
   color: #000000;
-  transform: rotate(450deg);
+  /*transform: rotate(360deg);*/
+  width: 85px;
+  right: -60px;
 }
 
 .login-button {
@@ -224,6 +226,7 @@ a:hover {
 
 .login-form-1 .login-button.clicked {
   color: #555555;
+  
 }
 .login-form-1 .login-button.clicked:hover {
   transform: none;
@@ -466,4 +469,13 @@ label:hover:before {
 
 #scrollableFeedChild::-webkit-scrollbar {
 	display: none;
+}
+
+#volunteerPoolEntryForm {
+	max-width: 80%;
+	width: 80%;
+}
+
+.entryFormLabel {
+	font-size: 120%;
 }

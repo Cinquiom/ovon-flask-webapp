@@ -11,7 +11,8 @@ OVONApp.constant('api', {
     resetPassword: apiURL + '/auth/resetpassword/',
     getProfileEmail: apiURL + '/auth/getProfileEmail/',
     getProfileFullName: apiURL + '/auth/getProfileFullName/',
-    getProfileCreationDate: apiURL + '/auth/getProfileCreationDate/'
+    getProfileCreationDate: apiURL + '/auth/getProfileCreationDate/',
+    postVolunteerPool: apiURL + '/api/activity/post/'
 });
 
 OVONApp.controller("OpportunitiesController", OpportunitiesController);
@@ -24,7 +25,7 @@ OVONApp.controller("ResetPasswordController", ResetPasswordController);
 OVONApp.controller("UpdateProfileController", UpdateProfileController);
 OVONApp.controller("ChangePasswordController", ChangePasswordController);
 OVONApp.controller("UploadProfilePictureController", UploadProfilePictureController);
-//OVONApp.controller("CreatePostController", CreatePostController);
+OVONApp.controller("CreatePostController", CreatePostController);
 
 
 OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {

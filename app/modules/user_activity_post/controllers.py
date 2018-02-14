@@ -10,7 +10,6 @@ from app import db
 from app.modules.user import User
 from app.modules.user_activity_post.models import ActivityPost
 
-
 class ActivityModule(Resource):
 
     """

@@ -1,5 +1,5 @@
 from app import db
-from app.mod_auth.models import User
+from app.modules.user import User
 
 User.activity_posts = db.relationship("ActivityPost", backref="users", lazy=True)
 

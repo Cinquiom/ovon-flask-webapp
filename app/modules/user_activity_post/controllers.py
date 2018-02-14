@@ -7,8 +7,8 @@ from flask_login import current_user
 from flask_restful import Resource
 
 from app import db
-from app.mod_auth.models import User
-from app.mod_activityfeed.models import ActivityPost
+from app.modules.user import User
+from app.modules.user_activity_post.models import ActivityPost
 
 
 class ActivityModule(Resource):

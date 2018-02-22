@@ -12,7 +12,8 @@ OVONApp.constant('api', {
     getProfileEmail: apiURL + '/auth/getProfileEmail/',
     getProfileFullName: apiURL + '/auth/getProfileFullName/',
     getProfileCreationDate: apiURL + '/auth/getProfileCreationDate/',
-    postVolunteerPool: apiURL + '/api/activity/'
+    postVolunteerPool: apiURL + '/api/activity/',
+    registerOrganization: apiURL + '/api/organizations/'
 });
 
 OVONApp.controller("OpportunitiesController", OpportunitiesController);
@@ -26,6 +27,7 @@ OVONApp.controller("UpdateProfileController", UpdateProfileController);
 OVONApp.controller("ChangePasswordController", ChangePasswordController);
 OVONApp.controller("UploadProfilePictureController", UploadProfilePictureController);
 OVONApp.controller("CreatePostController", CreatePostController);
+OVONApp.controller("RegisterOrganizationController", RegisterOrganizationController);
 
 
 OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
@@ -79,6 +81,18 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
                     },
                 })
                 .
+        when('/registerorganization', {
+                    resolve: {
+                    	"check": function($location, $rootScope, userPersistenceService, $cookies, $route, $window) {
+                            if(!($cookies.get('loggedInAlready') || userPersistenceService.getCookieData("loggedInAlready") == false)) {
+                                $location.path('/login')
+                                $window.location.href = "/#/login"
+                            	$window.location.reload()
+                            }
+                        }
+                    },
+                })
+                .                
                 when('/updateprofile', {
                 resolve: {
                 	"check": function($location, $rootScope, userPersistenceService, $cookies, $route, $window) {
@@ -147,6 +161,11 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
             url: "/createvolunteerpost",
             templateUrl: "static/app/createpost/createVolunteerPost.html",
             controller:	"CreatePostController"
+        }).
+        state("/registerorganization", {
+            url: "/registerorganization",
+            templateUrl: "static/app/registerorganization/registerOrganization.html",
+            controller:	"RegisterOrganizationController"
         }).
         state("/loginTest", {
             url: "/loginTest",

@@ -1,0 +1,53 @@
+<div class="container-fluid"> 
+<div class="row">
+ 	<div class="col-md-3" style="padding-left: 5%">
+ 		<h4 style="padding-top: 15%">Menu</h4>
+ 		<ul class="list-group">
+   			<li class="list-group-item" ng-repeat="nav in navtop">
+   				<a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
+   			</li> 	
+   		</ul>
+ 	</div>
+
+  <div class="col-lg-9">
+   <div class="card mt-4 text-center" style="background: #2196F3">
+    <div class="card-body">
+    <h5 class="card-title">Register Organization</h5>
+    <div id="volunteerPoolEntryForm" class="login-form-1">
+        <form id="register-form" class="text-left" ng-submit="submit()">
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+                <div class="login-group">
+                    <div class="form-group">
+                    	<label class="entryFormLabel">What is the name of your organization?</label>
+                        <label for="org_name" class="sr-only">What is the name of your organization?</label>
+                        <input ng-model="Organization.name" type="text" class="form-control" id="org_name" name="org_name" placeholder="Organization Name">
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                    	<label id="entryFormLabelBold" class="entryFormLabel">Organization Contact Information:</label>
+                    	<br/>
+                    	<label for="org_email" class="sr-only">email</label>
+                        <input ng-model="Organization.email" type="text" class="form-control" id="org_email" name="org_email" placeholder="Email">                         						                      
+                    </div>   
+                    <div class="form-group">
+ 						<label for="org_phone" class="sr-only">phone</label>
+                        <input ng-model="Organization.phone" ng-pattern="phoneNumberPattern" ng-required="phoneRequirement" type="text" class="form-control" id="org_phone" name="org_phone" placeholder="Phone Number">
+ 					</div>
+ 					 
+                    <div class="form-group login-group-checkbox">                        
+                    </div>          
+                </div>
+                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+        </div>
+    </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

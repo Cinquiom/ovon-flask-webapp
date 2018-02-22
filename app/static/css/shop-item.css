@@ -476,6 +476,29 @@ label:hover:before {
 	width: 80%;
 }
 
+#entryFormLabelBold {
+	font-weight: bold;
+}
+
 .entryFormLabel {
 	font-size: 120%;
+}
+
+/*Phone Number Input "hack"*/
+.phone-number .col-xs-3::after{
+ content: "-";
+ position:absolute;
+    right: 5px;
+    color: black;
+    border: 0px solid;
+    top: 5px;
+}
+
+.phone-number .col-xs-4{
+	width:25%;
+}
+
+.phone-number .col-xs-3, .phone-number .col-xs-4{
+
+	padding-left:0;
 }

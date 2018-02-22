@@ -2,7 +2,7 @@
     Encapsulates a REST endpoint for the activity feed posts.
 """
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, make_response
 from flask_login import current_user
 from flask_restful import Resource
 
@@ -33,13 +33,14 @@ class ActivityModule(Resource):
         if current_user.is_authenticated:
             content = request.json
             
-            ap = ActivityPost(**content)
+            ap = ActivityPost(**content)                
+            
             current_user.activity_posts.append(ap)
             
             db.session.add(ap)
             db.session.commit()
             
-            return jsonify(ap.serialize), 201
+            return make_response(jsonify(ap.serialize), 201)
         else:
             return "", 401
         

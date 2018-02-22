@@ -7,6 +7,8 @@ class Organization(db.Model):
     
     id              = db.Column(db.Integer, primary_key=True)
     name            = db.Column(db.String(128), nullable=False)
+    email            = db.Column(db.String(128), nullable=False)
+    phone            = db.Column(db.String(128), nullable=False)
     owner_id        = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     owner           = db.relationship("User", backref='organizations', lazy=True) 
 
@@ -22,5 +24,7 @@ class Organization(db.Model):
         return {
             "id": self.id,
             "name": self.name,
+            "email": self.email,
+            "phone": self.phone,
             "owner": self.owner.fullname
             }

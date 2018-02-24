@@ -1,6 +1,6 @@
 'use strict';
 
-var ForgotPasswordController = function($scope, $http) {
+var ForgotPasswordController = function($scope, $http, api) {
 	
 	var emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 	
@@ -21,7 +21,7 @@ var ForgotPasswordController = function($scope, $http) {
 		} else {
 			
 			var userEmailObject = JSON.stringify({email: userEmail.email});
-			$http.post("http://localhost:8090/auth/forgotpassword/", userEmailObject)
+			$http.post(api.forgotPassword, userEmailObject)
 			.then(
                   function (response) {
                       alert("Please check your email for a password reset code!");

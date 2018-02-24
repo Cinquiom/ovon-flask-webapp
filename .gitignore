@@ -1,8 +1,6 @@
 .project
 .pydevproject
-
 *.pyc
-
 env/*
-
-app.db
+*.db
+*.DS_Store

@@ -4,8 +4,8 @@ from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_user
 
 from app import db
-from app.mod_auth.models import User
-from app.mod_email.SMTPEmailer import SMTPEmailer
+from app.modules.user import User
+from app.modules.util.email.SMTPEmailer import SMTPEmailer
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -67,8 +67,6 @@ def forgotpassword():
 @mod_auth.route('/resetpassword/<code>', methods=['POST'])
 def resetpassword(code):
     content = request.json
-    print code
-    print content.keys()
     user = User.query.filter_by(verify_code=code).first()
     if user and content['password'] == content['password2']:
         user.set_password(content['password'])

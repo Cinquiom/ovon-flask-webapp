@@ -1,6 +1,11 @@
-import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+import sys, smtplib
+
+if (sys.version_info > (3, 0)):
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+else:
+    from email.MIMEMultipart import MIMEMultipart  # @Reimport
+    from email.MIMEText import MIMEText
 
 """
     @TODO: Set up an SMTP server on the VPS so we don't have to use cock.li
@@ -29,10 +34,10 @@ If you did not request a password reset, please disregard this email.
 
         try:
             self.smtpObj.sendmail("ovondev@airmail.cc", email, msg.as_string())                 
-            print "Successfully sent email"
+            print("Successfully sent email")
             return True
         except smtplib.SMTPException:
-            print "Error: unable to send email"
+            print("Error: unable to send email")
             return False
     
 if __name__ == "__main__":

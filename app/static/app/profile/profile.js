@@ -1,6 +1,6 @@
 'use strict';
 
-var ProfileController = function($scope, $http, userPersistenceService, $route, $location) {
+var ProfileController = function($scope, $http, userPersistenceService, $route, $location, api) {
 	
 	$scope.profileImage = "person.png"
 	$scope.title = userPersistenceService.getCookieData("userName");
@@ -14,23 +14,28 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 		$location.path("/updateprofile");
 		$route.reload();
 	}
+	
+	$scope.linkToRegisterOrganization = function() {
+		$location.path("/registerorganization");
+		$route.reload();
+	}
 		
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
 	});
 	
 	//GET requests to retrieve user data from the SQLite database
-	$http.get("http://localhost:8090/auth/getProfileEmail/")
+	$http.get(api.getProfileEmail)
 	.then(function (response) {
 		$scope.profileEmail = response.data;
 	});
 	
-	$http.get("http://localhost:8090/auth/getProfileFullName/")
+	$http.get(api.getProfileFullName)
 	.then(function (response) {
 		$scope.profileFullName = response.data;
 	});
 	
-	$http.get("http://localhost:8090/auth/getProfileCreationDate/")
+	$http.get(api.getProfileCreationDate)
 	.then(function (response) {
 		$scope.profileCreationDate = response.data;
 	});

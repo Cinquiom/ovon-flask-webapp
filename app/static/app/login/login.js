@@ -1,8 +1,8 @@
 'use strict';
 
-var LoginController = function($scope, $location, $rootScope, $http, userPersistenceService) {
+var LoginController = function($scope, $location, $rootScope, $http, userPersistenceService, api) {
     $scope.submit = function() {
-        $http.post("http://localhost:8090/auth/signin/", $scope.user)
+        $http.post(api.signIn, $scope.user)
         .then(function(response) {
         	$rootScope.loggedIn = true;
         	$rootScope.username = $scope.user.username;

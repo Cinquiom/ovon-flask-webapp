@@ -10,11 +10,14 @@
    				<a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
    			</li>
    			<li class="list-group-item">
- 			<button class="editProfileButton" ng-click="linkToUpdateProfile()">Edit Profile</button>
+	 			<button class="editProfileButtonNoZoom" ng-click="linkToRegisterOrganization()">Register Organization</button>	
+ 			</li>
+   			<li class="list-group-item">
+ 			<button class="editProfileButtonNoZoom" ng-click="linkToUpdateProfile()">Edit Profile</button>
  			</li>
  			<li class="list-group-item">
-	 			<button class="editProfileButton" ng-click="logout()">Logout</button>	
- 			</li> 	
+	 			<button class="editProfileButtonNoZoom" ng-click="logout()">Logout</button>	
+ 			</li>	
    		</ul>
  	</div>
  	

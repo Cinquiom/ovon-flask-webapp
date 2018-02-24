@@ -1,0 +1,53 @@
+<div class="container-fluid"> 
+<div class="row">
+ 	<div class="col-md-3" style="padding-left: 5%">
+ 		<h4 style="padding-top: 15%">Menu</h4>
+ 		<ul class="list-group">
+   			<li class="list-group-item" ng-repeat="nav in navtop">
+   				<a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
+   			</li>
+   			<li class="list-group-item">
+ 			<button class="editProfileButton" ng-click="linkToUpdateProfile()">Edit Profile</button>
+ 			</li>
+ 			<li class="list-group-item">
+	 			<button class="editProfileButton" ng-click="logout()">Logout</button>	
+ 			</li> 	
+   		</ul>
+ 	</div>
+
+  <div class="col-lg-9">
+   <div class="card mt-4 text-center" style="background: #2196F3">
+    <div class="card-body">
+    <h5 class="card-title">Enter the Volunteer Pool</h5>
+    <div id="volunteerPoolEntryForm" class="login-form-1">
+        <form id="register-form" class="text-left" ng-submit="submit()">
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+                <div class="login-group">
+                    <div class="form-group">
+                    	<label class="entryFormLabel">When are you available to volunteer?</label>
+                        <label for="post_availability" class="sr-only">When are you available to volunteer?</label>
+                        <input ng-model="ActivityPost.availability" type="text" class="form-control" id="post_availability" name="post_availability" placeholder="enter the dates and times you are available here">
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                    	<label class="entryFormLabel">Briefly describe yourself and the type of volunteer activities you would like to partake in.</label>
+                        <label for="post_description" class="sr-only">Briefly describe yourself and the type of volunteer activities you would like to partake in.</label>
+                        <textarea ng-model="ActivityPost.description" class="form-control" id="post_description" name="post_description" placeholder="describe yourself here"></textarea>
+                    </div>   
+                    <div class="form-group login-group-checkbox">                        
+                    </div>          
+                </div>
+                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+        </div>
+    </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

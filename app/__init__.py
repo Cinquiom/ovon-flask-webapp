@@ -13,15 +13,17 @@ api = Api(app)
 db = SQLAlchemy(app)
 
 from app.modules.user import UserResource, CurrentUserResource
+from app.modules.user_activity_post import ActivityResource
 from app.modules.organization import OrganizationResource
+from app.modules.organization_opportunity_post import OpportunityResource
 from app.modules.auth.controllers import mod_auth as auth_module
-from app.modules.user_activity_post.controllers import ActivityModule as activityfeed_module
 
 app.register_blueprint(auth_module)
-api.add_resource(activityfeed_module,   '/api/activity/', '/api/activity/<int:post_id>')
-api.add_resource(UserResource,          '/api/users/', '/api/users/<int:user_id>')
-api.add_resource(CurrentUserResource,   '/api/currentuser')
-api.add_resource(OrganizationResource,  '/api/organizations/', '/api/organizations/<int:org_id>')
+api.add_resource(UserResource,          '/api/users/', '/api/users/<int:user_id>/')
+api.add_resource(CurrentUserResource,   '/api/currentuser/')
+api.add_resource(ActivityResource,      '/api/activity/', '/api/activity/<int:post_id>/')
+api.add_resource(OrganizationResource,  '/api/organizations/', '/api/organizations/<int:org_id>/')
+api.add_resource(OpportunityResource,  '/api/opportunities/', '/api/organizations/<int:org_id>/opportunities/')
 
 @app.route('/')
 def index():

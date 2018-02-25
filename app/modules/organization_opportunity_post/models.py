@@ -9,6 +9,7 @@ class OpportunityPost(db.Model):
 
     location = db.Column(db.String(192),  nullable=False)
     description = db.Column(db.String(192),  nullable=False)
+    when = db.Column(db.String(192),  nullable=False)
     
     organization_id = db.Column(db.Integer, db.ForeignKey('organizations.id'))
     
@@ -30,6 +31,7 @@ class OpportunityPost(db.Model):
             "id": self.id,
             "organization": self.organization.name,
             "description": self.description,
-            "location": self.location
+            "location": self.location,
+            "when": self.when
             }
     

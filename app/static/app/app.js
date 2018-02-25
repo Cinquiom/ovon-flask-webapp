@@ -13,7 +13,10 @@ OVONApp.constant('api', {
     getProfileFullName: apiURL + '/auth/getProfileFullName/',
     getProfileCreationDate: apiURL + '/auth/getProfileCreationDate/',
     postVolunteerPool: apiURL + '/api/activity/',
-    registerOrganization: apiURL + '/api/organizations/'
+    registerOrganization: apiURL + '/api/organizations/',
+    postOpportunity: apiURL + '/api/organizations/<int:org_id>/opportunities/',
+    getUserOrganizations: apiURL + '/api/organizations/'
+    
 });
 
 OVONApp.controller("OpportunitiesController", OpportunitiesController);
@@ -26,7 +29,8 @@ OVONApp.controller("ResetPasswordController", ResetPasswordController);
 OVONApp.controller("UpdateProfileController", UpdateProfileController);
 OVONApp.controller("ChangePasswordController", ChangePasswordController);
 OVONApp.controller("UploadProfilePictureController", UploadProfilePictureController);
-OVONApp.controller("CreatePostController", CreatePostController);
+OVONApp.controller("CreateVolunteerPostController", CreateVolunteerPostController);
+OVONApp.controller("CreateOpportunityPostController", CreateOpportunityPostController);
 OVONApp.controller("RegisterOrganizationController", RegisterOrganizationController);
 
 
@@ -81,6 +85,18 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
                     },
                 })
                 .
+        when('/createopportunitypost', {
+                    resolve: {
+                    	"check": function($location, $rootScope, userPersistenceService, $cookies, $route, $window) {
+                            if(!($cookies.get('loggedInAlready') || userPersistenceService.getCookieData("loggedInAlready") == false)) {
+                                $location.path('/login')
+                                $window.location.href = "/#/login"
+                            	$window.location.reload()
+                            }
+                        }
+                    },
+                })
+                .             
         when('/registerorganization', {
                     resolve: {
                     	"check": function($location, $rootScope, userPersistenceService, $cookies, $route, $window) {
@@ -159,8 +175,13 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
         }).
         state("/createvolunteerpost", {
             url: "/createvolunteerpost",
-            templateUrl: "static/app/createpost/createVolunteerPost.html",
-            controller:	"CreatePostController"
+            templateUrl: "static/app/createvolunteerpost/createVolunteerPost.html",
+            controller:	"CreateVolunteerPostController"
+        }).
+        state("/createopportunitypost", {
+            url: "/createopportunitypost",
+            templateUrl: "static/app/createopportunitypost/createOpportunityPost.html",
+            controller:	"CreateOpportunityPostController"
         }).
         state("/registerorganization", {
             url: "/registerorganization",

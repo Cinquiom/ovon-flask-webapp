@@ -1,6 +1,6 @@
 'use strict';
 
-var VolunteerPoolController = function($scope, $http) {
+var VolunteerPoolController = function($scope, $http, api) {
 	
 	// Specifying simple JSON objects in the javascript itself
 	$scope.filters = ["Manual Labour", "People", "Animals"];
@@ -13,7 +13,7 @@ var VolunteerPoolController = function($scope, $http) {
 		$scope.navtop = response.data;
 	});
 	
-	$http.get('/static/json/volunteers.json').then(function(response) {
+	$http.get(api.postVolunteerPool).then(function(response) {
 		$scope.volunteers = response.data;
 	});
 };

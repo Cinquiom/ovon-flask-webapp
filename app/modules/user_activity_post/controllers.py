@@ -22,7 +22,7 @@ class ActivityResource(Resource):
             posts = ActivityPost.query.get(post_id)
             return jsonify(posts.serialize)
         else:
-            posts = ActivityPost.query.all()
+            posts = ActivityPost.query.all()            
             return jsonify([x.serialize for x in posts])
 
     """

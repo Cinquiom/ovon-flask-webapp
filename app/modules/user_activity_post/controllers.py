@@ -33,8 +33,8 @@ class ActivityResource(Resource):
         if current_user.is_authenticated:
             content = request.json
             
-            ap = ActivityPost(**content)                
-            
+            ap = ActivityPost(**content)
+                                         
             current_user.activity_posts.append(ap)
             
             db.session.add(ap)

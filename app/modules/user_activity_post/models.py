@@ -20,6 +20,8 @@ class ActivityPost(db.Model):
                                            onupdate=db.func.current_timestamp())
     user = db.relationship("User")
     
+    email = db.Column(db.String(192),  nullable=False)
+    
     
     def __repr__(self):
         return '<ActivityPost %r %s>' % (self.id, self.user.username)    
@@ -35,6 +37,7 @@ class ActivityPost(db.Model):
             "description": self.description,
             "availability": self.availability,
             "user": self.user.username,
-            "fullName": self.user.fullname
+            "fullName": self.user.fullname,
+            "email": self.user.email
             }
     

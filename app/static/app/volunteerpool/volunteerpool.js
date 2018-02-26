@@ -1,10 +1,15 @@
 'use strict';
 
-var VolunteerPoolController = function($scope, $http, api) {
+var VolunteerPoolController = function($scope, $http, $location, api) {
 	
 	// Specifying simple JSON objects in the javascript itself
 	$scope.filters = ["Manual Labour", "People", "Animals"];
 	$scope.title = "Volunteers";
+	
+	$scope.linkToEnterVolunteerPool = function() {
+		$location.path("/createvolunteerpost");
+		$route.reload();
+	}
 	
 	// Typically how we will be pulling data, except
 	// the URL will be a REST endpoint with a dynamically-generated

@@ -20,6 +20,9 @@
    			<li class="list-group-item" ng-repeat="nav in navtop">
    				<a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
    			</li>
+   			<li class="list-group-item">
+ 			<button class="editProfileButtonNoZoom" ng-click="linkToEnterVolunteerPool()">Enter Volunteer Pool</button>
+ 			</li>
    		</ul>
    		<div id="container" style="padding-top: 30px">
     		<h4>Filter Your Search</h4>
@@ -42,6 +45,7 @@
                     		<h3 class="card-title">{{volunteer.fullName}} ({{volunteer.user}})</h3>
                     		<h5>Availability: {{volunteer.availability}}</h5>
                     		<p class="card-text">{{volunteer.description}}</p>
+                    		<h5>Contact: {{volunteer.email}}</h5>
                     		<!--<p class="card-text"><a href="#">Read more</a> </p>-->
                 		</div>
             		</div>           

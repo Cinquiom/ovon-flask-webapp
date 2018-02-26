@@ -18,6 +18,9 @@ class OpportunityPost(db.Model):
                                            onupdate=db.func.current_timestamp())
     organization = db.relationship("Organization", backref = "opportunities", lazy=True)
     
+    email = db.Column(db.String(192),  nullable=False)
+    phone = db.Column(db.String(192),  nullable=False)
+    
     
     def __repr__(self):
         return '<Organization %r %s>' % (self.id, self.organization.name)    
@@ -32,6 +35,8 @@ class OpportunityPost(db.Model):
             "organization": self.organization.name,
             "description": self.description,
             "location": self.location,
-            "when": self.when
+            "when": self.when,
+            "phone": self.organization.phone,
+            "email": self.organization.email
             }
     

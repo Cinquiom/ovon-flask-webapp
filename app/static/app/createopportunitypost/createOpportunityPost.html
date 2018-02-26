@@ -34,18 +34,10 @@
                         <textarea ng-model="OpportunityPost.description" class="form-control" id="post_description" name="post_description" placeholder="describe the opportunity here"></textarea>
                     </div>
                     <br/>
-                    <div class="form-group">
-                    	<div class = "dropdown">
-                    		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Organization<span class="caret"></span></button>
-                    		<ul class="dropdown-menu">
-							    <li class="list-group-item" ng-repeat="org in organizations">
-   									<a href="#">{{org.name}}</a>
-   								</li>
-							</ul>
-                    	</div>
-                    	
-                    </div>
-                       
+                    <label for="organizationSelect"> Select Organization: </label>
+				    <select name="organizationSelect" id="organizationSelect" ng-options="name as name for name in userOrganizationNames" ng-model="chosenOrganizationName">
+				    </select>
+                    
                     <div class="form-group login-group-checkbox">                        
                     </div>          
                 </div>

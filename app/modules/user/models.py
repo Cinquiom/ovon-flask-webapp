@@ -19,7 +19,7 @@ class User(UserMixin, db.Model):
     date_created    = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified   = db.Column(db.DateTime, default=db.func.current_timestamp(),
                                             onupdate=db.func.current_timestamp())
-    bio = db.Column(db.String(192), nullable=True)
+    bio             = db.Column(db.String(192), nullable=True)
 
     # New instance instantiation procedure
     def __init__(self, username, email, password, fullname, birthdate, gender,
@@ -33,7 +33,7 @@ class User(UserMixin, db.Model):
         self.set_password(password)
         self.enabled = True
         self.verify_code=None
-        self.bio = bio
+        self.bio = None
 
     def __repr__(self):
         return '<User %r>' % (self.name)   

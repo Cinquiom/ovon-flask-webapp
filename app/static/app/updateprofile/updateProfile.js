@@ -17,12 +17,12 @@ var UpdateProfileController = function($scope, $http, $route, $location, api) {
         $route.reload();
     };
     
-    $http.get("http://localhost:8090/auth/getProfileEmail/")
+    $http.get(api.getProfileEmail)
     .then(function (response) {
         $scope.profileEmail = response.data;
     });
     
-    $http.get("http://localhost:8090/auth/getProfileFullName/")
+    $http.get(api.getProfileFullName)
     .then(function (response) {
         $scope.profileFullName = response.data;
     });
@@ -55,7 +55,7 @@ var UpdateProfileController = function($scope, $http, $route, $location, api) {
             profileEmail: $scope.profileEmail,
             profileBio: $scope.profileBio});
             
-            $http.post("http://localhost:8090/auth/updateProfile", profileInfoObject)
+            $http.post(api.updateProfile, profileInfoObject)
             .then(
                 function(response){
                     $location.path("/profile");

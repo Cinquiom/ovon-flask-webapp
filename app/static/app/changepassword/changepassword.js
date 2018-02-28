@@ -1,6 +1,6 @@
 'use strict';
 
-var ChangePasswordController = function($scope, $http, userPersistenceService, $route, $location) {
+var ChangePasswordController = function($scope, $http, userPersistenceService, $route, $location, api) {
     
     $scope.linkToUpdateProfile = function() {
         $location.path("/updateprofile");
@@ -43,7 +43,7 @@ var ChangePasswordController = function($scope, $http, userPersistenceService, $
             newPassword1: $scope.newPassword1,
             newPassword2: $scope.newPassword2});
             
-            $http.post("http://localhost:8090/auth/changePassword/", passwordObject)
+            $http.post(api.changePassword, passwordObject)
             .then(
                 function(response){
                     userPersistenceService.clearCookieData();

@@ -25,4 +25,9 @@ class OrganizationResource(Resource):
             return o.serialize, 201
         else:
             return "", 403
+        
+class UserOrganizationResource(Resource):
+    def get(self):
+        response = [x.serialize for x in Organization.query.filter_by(owner_id = current_user.id).all()]
+        return jsonify(response)
     

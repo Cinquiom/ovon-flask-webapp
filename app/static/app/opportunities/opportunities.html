@@ -20,6 +20,9 @@
    			<li class="list-group-item">
  			<button class="editProfileButtonNoZoom" ng-click="linkToEnterVolunteerPool()">Enter Volunteer Pool</button>
  			</li>
+ 			<li class="list-group-item">
+ 			<button class="editProfileButtonNoZoom" ng-click="linkToPostOpportunity()">Post Opportunity</button>
+ 			</li>
    		</ul>
    		<div id="container" style="padding-top: 30px">
     		<h4>Filter Your Search</h4>
@@ -37,12 +40,13 @@
    <div id="scrollableFeedChild">
    <div id="opportunitiesArea"> 
    <div class="card mt-4" style="background: #2196F3" ng-repeat="op in ops">
-    <img class="card-img-top img-fluid" src="/static/images/{{op.image}}" alt=""/>
+    <!--<img class="card-img-top img-fluid" src="/static/images/{{op.image}}" alt=""/>-->
     <div class="card-body">
-     <h3 class="card-title">{{op.name}}</h3>
-     <h4>{{op.schedule}}</h4>
+     <h3 class="card-title">{{op.organization}}</h3>
+     <h5>Location: {{op.location}}</h5>
      <p class="card-text">{{op.description}}</p>
-	 <p class="card-text"><a href="#">Read more</a> </p>
+     <h5>Contact: {{op.email}}, {{op.phone}}</h5>
+	 <!--<p class="card-text"><a href="#">Read more</a> </p>-->
     </div>
    </div>
    </div>

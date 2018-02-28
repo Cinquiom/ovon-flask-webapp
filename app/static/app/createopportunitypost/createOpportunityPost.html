@@ -1,0 +1,56 @@
+<div class="container-fluid"> 
+<div class="row">
+ 	<div class="col-md-3" style="padding-left: 5%">
+ 		<h4 style="padding-top: 15%">Menu</h4>
+ 		<ul class="list-group">
+   			<li class="list-group-item" ng-repeat="nav in navtop">
+   				<a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
+   			</li>	
+   		</ul>
+ 	</div>
+
+  <div class="col-lg-9">
+   <div class="card mt-4 text-center" style="background: #2196F3">
+    <div class="card-body">
+    <h5 class="card-title">Post a Volunteer Opportunity</h5>
+    <div id="volunteerPoolEntryForm" class="login-form-1">
+        <form id="register-form" class="text-left" ng-submit="submit()">
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+                <div class="login-group">
+                    <div class="form-group">
+                    	<label class="entryFormLabel">Where and when will the opportunity take place?</label>
+                        <label for="post_location" class="sr-only">Where and when will the opportunity take place?</label>
+                        <input ng-model="OpportunityPost.location" type="text" class="form-control" id="post_location" name="post_location" placeholder="enter the location here">
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                    	<input ng-model="OpportunityPost.when" type="text" class="form-control" id="post_location" name="post_location" placeholder="opportunity date and time">
+                    </div>
+                    <br/>                   
+                    <div class="form-group">
+                    	<label class="entryFormLabel">Briefly describe the opportunity and the type of volunteer work involved.</label>
+                        <label for="post_description" class="sr-only">Briefly describe the opportunity and the type of volunteer work involved.</label>
+                        <textarea ng-model="OpportunityPost.description" class="form-control" id="post_description" name="post_description" placeholder="describe the opportunity here"></textarea>
+                    </div>
+                    <br/>
+                    <label for="organizationSelect"> Select Organization: </label>
+				    <select name="organizationSelect" id="organizationSelect" ng-options="name as name for name in userOrganizationNames" ng-model="chosenOrganizationName">
+				    </select>
+                    
+                    <div class="form-group login-group-checkbox">                        
+                    </div>          
+                </div>
+                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+        </div>
+    </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

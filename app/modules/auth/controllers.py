@@ -73,7 +73,7 @@ def resetpassword(code):
         db.session.commit()
     return "", 204
 
-@mod_auth.route('/updateProfile', methods=['POST'])
+@mod_auth.route('/updateProfile/', methods=['POST'])
 def updateProfile():
     content = request.json
     user = User.query.filter_by(username=request.cookies.get('userName')).first()

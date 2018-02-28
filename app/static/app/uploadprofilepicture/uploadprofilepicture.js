@@ -2,7 +2,11 @@
 
 var UploadProfilePictureController = function($scope, $http, userPersistenceService, $route, $location) {
     
-    $scope.linkToUpdateProfile = function() {
+	$http.get('/static/json/navtop.json').then(function(response) {
+		$scope.navtop = response.data;
+	});
+	
+	$scope.linkToUpdateProfile = function() {
         $location.path("/updateprofile");
         $route.reload();
     }

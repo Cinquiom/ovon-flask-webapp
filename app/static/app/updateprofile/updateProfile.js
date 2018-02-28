@@ -1,7 +1,11 @@
 'use strict';
 
 var UpdateProfileController = function($scope, $http, $route, $location, api) {
-    
+	
+	$http.get('/static/json/navtop.json').then(function(response) {
+		$scope.navtop = response.data;
+	});
+	
     $scope.linkToUpdateProfile = function() {
         $location.path("/updateprofile");
         $route.reload();

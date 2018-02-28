@@ -1,6 +1,6 @@
 'use strict';
 
-var UpdateProfileController = function($scope, $http, $route, $location) {
+var UpdateProfileController = function($scope, $http, $route, $location, api) {
     
     $scope.linkToUpdateProfile = function() {
         $location.path("/updateprofile");
@@ -27,6 +27,11 @@ var UpdateProfileController = function($scope, $http, $route, $location) {
         $scope.profileFullName = response.data;
     });
     
+    $http.get(api.getProfileBio)
+    .then(function (response) {
+        $scope.profileBio = response.data;
+    });
+    
     $scope.updateInfo = function() {
     
         var errors = {};
@@ -37,8 +42,7 @@ var UpdateProfileController = function($scope, $http, $route, $location) {
         }
         else if(!$scope.profileEmail) {
             errors.profileEmail = "Email is blank";
-        }
-        
+        }        
         
         //Checking if the error list is not empty
         if(!angular.equals(errors, {})) {
@@ -48,7 +52,8 @@ var UpdateProfileController = function($scope, $http, $route, $location) {
         else{
             var profileInfoObject = JSON.stringify({
             profileFullName: $scope.profileFullName,
-            profileEmail: $scope.profileEmail});
+            profileEmail: $scope.profileEmail,
+            profileBio: $scope.profileBio});
             
             $http.post("http://localhost:8090/auth/updateProfile", profileInfoObject)
             .then(

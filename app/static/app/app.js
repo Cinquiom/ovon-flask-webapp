@@ -12,6 +12,7 @@ OVONApp.constant('api', {
     getProfileEmail: apiURL + '/auth/getProfileEmail/',
     getProfileFullName: apiURL + '/auth/getProfileFullName/',
     getProfileCreationDate: apiURL + '/auth/getProfileCreationDate/',
+    getProfileBio: apiURL + '/auth/getProfileBio/',
     postVolunteerPool: apiURL + '/api/activity/',
     registerOrganization: apiURL + '/api/organizations/',
     postOpportunity: apiURL + '/api/organizations/opportunities/',

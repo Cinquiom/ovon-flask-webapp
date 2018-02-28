@@ -39,4 +39,9 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 	.then(function (response) {
 		$scope.profileCreationDate = response.data;
 	});
+	
+	$http.get(api.getProfileBio)
+	.then(function (response) {
+		$scope.profileBio = response.data;
+	});
 };

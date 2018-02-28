@@ -460,7 +460,7 @@ label:hover:before {
 }
 
 #scrollableFeedChild {
-	position: absolute;
+	position: relative;
 	left: 0;
 	overflow-x: hidden;
 	overflow-y: scroll;

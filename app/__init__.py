@@ -28,7 +28,7 @@ api.add_resource(OrganizationResource,           '/api/organizations/', '/api/or
 api.add_resource(OpportunityResource,            '/api/organizations/opportunities/', '/api/organizations/opportunities/<int:org_id>')
 api.add_resource(UserOrganizationResource,       '/api/userOrganizations/')
 api.add_resource(UserToOrganizationRateResource, '/api/organizations/<int:org_id>/ratings/')
-api.add_resource(OrganizationToUserRateResource, '/api/users/<int:user_id>/ratings/', '/api/organizations/<int:org_id>/rate/<int:user_id>')
+api.add_resource(OrganizationToUserRateResource, '/api/users/<int:user_id>/ratings/<int:org_id>')
 
 @app.route('/')
 def index():

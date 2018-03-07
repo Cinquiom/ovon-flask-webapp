@@ -34,11 +34,11 @@ class UserToOrganizationRateResource(Resource):
             return "", 401
         
 class OrganizationToUserRateResource(Resource):
-    def get(self, user_id):
+    def get(self, user_id, org_id=None):
         ratings = [x.serialize for x in OrganizationToUserRate.query.filter_by(user_id=user_id).all()]
         return jsonify(ratings)
     
-    def post(self, org_id, user_id):
+    def put(self, org_id, user_id):
         content = request.json
         org = Organization.query.get(org_id)
         if org and org in current_user.organizations:

@@ -33,6 +33,9 @@ api.add_resource(OrganizationToUserRateResource, '/api/users/<int:user_id>/ratin
 api.add_resource(UserFavesResource,              '/api/users/<int:user_id>/favourites/')
 api.add_resource(OpportunityFavedResource,       '/api/opportunities/<int:opp_id>/favourites/')
 
+app.config.from_object('config.ProductionConfig')
+db.create_all()
+
 @app.route('/')
 def index():
-    return render_template('index.html', env="dev")
+    return render_template('index.html', env=app.config["ENV"])

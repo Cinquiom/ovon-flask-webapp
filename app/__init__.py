@@ -17,15 +17,18 @@ from app.modules.user_activity_post import ActivityResource
 from app.modules.organization import OrganizationResource
 from app.modules.organization_opportunity_post import OpportunityResource
 from app.modules.organization import UserOrganizationResource
+from app.modules.rating import UserToOrganizationRateResource, OrganizationToUserRateResource
 from app.modules.auth.controllers import mod_auth as auth_module
 
 app.register_blueprint(auth_module)
-api.add_resource(UserResource,          '/api/users/', '/api/users/<int:user_id>/')
-api.add_resource(CurrentUserResource,   '/api/currentuser/')
-api.add_resource(ActivityResource,      '/api/activity/', '/api/activity/<int:post_id>/')
-api.add_resource(OrganizationResource,  '/api/organizations/', '/api/organizations/<int:org_id>/')
-api.add_resource(OpportunityResource,  '/api/organizations/opportunities/', '/api/organizations/opportunities/<int:org_id>')
-api.add_resource(UserOrganizationResource, '/api/userOrganizations/')
+api.add_resource(UserResource,                   '/api/users/', '/api/users/<int:user_id>/')
+api.add_resource(CurrentUserResource,            '/api/currentuser/')
+api.add_resource(ActivityResource,               '/api/activity/', '/api/activity/<int:post_id>/')
+api.add_resource(OrganizationResource,           '/api/organizations/', '/api/organizations/<int:org_id>/')
+api.add_resource(OpportunityResource,            '/api/organizations/opportunities/', '/api/organizations/opportunities/<int:org_id>')
+api.add_resource(UserOrganizationResource,       '/api/userOrganizations/')
+api.add_resource(UserToOrganizationRateResource, '/api/organizations/<int:org_id>/ratings/')
+api.add_resource(OrganizationToUserRateResource, '/api/users/<int:user_id>/ratings/', '/api/organizations/<int:org_id>/rate/<int:user_id>')
 
 @app.route('/')
 def index():

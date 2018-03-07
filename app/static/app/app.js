@@ -218,7 +218,7 @@ OVONApp.directive('header', [ '$rootScope', function ($rootScope) {
         restrict: 'A', 
         replace: true,
         scope: {username: '='}, // This is one of the cool things :). Will be explained in post.
-        templateUrl: "static/app/core/header.html",
+        templateUrl: "/static/app/core/header.html",
         controller: ['$scope', '$filter', function ($scope, $filter) {
         }]
     }

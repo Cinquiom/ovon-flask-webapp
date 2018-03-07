@@ -28,10 +28,14 @@ class Config(object):
     THREADS_PER_PAGE = 2
 
 class ProductionConfig(Config):
+    ENV = "prod"
+    HOST = "ovon.club"
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://dbuser:dickbutt@localhost:3306/ovon'
 
 class DevelopmentConfig(Config):
+    ENV = "dev"
+    HOST = "localhost"
     DEBUG = True
 
 class TestingConfig(Config):

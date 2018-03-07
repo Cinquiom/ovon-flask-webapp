@@ -460,7 +460,7 @@ label:hover:before {
 }
 
 #scrollableFeedChild {
-	position: absolute;
+	position: relative;
 	left: 0;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -501,4 +501,17 @@ label:hover:before {
 .phone-number .col-xs-3, .phone-number .col-xs-4{
 
 	padding-left:0;
+}
+
+/* Custom Select */
+#organizationSelect {
+  position: relative;
+  display: block;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: #F7C32E;
+  overflow: hidden;
+  border-radius: .25em;
+  border: 2px solid black;
 }

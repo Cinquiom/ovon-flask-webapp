@@ -1,20 +1,14 @@
-<div class="container">
+<div class="container-fluid">
  <div class="row">
-  <div class="col-lg-12">
-   <ul class="list-inline">
-    <li class="list-inline-item" ng-repeat="nav in navtop">
-     <div class="list-group">
-      <a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
-     </div>
-    </li>
-   </ul>
-  </div>
  </div>
  
 <div class="row">
   <div class="col-md-3" style="padding-left: 5%">
         <h4 style="padding-top: 15%">Options</h4>
         <ul class="list-group">
+        	<li class="list-group-item" ng-repeat="nav in navtop">
+   				<a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
+   			</li>
             <li class="list-group-item">
             <button class="editProfileButtonNoZoom" ng-click="linkToUpdateProfile()">Update Information</button>
             </li>
@@ -31,13 +25,13 @@
    <div class="card mt-4 text-center" style="background: #2196F3">
     <div class="card-body">
     <h5 class="card-title">Update Information</h5>
-     <form action="" method="get">
+    <form id="updateProfile" ng-submit="updateInfo()">
         <div class="row">
             <div class="col-lg-3">
                 <label>Full name</label>
             </div>
             <div class="col-lg-9">
-                <input type="text" name="name" id="fullname"/>
+                <input type="text" ng-model="profileFullName" value="{{profileFullName}}" name="name" id="fullname"/>
             </div>
         </div>
         <div class="row">
@@ -45,7 +39,7 @@
                 <label>Email</label>
             </div>
             <div class="col-lg-9">
-                <input type="text" name="email" id="email"/>
+                <input type="text" ng-model="profileEmail" value="{{profileEmail}}" name="email" id="email"/>
             </div>
         </div>
         <div class="row">
@@ -53,17 +47,17 @@
                 <label>Summary</label>
             </div>
             <div class="col-lg-9">
-                <textarea rows="5" cols="30" name="summary" id="summary"></textarea>
+                <textarea ng-model="profileBio" value="{{profileBio}}" rows="5" cols="30" name="summary" id="summary"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-9">
+                <input type="submit" value="Save Changes" class="editProfileButtonNoZoom"/>
             </div>
         </div>
     </form>
-    <div class="row">
-        <div class="col-lg-3">
-        </div>
-        <div class="col-lg-9">
-            <button type="submit" class="editProfileButtonNoZoom">Save Changes</button>
-        </div>
-    </div>
     </div>
    </div>
   </div>

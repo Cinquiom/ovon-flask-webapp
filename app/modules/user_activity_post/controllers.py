@@ -22,7 +22,7 @@ class ActivityResource(Resource):
             posts = ActivityPost.query.get(post_id)
             return jsonify(posts.serialize)
         else:
-            posts = ActivityPost.query.all()
+            posts = ActivityPost.query.all()            
             return jsonify([x.serialize for x in posts])
 
     """
@@ -33,8 +33,8 @@ class ActivityResource(Resource):
         if current_user.is_authenticated:
             content = request.json
             
-            ap = ActivityPost(**content)                
-            
+            ap = ActivityPost(**content)
+                                         
             current_user.activity_posts.append(ap)
             
             db.session.add(ap)

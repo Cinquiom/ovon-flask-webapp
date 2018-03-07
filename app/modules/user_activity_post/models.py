@@ -33,6 +33,9 @@ class ActivityPost(db.Model):
             "id": self.id,
             "user_id": self.user.id,
             "description": self.description,
-            "availability": self.availability
+            "availability": self.availability,
+            "user": self.user.username,
+            "fullName": self.user.fullname,
+            "email": self.user.email
             }
     

@@ -1,6 +1,6 @@
 'use strict';
 
-var CreatePostController = function($scope, $http, api) {
+var CreateVolunteerPostController = function($scope, $http, api) {
 	
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;

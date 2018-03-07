@@ -73,6 +73,26 @@ def resetpassword(code):
         db.session.commit()
     return "", 204
 
+@mod_auth.route('/updateProfile/', methods=['POST'])
+def updateProfile():
+    content = request.json
+    user = User.query.filter_by(username=request.cookies.get('userName')).first()
+    if user:
+        user.set_fullName(content['profileFullName'])
+        user.set_email(content['profileEmail'])
+        user.set_bio(content['profileBio'])
+        db.session.commit()
+    return "", 202
+
+@mod_auth.route('/changePassword/', methods=['POST'])
+def changePassword():
+    content = request.json
+    user = User.query.filter_by(username=request.cookies.get('userName')).first()
+    if user and content['newPassword1'] == content['newPassword2']:
+        user.set_password(content['newPassword1'])
+        db.session.commit()
+    return "", 202
+
 #methods for user data retrieval on profile display page    
 @mod_auth.route('/getProfileEmail/', methods=['GET'])
 def getProfileEmail():
@@ -89,3 +109,8 @@ def getProfileCreationDate():
     profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['date_created']
     creationDate = profileInfo.strftime('%d/%m/%Y')
     return creationDate, 200
+
+@mod_auth.route('/getProfileBio/', methods=['GET'])
+def getProfileBio():
+    profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['bio']
+    return profileInfo, 200

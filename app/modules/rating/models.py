@@ -1,11 +1,12 @@
 # Import the database object (db) from the main application module
 # We will define this inside /app/__init__.py in the next sections.
 from app import db
-        
-class UserToOrganizationRates(db.Model):
+
+# User rates an organization        
+class UserToOrganizationRate(db.Model):
 
     __tablename__       = 'user_to_organization_ratings'
-    __table_args__      = (db.UniqueConstraint('user_id', 'organization_id', name='_user_org_rate_uc'))
+    __table_args__      = (db.UniqueConstraint('user_id', 'organization_id', name='_user_org_rate_uc'),)
     
     user_id             = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     organization_id     = db.Column(db.Integer, db.ForeignKey('organizations.id'), primary_key=True)
@@ -25,10 +26,11 @@ class UserToOrganizationRates(db.Model):
             "rating": self.rating
             }
 
-class OrganizationToUserRates(db.Model):
+# Organization rates a user
+class OrganizationToUserRate(db.Model):
 
     __tablename__       = 'organization_to_user_ratings'
-    __table_args__      = (db.UniqueConstraint('organization_id', 'user_id', name='_org_user_rate_uc'))
+    __table_args__      = (db.UniqueConstraint('organization_id', 'user_id', name='_org_user_rate_uc'),)
     
     user_id             = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     organization_id     = db.Column(db.Integer, db.ForeignKey('organizations.id'), primary_key=True)

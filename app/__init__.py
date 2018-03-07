@@ -18,6 +18,7 @@ from app.modules.organization import OrganizationResource
 from app.modules.organization_opportunity_post import OpportunityResource
 from app.modules.organization import UserOrganizationResource
 from app.modules.rating import UserToOrganizationRateResource, OrganizationToUserRateResource
+from app.modules.user_opportunity_favourite import UserFavesResource, OpportunityFavedResource
 from app.modules.auth.controllers import mod_auth as auth_module
 
 app.register_blueprint(auth_module)
@@ -29,6 +30,8 @@ api.add_resource(OpportunityResource,            '/api/organizations/opportuniti
 api.add_resource(UserOrganizationResource,       '/api/userOrganizations/')
 api.add_resource(UserToOrganizationRateResource, '/api/organizations/<int:org_id>/ratings/')
 api.add_resource(OrganizationToUserRateResource, '/api/users/<int:user_id>/ratings/<int:org_id>')
+api.add_resource(UserFavesResource,              '/api/users/<int:user_id>/favourites/')
+api.add_resource(OpportunityFavedResource,       '/api/opportunities/<int:opp_id>/favourites/')
 
 @app.route('/')
 def index():

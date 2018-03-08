@@ -1,5 +1,6 @@
 from app import db
 from app.modules.user import User
+from app.modules.rating import OrganizationToUserRate
 
 User.activity_posts = db.relationship("ActivityPost", backref="users", lazy=True)
 
@@ -27,6 +28,14 @@ class ActivityPost(db.Model):
     def __getitem__(self, item):
         return getattr(self, item)
     
+    def getAverageRating(self, user_id):
+        ratings = [x.serialize for x in OrganizationToUserRate.query.filter_by(user_id=user_id).all()]
+        #computing average of the ratings to send with the list of ratings
+        ratingSum = 0;
+        for x in range (0, len(ratings)):
+            ratingSum += ratings[x].get('rating')
+        return (ratingSum/len(ratings))
+    
     @property
     def serialize(self):
         return {
@@ -36,6 +45,9 @@ class ActivityPost(db.Model):
             "availability": self.availability,
             "user": self.user.username,
             "fullName": self.user.fullname,
-            "email": self.user.email
+            "email": self.user.email,
+            "averageRating": self.getAverageRating(self.user_id)
             }
     
+
+        

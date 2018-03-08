@@ -515,3 +515,41 @@ label:hover:before {
   border-radius: .25em;
   border: 2px solid black;
 }
+
+#organizationSelectSmall {
+  position: relative;
+  display: block;
+  width: 9em;
+  height: 2em;
+  line-height: 3;
+  background: #F7C32E;
+  overflow: hidden;
+  border-radius: .25em;
+  border: 2px solid black;	
+}
+
+/* for rating stars */
+#ratePostContainer {
+	text-align: right;
+}
+
+#ratingDisplayTable {
+	width: 100%;
+}
+
+#rateRightSide {
+	text-align: right;
+}
+
+#rateCenter {
+	text-align: center;
+}
+
+/* for feed headers */
+#feedTitleTable {
+	width: 100%;
+}
+
+#feedTitleOneThirdWidth {
+	width: 32%;
+}

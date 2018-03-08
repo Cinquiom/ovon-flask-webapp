@@ -9,6 +9,7 @@ from flask_restful import Resource
 from app import db
 from app.modules.user import User
 from app.modules.user_activity_post.models import ActivityPost
+from app.modules.rating import OrganizationToUserRate
 
 class ActivityResource(Resource):
 

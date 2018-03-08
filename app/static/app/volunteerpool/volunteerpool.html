@@ -35,7 +35,20 @@
    		</div> 
  	</div>
   <div class="col-lg-8">
-  	<h1 style="text-align: center">{{title}}</h1>
+  	<table id="feedTitleTable">
+  		<tr>
+  			<td id="feedTitleOneThirdWidth">
+  				<table>
+  					<tr>
+  						<td><h6>View As:</h6></td>
+  						<td><select name="organizationSelect" id="organizationSelectSmall" ng-init="chosenOrganizationName = userOrganizationNames[0]" ng-options="name as name for name in userOrganizationNames" ng-model="chosenOrganizationName"></select></td>
+  					</tr>
+  				</table>  				
+  			</td>
+  			<td><h1 style="text-align: center">{{title}}</h1></td>
+  			<td id="feedTitleOneThirdWidth"></td>
+  		</tr>
+  	</table>
   		<div id="scrollableFeedParent">
    			<div id="scrollableFeedChild">
    				<div id="opportunitiesArea"> 
@@ -46,6 +59,21 @@
                     		<h5>Availability: {{volunteer.availability}}</h5>
                     		<p class="card-text">{{volunteer.description}}</p>
                     		<h5>Contact: {{volunteer.email}}</h5>
+                    		<div id="AverageRatingContainer">
+                    			<table id="ratingDisplayTable">
+                    				<tr>
+                    					<td><h5>Average Rating:</h5></td>
+                    					<td></td>
+                    					<td id="rateCenter"><h5>Rate:</h5></td>
+                    				</tr>
+                    				<tr>
+                    					<td><jk-rating-stars rating="volunteer.averageRating" read-only="true"></jk-rating-stars></td>
+                    					<td></td>
+                    					<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onVolunteerRating(rating, volunteer.user_id)"></jk-rating-stars></td>
+                    				</tr>
+                    			</table>
+                    			
+                    		</div>                    		
                     		<!--<p class="card-text"><a href="#">Read more</a> </p>-->
                 		</div>
             		</div>           

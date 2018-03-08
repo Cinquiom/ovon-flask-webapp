@@ -29,11 +29,15 @@ api.add_resource(OrganizationResource,           '/api/organizations/', '/api/or
 api.add_resource(OpportunityResource,            '/api/organizations/opportunities/', '/api/organizations/opportunities/<int:org_id>')
 api.add_resource(UserOrganizationResource,       '/api/userOrganizations/')
 api.add_resource(UserToOrganizationRateResource, '/api/organizations/<int:org_id>/ratings/')
-api.add_resource(OrganizationToUserRateResource, '/api/users/<int:user_id>/ratings/<int:org_id>')
+api.add_resource(OrganizationToUserRateResource, '/api/users/ratings/<int:org_id>/<int:user_id>/')
 api.add_resource(UserFavesResource,              '/api/users/<int:user_id>/favourites/')
 api.add_resource(OpportunityFavedResource,       '/api/opportunities/<int:opp_id>/favourites/')
 
-app.config.from_object('config.ProductionConfig')
+#configure from this object during development
+app.config.from_object('config.DevelopmentConfig')
+
+#configure from this object for release
+#app.config.from_object('config.ProductionConfig')
 db.create_all()
 
 @app.route('/')

@@ -1,4 +1,5 @@
 from app import db
+from app.modules.rating.models import UserToOrganizationRate
 
 class OpportunityPost(db.Model):
 
@@ -25,6 +26,17 @@ class OpportunityPost(db.Model):
     def __getitem__(self, item):
         return getattr(self, item)
     
+    def getAverageRating(self, organization_id):
+        ratings = [x.serialize for x in UserToOrganizationRate.query.filter_by(organization_id=organization_id).all()]
+        #computing average of the ratings to send with the list of ratings
+        ratingSum = 0;
+        if len(ratings) > 0:
+            for x in range (0, len(ratings)):
+                ratingSum += ratings[x].get('rating')
+            return (ratingSum/len(ratings))
+        else:
+            return ratingSum
+    
     @property
     def serialize(self):
         return {
@@ -34,6 +46,8 @@ class OpportunityPost(db.Model):
             "location": self.location,
             "when": self.when,
             "phone": self.organization.phone,
-            "email": self.organization.email
+            "email": self.organization.email,
+            "org_id": self.organization_id,
+            "averageRating": self.getAverageRating(self.organization_id)
             }
     

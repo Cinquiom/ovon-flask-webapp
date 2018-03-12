@@ -47,6 +47,21 @@
      <p class="card-text">{{op.description}}</p>
      <h5>Contact: {{op.email}}, {{op.phone}}</h5>
 	 <!--<p class="card-text"><a href="#">Read more</a> </p>-->
+	 <div id="AverageRatingContainer">
+            <table id="ratingDisplayTable">
+                <tr>
+                    <td><h5>Organization Rating:</h5></td>
+                    <td></td>
+                    <td id="rateCenter"><h5>Rate:</h5></td>
+                </tr>
+                <tr>
+                    <td><jk-rating-stars rating="op.averageRating" read-only="true"></jk-rating-stars></td>
+                    <td></td>
+                	<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op.org_id)"></jk-rating-stars></td>
+            	</tr>
+        	</table>
+                    			
+    	</div>
     </div>
    </div>
    </div>

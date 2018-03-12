@@ -16,6 +16,33 @@ var OpportunitiesController = function($scope, $http, $location, $route, api) {
 		$route.reload();
 	}
 	
+	$scope.onOrganizationRating = function(rating, org_id) {
+
+		if (rating > 0) {
+			var ratingObject = JSON.stringify({rating: rating});
+			$http.post(api.organizationRating + org_id + '/', ratingObject)
+		 	.then(
+	          function (response) {
+	              alert("Thank you for your rating!");
+	          });
+		}
+		else {
+			$http.delete(api.organizationRating + org_id + '/')
+			.then(
+				function (response) {
+					if (response.data != "noRating") {
+						alert("Your rating has been removed");
+					}
+					else {
+						alert("You have no rating to remove");
+					}
+					
+				});
+		}
+		
+
+	}
+	
 	// Typically how we will be pulling data, except
 	// the URL will be a REST endpoint with a dynamically-generated
 	// JSON object at that location

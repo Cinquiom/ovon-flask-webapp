@@ -28,7 +28,7 @@ api.add_resource(ActivityResource,               '/api/activity/', '/api/activit
 api.add_resource(OrganizationResource,           '/api/organizations/', '/api/organizations/<int:org_id>/')
 api.add_resource(OpportunityResource,            '/api/organizations/opportunities/', '/api/organizations/opportunities/<int:org_id>')
 api.add_resource(UserOrganizationResource,       '/api/userOrganizations/')
-api.add_resource(UserToOrganizationRateResource, '/api/organizations/<int:org_id>/ratings/')
+api.add_resource(UserToOrganizationRateResource, '/api/organizations/ratings/<int:org_id>/')
 api.add_resource(OrganizationToUserRateResource, '/api/users/ratings/<int:org_id>/<int:user_id>/')
 api.add_resource(UserFavesResource,              '/api/users/<int:user_id>/favourites/')
 api.add_resource(OpportunityFavedResource,       '/api/opportunities/<int:opp_id>/favourites/')

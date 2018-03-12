@@ -20,6 +20,7 @@ OVONApp.constant('api', {
     postOpportunity: apiURL + '/api/organizations/opportunities/',
     getUserOrganizations: apiURL + '/api/userOrganizations/',
     volunteerRating: apiURL + '/api/users/ratings/',
+    organizationRating: apiURL + '/api/organizations/ratings/'
     
     
     

@@ -33,6 +33,19 @@ class UserToOrganizationRateResource(Resource):
         else:
             return "", 401
         
+    def delete(self, org_id):
+        if current_user.is_authenticated:
+            try:
+                ratingToDelete = UserToOrganizationRate.query.filter_by(user_id=current_user.id, organization_id=org_id).one()
+                #org.rated_users.remove(ratingToDelete)
+                db.session.delete(ratingToDelete)
+                db.session.commit()
+                return "", 201
+            except:
+                return "noRating", 201
+        else:
+            return "", 401
+            
 class OrganizationToUserRateResource(Resource):
     def get(self, user_id, org_id=None):
         ratings = [x.serialize for x in OrganizationToUserRate.query.filter_by(user_id=user_id).all()]
@@ -59,3 +72,19 @@ class OrganizationToUserRateResource(Resource):
             return otur.serialize, 201
         else:
             return "", 401
+        
+    def delete(self, org_id, user_id):
+        org = Organization.query.get(org_id)
+        if org and org in current_user.organizations:
+            try:
+                ratingToDelete = OrganizationToUserRate.query.filter_by(user_id=user_id, organization_id=org_id).one()
+                #org.rated_users.remove(ratingToDelete)
+                db.session.delete(ratingToDelete)
+                db.session.commit()
+                return "", 201
+            except:
+                return "noRating", 201
+        else:
+            return "", 401
+            
+            

@@ -38,12 +38,28 @@ var VolunteerPoolController = function($scope, $http, $location, api) {
 					$scope.chosenOrganization = $scope.organizations[i];
 				}
 			}
-			var ratingObject = JSON.stringify({rating: rating});
-			$http.put(api.volunteerRating + $scope.chosenOrganization.id + '/' + volunteer_id + '/', ratingObject)
-		 	.then(
-	          function (response) {
-	              alert("Thank you for your rating!");
-	          });
+			
+			if (rating > 0) {
+				var ratingObject = JSON.stringify({rating: rating});
+				$http.put(api.volunteerRating + $scope.chosenOrganization.id + '/' + volunteer_id + '/', ratingObject)
+			 	.then(
+		          function (response) {
+		              alert("Thank you for your rating!");
+		          });
+			}
+			else {
+				$http.delete(api.volunteerRating + $scope.chosenOrganization.id + '/' + volunteer_id + '/')
+				.then(
+					function (response) {
+						if (response.data != "noRating") {
+							alert("Your rating has been removed");
+						}
+						else {
+							alert("You have no rating to remove");
+						}
+						
+					});
+			}
 		}
 	}
 	

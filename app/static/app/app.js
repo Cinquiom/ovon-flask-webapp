@@ -1,7 +1,7 @@
 'use strict';
 
 // The main 'app' object
-var OVONApp = angular.module('OVONApp', ['ui.router', 'ngRoute', 'ngCookies', 'ngSQLite', 'ngMaterial', 'jkAngularRatingStars']);
+var OVONApp = angular.module('OVONApp', ['ui.router', 'ngRoute', 'ngCookies', 'ngSQLite', 'jkAngularRatingStars']);
 
 OVONApp.constant('api', {
 	signIn: apiURL + '/auth/signin/',

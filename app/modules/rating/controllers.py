@@ -14,6 +14,7 @@ class UserToOrganizationRateResource(Resource):
     def post(self, org_id):
         content = request.json
         if current_user.is_authenticated:
+             
             try:
                 utor = UserToOrganizationRate.query.filter_by(user_id=current_user.id,
                                                               organization_id=org_id).one()

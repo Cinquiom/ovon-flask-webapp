@@ -554,5 +554,17 @@ label:hover:before {
 	width: 32%;
 }
 
-.selectOpButton {
+.nav.nav-tabs li {
+	position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #F7C32E;
+    /*border: 1px solid rgba(0,0,0,.125);*/
+    border-radius: 8px;
+	border: 2px solid #555555;
+}
+
+a.ng-binding {
+	color: #000000;
 }

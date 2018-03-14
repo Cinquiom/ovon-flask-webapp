@@ -55,7 +55,14 @@
    					<div class="card mt-4" style="background: #2196F3" ng-repeat="volunteer in volunteers">
     					<!--<img class="card-img-top img-fluid" alt="" style="width: 250px; height: 250px">-->
                 		<div class="card-body">
-                    		<h3 class="card-title">{{volunteer.fullName}} ({{volunteer.user}})</h3>
+                			<table id="cardDisplayTable">
+					    		<tr>
+					    			<td><h3 class="card-title">{{volunteer.fullName}} ({{volunteer.user}})</h3></td>
+					    			<td id="tableDataRightSide">
+										<button class="editProfileButtonNoZoom" ng-click="addToDesiredVolunteers(volunteer.id)"><h4>+</h4></button>
+					                </td>
+					    		</tr>
+					    	</table>
                     		<h5>Availability: {{volunteer.availability}}</h5>
                     		<p class="card-text">{{volunteer.description}}</p>
                     		<h5>Contact: {{volunteer.email}}</h5>

@@ -46,7 +46,52 @@
     		</tbody>
     	</table>
     </div>
-   </div> <br/>        
+   </div> <br/>
+   <tabs>
+        <pane heading="Desired Opportunities" active="data.desiredOps">
+        	<div id="scrollableFeedParent">
+			   <div id="scrollableFeedChild">
+			   <div id="opportunitiesArea"> 
+			   <div class="card mt-4" style="background: #2196F3" ng-repeat="desiredOp in desiredOps">
+			    <!--<img class="card-img-top img-fluid" src="/static/images/{{op.image}}" alt=""/>-->
+			    <div class="card-body">
+				    <table id="cardDisplayTable">
+	    				<tr>
+	    					<td><h3 class="card-title">{{desiredOp.opportunity.organization}}</h3></td>
+	    					<td id="tableDataRightSide">
+								<button class="editProfileButtonNoZoom" ng-click="removeFromDesiredOps(desiredOp.opportunity.id)"><h4>-</h4></button>
+	                		</td>
+	    				</tr>
+	    			</table>
+			     <h5>Location: {{desiredOp.opportunity.location}}</h5>
+			     <p class="card-text">{{desiredOp.opportunity.description}}</p>
+			     <h5>Contact: {{desiredOp.opportunity.email}}, {{desiredOp.opportunity.phone}}</h5>
+				 <!--<p class="card-text"><a href="#">Read more</a> </p>-->
+				 <div id="AverageRatingContainer">
+			            <table id="ratingDisplayTable">
+			                <tr>
+			                    <td><h5>Organization Rating:</h5></td>
+			                    <td></td>
+			                    <!--<td id="rateCenter"><h5>Rate:</h5></td>-->
+			                </tr>
+			                <tr>
+			                    <td><jk-rating-stars rating="desiredOp.opportunity.averageRating" read-only="true"></jk-rating-stars></td>
+			                    <td></td>
+			                	<!--<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op.org_id)"></jk-rating-stars></td>-->
+			            	</tr>
+			        	</table>
+			                    			
+			    	</div>
+			    </div>
+			   </div>
+			   </div>
+			   </div>
+			</div>
+        </pane>
+        <pane heading="Interested Organizations" active="data.static">
+        To be completed
+        </pane>
+   </tabs>     
   </div> 
   <div class="col-lg-3">
   	<div class="card mt-4" style="background: #2196F3">

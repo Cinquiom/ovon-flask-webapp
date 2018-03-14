@@ -16,6 +16,15 @@ var OpportunitiesController = function($scope, $http, $location, $route, api) {
 		$route.reload();
 	}
 	
+	$scope.addToDesiredOps = function(opp_id) {
+		
+		$http.post(api.opportunityFavourites + opp_id + '/')
+	 	.then(
+          function (response) {
+              alert("Opportunity Added to Favourites!");
+          });
+	}
+	
 	$scope.onOrganizationRating = function(rating, org_id) {
 
 		if (rating > 0) {

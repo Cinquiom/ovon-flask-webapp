@@ -533,11 +533,11 @@ label:hover:before {
 	text-align: right;
 }
 
-#ratingDisplayTable {
+#cardDisplayTable {
 	width: 100%;
 }
 
-#rateRightSide {
+#tableDataRightSide {
 	text-align: right;
 }
 
@@ -552,4 +552,7 @@ label:hover:before {
 
 #feedTitleOneThirdWidth {
 	width: 32%;
+}
+
+.selectOpButton {
 }

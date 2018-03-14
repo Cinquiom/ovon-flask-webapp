@@ -1,7 +1,7 @@
 'use strict';
 
 // The main 'app' object
-var OVONApp = angular.module('OVONApp', ['ui.router', 'ngRoute', 'ngCookies', 'ngSQLite', 'jkAngularRatingStars']);
+var OVONApp = angular.module('OVONApp', ['ui.router', 'ui.bootstrap', 'ngRoute', 'ngCookies', 'ngSQLite', 'jkAngularRatingStars']);
 
 OVONApp.constant('api', {
 	signIn: apiURL + '/auth/signin/',
@@ -20,9 +20,9 @@ OVONApp.constant('api', {
     postOpportunity: apiURL + '/api/organizations/opportunities/',
     getUserOrganizations: apiURL + '/api/userOrganizations/',
     volunteerRating: apiURL + '/api/users/ratings/',
-    organizationRating: apiURL + '/api/organizations/ratings/'
-    
-    
+    organizationRating: apiURL + '/api/organizations/ratings/',
+    userFavourites: apiURL + '/api/users/favourites/',
+    opportunityFavourites: apiURL + '/api/opportunities/favourites/'
     
 });
 

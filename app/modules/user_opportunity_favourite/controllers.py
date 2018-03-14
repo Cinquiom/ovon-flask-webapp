@@ -6,18 +6,18 @@ from app.modules.user_opportunity_favourite import UserOpportunityFave
 from flask_login.utils import current_user
 
 class UserFavesResource(Resource):
-    # /api/users/<id>/favourites/
-    def get(self, user_id):
-        faves = [x.serialize for x in UserOpportunityFave.query.filter_by(user_id=user_id).all()]
+    # /api/users/favourites/
+    def get(self):
+        faves = [x.serialize for x in UserOpportunityFave.query.filter_by(user_id=current_user.id).all()]
         return jsonify(faves)
         
 class OpportunityFavedResource(Resource):
-    # /api/opportunities/<id>/favourites/
+    # /api/opportunities/favourites/<id>/
     def get(self, opp_id):
         faves = [x.serialize for x in UserOpportunityFave.query.filter_by(opportunity_id=opp_id).all()]
         return jsonify(faves)
     
-    # /api/opportunities/<id>/favourites/
+    # /api/opportunities/favourites/<id>/
     def post(self, opp_id):
         if current_user.is_authenticated:
             try:
@@ -36,3 +36,15 @@ class OpportunityFavedResource(Resource):
         else:
             return "", 401
     
+    def delete(self, opp_id):
+        if current_user.is_authenticated:
+            try:
+                desiredOpToDelete = UserOpportunityFave.query.filter_by(user_id=current_user.id, opportunity_id=opp_id).one()
+                #org.rated_users.remove(ratingToDelete)
+                db.session.delete(desiredOpToDelete)
+                db.session.commit()
+                return "", 201
+            except:
+                return "noOpp", 201
+        else:
+            return "", 401

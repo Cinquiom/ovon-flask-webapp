@@ -44,4 +44,25 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 	.then(function (response) {
 		$scope.profileBio = response.data;
 	});
+	
+	$http.get(api.userFavourites).then(function(response) {
+		$scope.desiredOps = response.data;
+	});
+	
+	$scope.removeFromDesiredOps = function(opp_id) {
+		$http.delete(api.opportunityFavourites + opp_id + '/')
+	 	.then(
+          function (response) {
+        	  if (response.data != "noOpp") {
+					alert("Desired Opportunity has been removed");
+				}
+				else {
+					alert("Opportunity not found.");
+				}
+          });
+	}
+	
+	//for the tabs at the bottom of the profile page
+	$scope.data = {desiredOps: true}
+
 };

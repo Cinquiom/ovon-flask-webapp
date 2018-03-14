@@ -60,7 +60,7 @@
                     		<p class="card-text">{{volunteer.description}}</p>
                     		<h5>Contact: {{volunteer.email}}</h5>
                     		<div id="AverageRatingContainer">
-                    			<table id="ratingDisplayTable">
+                    			<table id="cardDisplayTable">
                     				<tr>
                     					<td><h5>Average Rating:</h5></td>
                     					<td></td>
@@ -69,7 +69,7 @@
                     				<tr>
                     					<td><jk-rating-stars rating="volunteer.averageRating" read-only="true"></jk-rating-stars></td>
                     					<td></td>
-                    					<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onVolunteerRating(rating, volunteer.user_id)"></jk-rating-stars></td>
+                    					<td id="tableDataRightSide"><jk-rating-stars rating="rating" on-rating="onVolunteerRating(rating, volunteer.user_id)"></jk-rating-stars></td>
                     				</tr>
                     			</table>
                     			

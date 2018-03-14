@@ -28,13 +28,13 @@ class ActivityPost(db.Model):
     def __getitem__(self, item):
         return getattr(self, item)
     
-    def getAverageRating(self, user_id):
+    def get_average_rating(self, user_id):
         ratings = [x.serialize for x in OrganizationToUserRate.query.filter_by(user_id=user_id).all()]
-        #computing average of the ratings to send with the list of ratings
-        ratingSum = 0;
-        for x in range (0, len(ratings)):
-            ratingSum += ratings[x].get('rating')
-        return (ratingSum/len(ratings))
+        rating_sum = sum(r['rating'] for r in ratings)
+        try:
+            return (rating_sum/len(ratings))
+        except ZeroDivisionError:
+            return 0
     
     @property
     def serialize(self):
@@ -46,7 +46,7 @@ class ActivityPost(db.Model):
             "user": self.user.username,
             "fullName": self.user.fullname,
             "email": self.user.email,
-            "averageRating": self.getAverageRating(self.user_id)
+            "averageRating": self.get_average_rating(self.user_id)
             }
     
 

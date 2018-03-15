@@ -22,7 +22,8 @@ OVONApp.constant('api', {
     volunteerRating: apiURL + '/api/users/ratings/',
     organizationRating: apiURL + '/api/organizations/ratings/',
     userFavourites: apiURL + '/api/users/favourites/',
-    opportunityFavourites: apiURL + '/api/opportunities/favourites/'
+    opportunityFavourites: apiURL + '/api/opportunities/favourites/',
+    volunteerFavourited: apiURL + '/api/volunteers/favourites/'
     
 });
 

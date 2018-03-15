@@ -34,7 +34,7 @@ api.add_resource(OrganizationToUserRateResource, '/api/users/ratings/<int:org_id
 api.add_resource(UserFavesResource,              '/api/users/favourites/')
 api.add_resource(OpportunityFavedResource,       '/api/opportunities/favourites/<int:opp_id>/')
 api.add_resource(OrganizationFavesResource,      '/api/organizations/favourites/<int:org_id>/')
-api.add_resource(VolunteerFavedResource,         '/api/volunteers/favourites/<int:volunteer_id>/')
+api.add_resource(VolunteerFavedResource,         '/api/volunteers/favourites/<int:volunteer_id>/<int:org_id>/', '/api/volunteers/favourites/')
 
 #configure from this object during development
 app.config.from_object('config.DevelopmentConfig')

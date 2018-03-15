@@ -49,6 +49,10 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 		$scope.desiredOps = response.data;
 	});
 	
+	$http.get(api.volunteerFavourited).then(function(response) {
+		$scope.interestedOrgs = response.data;
+	});
+	
 	$scope.removeFromDesiredOps = function(opp_id) {
 		$http.delete(api.opportunityFavourites + opp_id + '/')
 	 	.then(
@@ -64,5 +68,8 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 	
 	//for the tabs at the bottom of the profile page
 	$scope.data = {desiredOps: true}
+	$scope.panes = [
+		{title:"Interested Organizations"}
+	];
 
 };

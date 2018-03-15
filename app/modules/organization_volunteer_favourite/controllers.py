@@ -2,7 +2,7 @@ from flask import request, jsonify, make_response
 from flask_restful import Resource
 
 from app import db
-from app.modules.user_opportunity_favourite import UserOpportunityFave
+from app.modules.organization_volunteer_favourite import OrganizationVolunteerFave
 from flask_login.utils import current_user
 
 class OrganizationFavesResource(Resource):
@@ -12,23 +12,23 @@ class OrganizationFavesResource(Resource):
         return jsonify(faves)
         
 class VolunteerFavedResource(Resource):
-    # /api/volunteers/favourites/<org_id>/<volunteer_id>/
-    def get(self, volunteer_id, org_id=None):
-        faves = [x.serialize for x in OrganizationVolunteerFave.query.filter_by(volunteer_id=volunteer_id).all()]
+    # /api/volunteers/favourites/<volunteer_id>/<org_id>/
+    def get(self, volunteer_id=None, org_id=None):
+        faves = [x.serialize for x in OrganizationVolunteerFave.query.filter_by(volunteer_id=current_user.id).all()]
         return jsonify(faves)
     
-    # /api/volunteers/favourites/<org_id>/<volunteer_id>/
-    def post(self, org_id, volunteer_id):
+    # /api/volunteers/favourites/<volunteer_id>/<org_id>/
+    def post(self, volunteer_id, org_id):
         if current_user.is_authenticated:
             try:
                 fave = OrganizationVolunteerFave.query.filter_by(org_id=org_id,
-                                                          volunteer_id=volunteer_id).one()
+                                                                 volunteer_id=volunteer_id).one()
                 
             except:
                 fave = OrganizationVolunteerFave(org_id=org_id,
-                                           volunteer_id=volunteer_id)
+                                                 volunteer_id=volunteer_id)
                                              
-                current_user.orgs_faved.append(fave)
+                #current_user.orgs_faved.append(fave)
                 db.session.add(fave)
                 db.session.commit()
                 

@@ -26,6 +26,14 @@ var VolunteerPoolController = function($scope, $http, $location, api) {
 		$scope.chosenOrganizationName = $scope.userOrganizationNames[0];
 	});
 	
+	$scope.getChosenOrganization = function() {
+		for (var i = 0; i < $scope.organizations.length; i++) {
+			if ($scope.organizations[i].name == $scope.chosenOrganizationName) {
+				$scope.chosenOrganization = $scope.organizations[i];
+			}
+		}
+	}
+	
 	$scope.onVolunteerRating = function(rating, volunteer_id) {
 		//get the user's currently selected organization
 		
@@ -33,11 +41,7 @@ var VolunteerPoolController = function($scope, $http, $location, api) {
 			
 		}
 		else {
-			for (var i = 0; i < $scope.organizations.length; i++) {
-				if ($scope.organizations[i].name == $scope.chosenOrganizationName) {
-					$scope.chosenOrganization = $scope.organizations[i];
-				}
-			}
+			$scope.getChosenOrganization();
 			
 			if (rating > 0) {
 				var ratingObject = JSON.stringify({rating: rating});
@@ -61,6 +65,21 @@ var VolunteerPoolController = function($scope, $http, $location, api) {
 					});
 			}
 		}
+	}
+	
+	$scope.addToDesiredVolunteers = function(volunteer_id) {
+		if ($scope.chosenOrganizationName == "volunteer") {
+			
+		}
+		else {
+			$scope.getChosenOrganization();
+			$http.post(api.volunteerFavourited + volunteer_id + '/' +$scope.chosenOrganization.id + '/')
+		 	.then(
+	          function (response) {
+	              alert("Volunteer added to " + $scope.chosenOrganizationName + " Favourites!");
+	          });
+		}
+		
 	}
 	
 	// Typically how we will be pulling data, except

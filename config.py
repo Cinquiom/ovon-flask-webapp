@@ -19,7 +19,7 @@ class Config(object):
     
     # SQLAlchemy config
     
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
     DATABASE_CONNECT_OPTIONS = {}
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     
@@ -37,11 +37,11 @@ class DevelopmentConfig(Config):
     ENV = "dev"
     HOST = "localhost"
     DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
 
-class TestingConfig(Config):
-    DEBUG = True
+class TestingConfig(DevelopmentConfig):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app_test.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
     
 
 

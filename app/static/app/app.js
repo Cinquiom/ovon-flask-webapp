@@ -129,7 +129,7 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
                 },
             });
 
-    $urlRouterProvider.otherwise("/opportunities");
+    $urlRouterProvider.otherwise("/login");
 
     $stateProvider.
         state("/opportunities", {

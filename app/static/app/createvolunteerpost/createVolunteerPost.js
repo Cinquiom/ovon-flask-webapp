@@ -1,6 +1,6 @@
 'use strict';
 
-var CreateVolunteerPostController = function($scope, $http, api) {
+var CreateVolunteerPostController = function($scope, $http, $route, $location, api) {
 	
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
@@ -29,6 +29,8 @@ var CreateVolunteerPostController = function($scope, $http, api) {
 			 	.then(
                   function (response) {
                       alert("Volunteer Pool Entry succeeded!");
+                      $location.path("/volunteers");
+              		  $route.reload();
                   },
                   function (errResponse) {
                  	 console.log(errResponse);

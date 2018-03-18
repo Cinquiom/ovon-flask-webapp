@@ -1,6 +1,6 @@
 'use strict';
 
-var ProfileController = function($scope, $http, userPersistenceService, $route, $location, api) {
+var ProfileController = function($scope, $http, userPersistenceService, $route, $location, $cookies, api) {
 	
 	$scope.profileImage = "person.png"
 	$scope.title = userPersistenceService.getCookieData("userName");

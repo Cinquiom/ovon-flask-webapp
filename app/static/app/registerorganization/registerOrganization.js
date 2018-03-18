@@ -1,6 +1,6 @@
 'use strict';
 
-var RegisterOrganizationController = function($scope, $http, api) {
+var RegisterOrganizationController = function($scope, $http, $route, $location, api) {
 	
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
@@ -51,6 +51,8 @@ var RegisterOrganizationController = function($scope, $http, api) {
 			 	.then(
                   function (response) {
                       alert("Organization Registered!");
+                      $location.path("/profile");
+              		  $route.reload();
                   },
                   function (errResponse) {
                  	 console.log(errResponse);

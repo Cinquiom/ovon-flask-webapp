@@ -1,6 +1,6 @@
 'use strict';
 
-var RegisterController = function($scope, $http, api) {
+var RegisterController = function($scope, $http, api, $route, $location) {
 	
 	var emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 	
@@ -33,7 +33,8 @@ var RegisterController = function($scope, $http, api) {
 			 	.then(
                   function (response) {
                       alert("Account created successfully!");
-                      $state.go('/login');
+                      $location.path("/login");
+                      $route.reload();
                   },
                   function (errResponse) {
                  	 console.log(errResponse);

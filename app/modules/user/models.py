@@ -22,7 +22,7 @@ class User(UserMixin, db.Model):
     bio             = db.Column(db.String(192), nullable=True)
 
     # New instance instantiation procedure
-    def __init__(self, username, email, password, fullname, birthdate, gender,
+    def __init__(self, username, email, password, fullname, gender,
                   agreedToTerms):
 
         self.username     = username

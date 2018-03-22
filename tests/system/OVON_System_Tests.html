@@ -15,19 +15,19 @@
 </tr>
 <tr><td>click</td><td>id=reg_username<datalist><option>id=reg_username</option><option>name=reg_username</option><option>//input[@id='reg_username']</option><option>//form[@id='register-form']/div[2]/div/div/input</option><option>//input</option><option>css=#reg_username</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=reg_username<datalist><option>id=reg_username</option><option>name=reg_username</option><option>//input[@id='reg_username']</option><option>//form[@id='register-form']/div[2]/div/div/input</option><option>//input</option><option>css=#reg_username</option></datalist></td><td>testUser</td>
+<tr><td>type</td><td>id=reg_username<datalist><option>id=reg_username</option><option>name=reg_username</option><option>//input[@id='reg_username']</option><option>//form[@id='register-form']/div[2]/div/div/input</option><option>//input</option><option>css=#reg_username</option></datalist></td><td>testUser1</td>
 </tr>
 <tr><td>click</td><td>id=reg_password<datalist><option>id=reg_password</option><option>name=reg_password</option><option>//input[@id='reg_password']</option><option>//form[@id='register-form']/div[2]/div/div[2]/input</option><option>//div[2]/input</option><option>css=#reg_password</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=reg_password<datalist><option>id=reg_password</option><option>name=reg_password</option><option>//input[@id='reg_password']</option><option>//form[@id='register-form']/div[2]/div/div[2]/input</option><option>//div[2]/input</option><option>css=#reg_password</option></datalist></td><td>testPassword</td>
+<tr><td>type</td><td>id=reg_password<datalist><option>id=reg_password</option><option>name=reg_password</option><option>//input[@id='reg_password']</option><option>//form[@id='register-form']/div[2]/div/div[2]/input</option><option>//div[2]/input</option><option>css=#reg_password</option></datalist></td><td>testPassword1</td>
 </tr>
 <tr><td>click</td><td>id=reg_password_confirm<datalist><option>id=reg_password_confirm</option><option>name=reg_password_confirm</option><option>//input[@id='reg_password_confirm']</option><option>//form[@id='register-form']/div[2]/div/div[3]/input</option><option>//div[3]/input</option><option>css=#reg_password_confirm</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=reg_password_confirm<datalist><option>id=reg_password_confirm</option><option>name=reg_password_confirm</option><option>//input[@id='reg_password_confirm']</option><option>//form[@id='register-form']/div[2]/div/div[3]/input</option><option>//div[3]/input</option><option>css=#reg_password_confirm</option></datalist></td><td>testPassword</td>
+<tr><td>type</td><td>id=reg_password_confirm<datalist><option>id=reg_password_confirm</option><option>name=reg_password_confirm</option><option>//input[@id='reg_password_confirm']</option><option>//form[@id='register-form']/div[2]/div/div[3]/input</option><option>//div[3]/input</option><option>css=#reg_password_confirm</option></datalist></td><td>testPassword1</td>
 </tr>
 <tr><td>click</td><td>id=reg_email<datalist><option>id=reg_email</option><option>name=reg_email</option><option>//input[@id='reg_email']</option><option>//form[@id='register-form']/div[2]/div/div[4]/input</option><option>//div[4]/input</option><option>css=#reg_email</option></datalist></td><td></td>
 </tr>
-<tr><td>type</td><td>id=reg_email<datalist><option>id=reg_email</option><option>name=reg_email</option><option>//input[@id='reg_email']</option><option>//form[@id='register-form']/div[2]/div/div[4]/input</option><option>//div[4]/input</option><option>css=#reg_email</option></datalist></td><td>testEmail@email.net</td>
+<tr><td>type</td><td>id=reg_email<datalist><option>id=reg_email</option><option>name=reg_email</option><option>//input[@id='reg_email']</option><option>//form[@id='register-form']/div[2]/div/div[4]/input</option><option>//div[4]/input</option><option>css=#reg_email</option></datalist></td><td>testEmail1@email.net</td>
 </tr>
 <tr><td>click</td><td>id=reg_fullname<datalist><option>id=reg_fullname</option><option>name=reg_fullname</option><option>//input[@id='reg_fullname']</option><option>//form[@id='register-form']/div[2]/div/div[5]/input</option><option>//div[5]/input</option><option>css=#reg_fullname</option></datalist></td><td></td>
 </tr>
@@ -37,9 +37,45 @@
 </tr>
 <tr><td>click</td><td>//form[@id='register-form']/div[2]/div/div[7]/label<datalist><option>//form[@id='register-form']/div[2]/div/div[7]/label</option><option>//div[7]/label</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=reg_submit<datalist><option>id=reg_submit</option><option>//button[@id='reg_submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=#reg_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/login<datalist><option>http://localhost:8090/#/login</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Register_User_Password_Mismatch</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8090/#/register<datalist><option>http://localhost:8090/#/register</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=reg_username<datalist><option>id=reg_username</option><option>name=reg_username</option><option>//input[@id='reg_username']</option><option>//form[@id='register-form']/div[2]/div/div/input</option><option>//input</option><option>css=#reg_username</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=reg_username<datalist><option>id=reg_username</option><option>name=reg_username</option><option>//input[@id='reg_username']</option><option>//form[@id='register-form']/div[2]/div/div/input</option><option>//input</option><option>css=#reg_username</option></datalist></td><td>testUser2</td>
+</tr>
+<tr><td>click</td><td>id=reg_password<datalist><option>id=reg_password</option><option>name=reg_password</option><option>//input[@id='reg_password']</option><option>//form[@id='register-form']/div[2]/div/div[2]/input</option><option>//div[2]/input</option><option>css=#reg_password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=reg_password<datalist><option>id=reg_password</option><option>name=reg_password</option><option>//input[@id='reg_password']</option><option>//form[@id='register-form']/div[2]/div/div[2]/input</option><option>//div[2]/input</option><option>css=#reg_password</option></datalist></td><td>testPassword</td>
+</tr>
+<tr><td>click</td><td>id=reg_password_confirm<datalist><option>id=reg_password_confirm</option><option>name=reg_password_confirm</option><option>//input[@id='reg_password_confirm']</option><option>//form[@id='register-form']/div[2]/div/div[3]/input</option><option>//div[3]/input</option><option>css=#reg_password_confirm</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=reg_password_confirm<datalist><option>id=reg_password_confirm</option><option>name=reg_password_confirm</option><option>//input[@id='reg_password_confirm']</option><option>//form[@id='register-form']/div[2]/div/div[3]/input</option><option>//div[3]/input</option><option>css=#reg_password_confirm</option></datalist></td><td>testPassword2</td>
+</tr>
+<tr><td>click</td><td>id=reg_email<datalist><option>id=reg_email</option><option>name=reg_email</option><option>//input[@id='reg_email']</option><option>//form[@id='register-form']/div[2]/div/div[4]/input</option><option>//div[4]/input</option><option>css=#reg_email</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=reg_email<datalist><option>id=reg_email</option><option>name=reg_email</option><option>//input[@id='reg_email']</option><option>//form[@id='register-form']/div[2]/div/div[4]/input</option><option>//div[4]/input</option><option>css=#reg_email</option></datalist></td><td>testEmail2@email.net</td>
+</tr>
+<tr><td>click</td><td>id=reg_fullname<datalist><option>id=reg_fullname</option><option>name=reg_fullname</option><option>//input[@id='reg_fullname']</option><option>//form[@id='register-form']/div[2]/div/div[5]/input</option><option>//div[5]/input</option><option>css=#reg_fullname</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=reg_fullname<datalist><option>id=reg_fullname</option><option>name=reg_fullname</option><option>//input[@id='reg_fullname']</option><option>//form[@id='register-form']/div[2]/div/div[5]/input</option><option>//div[5]/input</option><option>css=#reg_fullname</option></datalist></td><td>test Fullname</td>
+</tr>
+<tr><td>click</td><td>//form[@id='register-form']/div[2]/div/div[6]/label<datalist><option>//form[@id='register-form']/div[2]/div/div[6]/label</option><option>//div[6]/label</option><option>css=div.form-group.login-group-checkbox &gt; label</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>//form[@id='register-form']/div[2]/div/div[7]/label<datalist><option>//form[@id='register-form']/div[2]/div/div[7]/label</option><option>//div[7]/label</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=reg_submit<datalist><option>id=reg_submit</option><option>//button[@id='reg_submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=#reg_submit</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:8090/#/register<datalist><option>Invalid submission, try again.</option><option>http://localhost:8090/#/register</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
@@ -73,7 +109,7 @@
 </tr>
 <tr><td>click</td><td>//form[@id='register-form']/div[2]/div/div[7]/label<datalist><option>//form[@id='register-form']/div[2]/div/div[7]/label</option><option>//div[7]/label</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=reg_submit<datalist><option>id=reg_submit</option><option>//button[@id='reg_submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=#reg_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/register<datalist><option>http://localhost:8090/#/login</option><option>http://localhost:8090/#/register</option></datalist></td><td></td>
 </tr>
@@ -93,11 +129,11 @@
 </tr>
 <tr><td>type</td><td>id=password<datalist><option>id=password</option><option>//input[@id='password']</option><option>//form[@id='myLogin']/div[2]/div/div[2]/input</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td>testPassword</td>
 </tr>
-<tr><td>click</td><td>xpath=(//button[@type='button'])[2]<datalist><option>xpath=(//button[@type='button'])[2]</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
-</tr>
-<tr><td>assertLocation</td><td>http://localhost:8090/#/opportunities<datalist><option>http://localhost:8090/#/opportunities</option></datalist></td><td></td>
+<tr><td>click</td><td>id=login_submit<datalist><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertCookiePresent</td><td>loggedInAlready<datalist><option>loggedInAlready</option><option>loggedInA</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:8090/#/opportunities<datalist><option>http://localhost:8090/#/opportunities</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
@@ -117,7 +153,7 @@
 </tr>
 <tr><td>type</td><td>id=post_description<datalist><option>id=post_description</option><option>name=post_description</option><option>//textarea[@id='post_description']</option><option>//form[@id='register-form']/div[2]/div/div[2]/textarea</option><option>//textarea</option><option>css=#post_description</option></datalist></td><td>I am a test for valid volunteer pool entry</td>
 </tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=volunteerpool_submit<datalist><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option><option>id=volunteerpool_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/volunteers<datalist><option>Volunteer Pool Entry succeeded!</option><option>http://localhost:8090/#/volunteers</option></datalist></td><td></td>
 </tr>
@@ -135,7 +171,7 @@
 </tr>
 <tr><td>type</td><td>id=post_description<datalist><option>id=post_description</option><option>name=post_description</option><option>//textarea[@id='post_description']</option><option>//form[@id='register-form']/div[2]/div/div[2]/textarea</option><option>//textarea</option><option>css=#post_description</option></datalist></td><td>I am a test for valid volunteer pool entry</td>
 </tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=volunteerpool_submit<datalist><option>id=volunteerpool_submit</option><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/createvolunteerpost<datalist><option>http://localhost:8090/#/createvolunteerpost</option><option>Invalid entry submission, please try again.</option></datalist></td><td></td>
 </tr>
@@ -153,7 +189,7 @@
 </tr>
 <tr><td>type</td><td>id=post_availability<datalist><option>id=post_availability</option><option>name=post_availability</option><option>//input[@id='post_availability']</option><option>//form[@id='register-form']/div[2]/div/div/input</option><option>//input</option><option>css=#post_availability</option></datalist></td><td>several dates and times</td>
 </tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=volunteerpool_submit<datalist><option>id=volunteerpool_submit</option><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/createvolunteerpost<datalist><option>Invalid entry submission, please try again.</option><option>http://localhost:8090/#/createvolunteerpost</option></datalist></td><td></td>
 </tr>
@@ -179,7 +215,7 @@
 </tr>
 <tr><td>type</td><td>id=org_phone<datalist><option>id=org_phone</option><option>name=org_phone</option><option>//input[@id='org_phone']</option><option>//form[@id='register-form']/div[2]/div/div[3]/input</option><option>//div[3]/input</option><option>css=#org_phone</option></datalist></td><td>1234567890</td>
 </tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=registerorg_submit<datalist><option>id=volunteerpool_submit</option><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option><option>id=registerorg_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/profile<datalist><option>Organization Registered!</option><option>http://localhost:8090/#/profile</option></datalist></td><td></td>
 </tr>
@@ -205,7 +241,7 @@
 </tr>
 <tr><td>type</td><td>id=org_phone<datalist><option>id=org_phone</option><option>name=org_phone</option><option>//input[@id='org_phone']</option><option>//form[@id='register-form']/div[2]/div/div[3]/input</option><option>//div[3]/input</option><option>css=#org_phone</option></datalist></td><td>1234567890</td>
 </tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=registerorg_submit<datalist><option>id=registerorg_submit</option><option>id=volunteerpool_submit</option><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/registerorganization<datalist><option>Invalid entry submission, please try again.</option><option>http://localhost:8090/#/registerorganization</option></datalist></td><td></td>
 </tr>
@@ -231,7 +267,7 @@
 </tr>
 <tr><td>type</td><td>id=org_phone<datalist><option>id=org_phone</option><option>name=org_phone</option><option>//input[@id='org_phone']</option><option>//form[@id='register-form']/div[2]/div/div[3]/input</option><option>//div[3]/input</option><option>css=#org_phone</option></datalist></td><td>123456789</td>
 </tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=registerorg_submit<datalist><option>id=registerorg_submit</option><option>id=volunteerpool_submit</option><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/registerorganization<datalist><option>Invalid entry submission, please try again.</option><option>http://localhost:8090/#/registerorganization</option></datalist></td><td></td>
 </tr>
@@ -253,7 +289,7 @@
 </tr>
 <tr><td>type</td><td>id=org_phone<datalist><option>id=org_phone</option><option>name=org_phone</option><option>//input[@id='org_phone']</option><option>//form[@id='register-form']/div[2]/div/div[3]/input</option><option>//div[3]/input</option><option>css=#org_phone</option></datalist></td><td>1234567890</td>
 </tr>
-<tr><td>click</td><td>//button[@type='submit']<datalist><option>//button[@type='submit']</option><option>//form[@id='register-form']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=registerorg_submit<datalist><option>id=registerorg_submit</option><option>id=volunteerpool_submit</option><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/registerorganization<datalist><option>Invalid entry submission, please try again.</option><option>http://localhost:8090/#/registerorganization</option></datalist></td><td></td>
 </tr>
@@ -273,7 +309,9 @@
 </tr>
 <tr><td>type</td><td>id=password<datalist><option>id=password</option><option>//input[@id='password']</option><option>//form[@id='myLogin']/div[2]/div/div[2]/input</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td>testInvalidPassword</td>
 </tr>
-<tr><td>click</td><td>xpath=(//button[@type='button'])[2]<datalist><option>xpath=(//button[@type='button'])[2]</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=login_submit<datalist><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option></datalist></td><td></td>
+</tr>
+<tr><td>assertCookieNotPresent</td><td>loggedInAlready<datalist><option>loggedInAlready</option><option>userName</option><option>userN</option><option>remember_token</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/login<datalist><option>http://localhost:8090/#/opportunities</option><option>http://localhost:8090/#/login</option></datalist></td><td></td>
 </tr>
@@ -293,11 +331,11 @@
 </tr>
 <tr><td>type</td><td>id=password<datalist><option>id=password</option><option>//input[@id='password']</option><option>//form[@id='myLogin']/div[2]/div/div[2]/input</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td>testPassword</td>
 </tr>
-<tr><td>click</td><td>xpath=(//button[@type='button'])[2]<datalist><option>xpath=(//button[@type='button'])[2]</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=button.login-button</option></datalist></td><td></td>
-</tr>
-<tr><td>assertLocation</td><td>http://localhost:8090/#/login<datalist><option>http://localhost:8090/#/login</option></datalist></td><td></td>
+<tr><td>click</td><td>id=login_submit<datalist><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option></datalist></td><td></td>
 </tr>
 <tr><td>assertCookieNotPresent</td><td>loggedInAlready<datalist><option>userName</option><option>userN</option><option>loggedInAlready</option><option>remember_token</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:8090/#/login<datalist><option>http://localhost:8090/#/login</option></datalist></td><td></td>
 </tr>
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
@@ -307,7 +345,7 @@
 <tbody>
 <tr><td>open</td><td>http://localhost:8090/#/profile<datalist><option>http://localhost:8090/#/profile</option></datalist></td><td></td>
 </tr>
-<tr><td>click</td><td>//li[6]/button<datalist><option>//li[6]/button</option></datalist></td><td></td>
+<tr><td>click</td><td>id=logout<datalist><option>id=logout</option><option>//button[@id='logout']</option><option>//li[6]/button</option><option>css=#logout</option></datalist></td><td></td>
 </tr>
 <tr><td>assertLocation</td><td>http://localhost:8090/#/login<datalist><option>http://localhost:8090/#/login</option></datalist></td><td></td>
 </tr>

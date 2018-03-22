@@ -20,6 +20,8 @@ class User(UserMixin, db.Model):
     date_modified   = db.Column(db.DateTime, default=db.func.current_timestamp(),
                                             onupdate=db.func.current_timestamp())
     bio             = db.Column(db.String(192), nullable=True)
+    avatar = db.Column(db.String(128), nullable=True)
+    resume = db.Column(db.String(128), nullable=True)  
 
     # New instance instantiation procedure
     def __init__(self, username, email, password, fullname, gender,

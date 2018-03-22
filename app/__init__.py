@@ -23,8 +23,10 @@ from app.modules.organization_volunteer_favourite import OrganizationFavesResour
 from app.modules.tag import TagResource, TagsByActivityResource, TagsByOpportunityResource, OpportunityByTagResource, ActivityByTagResource
 
 from app.modules.auth.controllers import mod_auth as auth_module
+from app.modules.util.upload import mod_uploads as uploads_module
 
 app.register_blueprint(auth_module)
+app.register_blueprint(uploads_module)
 api.add_resource(UserResource,                   '/api/users/', '/api/users/<int:user_id>/')
 api.add_resource(CurrentUserResource,            '/api/currentuser/')
 api.add_resource(ActivityResource,               '/api/activity/', '/api/activity/<int:post_id>/')

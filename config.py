@@ -26,6 +26,10 @@ class Config(object):
     # Performance
     
     THREADS_PER_PAGE = 2
+    
+    # Uploads
+    
+    UPLOADS_DEFAULT_DEST = os.path.join(BASE_DIR, 'uploads')
 
 class ProductionConfig(Config):
     ENV = "prod"

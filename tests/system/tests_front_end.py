@@ -231,7 +231,7 @@ class EnterVolunteerPool(unittest.TestCase):
         driver.find_element_by_xpath("//li[4]/button").click()
         driver.find_element_by_id("post_description").click()
         driver.find_element_by_id("post_description").clear()
-        driver.find_element_by_id("post_description").send_keys("I am a test for valid volunteer pool entry")
+        driver.find_element_by_id("post_description").send_keys("I am a test for invalid volunteer pool entry")
         driver.find_element_by_id("volunteerpool_submit").click()
         self.assertEqual("http://localhost:8090/#/createvolunteerpost", driver.current_url)
     
@@ -328,6 +328,109 @@ class RegisterOrganization(unittest.TestCase):
         driver.find_element_by_id("org_phone").send_keys("123456789")
         driver.find_element_by_id("registerorg_submit").click()
         self.assertEqual("http://localhost:8090/#/registerOrganization", driver.current_url)
+    
+    def is_element_present(self, how, what):
+        try: self.driver.find_element(by=how, value=what)
+        except NoSuchElementException as e: return False
+        return True
+    
+    def is_alert_present(self):
+        try: self.driver.switch_to_alert()
+        except NoAlertPresentException as e: return False
+        return True
+    
+    def close_alert_and_get_its_text(self):
+        try:
+            alert = self.driver.switch_to_alert()
+            alert_text = alert.text
+            if self.accept_next_alert:
+                alert.accept()
+            else:
+                alert.dismiss()
+            return alert_text
+        finally: self.accept_next_alert = True
+    
+    def tearDown(self):
+        self.driver.quit()
+        self.assertEqual([], self.verificationErrors)
+        
+class ChangePassword(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.implicitly_wait(30)
+        self.base_url = "https://www.katalon.com/"
+        self.verificationErrors = []
+        self.accept_next_alert = True
+    
+    def test_change_password_valid(self):
+        driver = self.driver
+        driver.get("http://localhost:8090/#/profile")
+        driver.find_element_by_id("editProfile").click()
+        driver.find_element_by_id("changePassword").click()
+        driver.find_element_by_id("oldPassword").click()
+        driver.find_element_by_id("oldPassword").clear()
+        driver.find_element_by_id("oldPassword").send_keys("testPassword")
+        driver.find_element_by_id("newPassword").click()
+        driver.find_element_by_id("newPassword").clear()
+        driver.find_element_by_id("newPassword").send_keys("testNewPassword")
+        driver.find_element_by_id("newPasswordConfirm").click()
+        driver.find_element_by_id("newPasswordConfirm").clear()
+        driver.find_element_by_id("newPasswordConfirm").send_keys("testNewPassword")
+        driver.find_element_by_id("changePasswordSubmit").click()
+        self.assertEqual("http://localhost:8090/#/login", driver.current_url)
+        driver.find_element_by_id("username").click()
+        driver.find_element_by_id("username").clear()
+        driver.find_element_by_id("username").send_keys("testUser")
+        driver.find_element_by_id("password").click()
+        driver.find_element_by_id("password").clear()
+        driver.find_element_by_id("password").send_keys("testNewPassword")
+        driver.find_element_by_id("login_submit").click()
+        self.assertEqual("http://localhost:8090/#/opportunities", driver.current_url)
+        
+    def test_change_password_invalid_old_password(self):
+        driver = self.driver
+        driver.get("http://localhost:8090/#/profile")
+        driver.find_element_by_id("editProfile").click()
+        driver.find_element_by_id("changePassword").click()
+        driver.find_element_by_id("oldPassword").click()
+        driver.find_element_by_id("oldPassword").clear()
+        driver.find_element_by_id("oldPassword").send_keys("testWrongPassword")
+        driver.find_element_by_id("newPassword").click()
+        driver.find_element_by_id("newPassword").clear()
+        driver.find_element_by_id("newPassword").send_keys("testNewPassword")
+        driver.find_element_by_id("newPasswordConfirm").click()
+        driver.find_element_by_id("newPasswordConfirm").clear()
+        driver.find_element_by_id("newPasswordConfirm").send_keys("testNewPassword")
+        driver.find_element_by_id("changePasswordSubmit").click()
+        self.assertEqual("http://localhost:8090/#/changepassword", driver.current_url)
+        
+    def test_change_password_mismatched_new_passwords(self):
+        driver = self.driver
+        driver.get("http://localhost:8090/#/profile")
+        driver.find_element_by_id("editProfile").click()
+        driver.find_element_by_id("changePassword").click()
+        driver.find_element_by_id("oldPassword").click()
+        driver.find_element_by_id("oldPassword").clear()
+        driver.find_element_by_id("oldPassword").send_keys("testPassword")
+        driver.find_element_by_id("newPassword").click()
+        driver.find_element_by_id("newPassword").clear()
+        driver.find_element_by_id("newPassword").send_keys("testNewPassword")
+        driver.find_element_by_id("newPasswordConfirm").click()
+        driver.find_element_by_id("newPasswordConfirm").clear()
+        driver.find_element_by_id("newPasswordConfirm").send_keys("testDifferentPassword")
+        driver.find_element_by_id("changePasswordSubmit").click()
+        self.assertEqual("http://localhost:8090/#/changepassword", driver.current_url)
+        
+    def test_change_password_blank_new_password(self):
+        driver = self.driver
+        driver.get("http://localhost:8090/#/profile")
+        driver.find_element_by_id("editProfile").click()
+        driver.find_element_by_id("changePassword").click()
+        driver.find_element_by_id("oldPassword").click()
+        driver.find_element_by_id("oldPassword").clear()
+        driver.find_element_by_id("oldPassword").send_keys("testPassword")
+        driver.find_element_by_id("changePasswordSubmit").click()
+        self.assertEqual("http://localhost:8090/#/changepassword", driver.current_url)
     
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)

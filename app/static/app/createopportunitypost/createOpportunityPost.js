@@ -51,7 +51,7 @@ var CreateOpportunityPostController = function($scope, $http, api, $log) {
 			console.log(errors);
 			alert("Invalid post submission, please try again.");
 		}	else {			
-			 $http.post(api.postOpportunity + $scope.chosenOrganization.id, OpportunityPost)
+			 $http.post(api.postOpportunity + $scope.chosenOrganization.id + '/', OpportunityPost)
 			 	.then(
                   function (response) {
                       alert("The opportunity has been posted!");

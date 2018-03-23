@@ -33,8 +33,8 @@ def register():
              content['email'],
              content['password'],
              content['fullname'],
-             True, 
-             content['agreed'])
+             True) 
+             #content['agreed'])
     
     db.session.add(u)
     db.session.commit()

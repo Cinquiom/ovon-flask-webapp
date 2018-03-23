@@ -13,7 +13,7 @@ class User(UserMixin, db.Model):
     password_hash   = db.Column(db.String(192), nullable=False)
     fullname        = db.Column(db.String(192), nullable=False)
     gender          = db.Column(db.Boolean, nullable=False)
-    agreedToTerms   = db.Column(db.Boolean, nullable=False)
+    #agreedToTerms   = db.Column(db.Boolean, nullable=False)
     enabled         = db.Column(db.Boolean, nullable=False)
     verify_code     = db.Column(db.String(192), nullable=True)
     date_created    = db.Column(db.DateTime, default=db.func.current_timestamp())
@@ -24,14 +24,13 @@ class User(UserMixin, db.Model):
     resume = db.Column(db.String(128), nullable=True)  
 
     # New instance instantiation procedure
-    def __init__(self, username, email, password, fullname, gender,
-                  agreedToTerms):
+    def __init__(self, username, email, password, fullname, gender):
 
         self.username     = username
         self.email    = email
         self.fullname = fullname
         self.gender = gender
-        self.agreedToTerms = agreedToTerms
+        #self.agreedToTerms = agreedToTerms
         self.set_password(password)
         self.enabled = True
         self.verify_code=None

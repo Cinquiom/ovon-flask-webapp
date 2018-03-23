@@ -44,6 +44,122 @@
 </tbody></table>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
+<tr><td rowspan="1" colspan="3">Change_Password_Valid</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8090/#/profile<datalist><option>http://localhost:8090/#/profile</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=editProfileButton<datalist><option>id=editProfileButton</option><option>//button[@id='editProfileButton']</option><option>//li[5]/button</option><option>css=#editProfileButton</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=changePasswordButton<datalist><option>id=changePasswordButton</option><option>//button[@id='changePasswordButton']</option><option>//li[5]/button</option><option>css=#changePasswordButton</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=oldPassword<datalist><option>id=oldPassword</option><option>name=oldPassword</option><option>//input[@id='oldPassword']</option><option>//form[@id='changePassword']/div/div[2]/input</option><option>//input</option><option>css=#oldPassword</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=oldPassword<datalist><option>id=oldPassword</option><option>name=oldPassword</option><option>//input[@id='oldPassword']</option><option>//form[@id='changePassword']/div/div[2]/input</option><option>//input</option><option>css=#oldPassword</option></datalist></td><td>testPassword</td>
+</tr>
+<tr><td>click</td><td>id=newPassword<datalist><option>id=newPassword</option><option>name=newPassword</option><option>//input[@id='newPassword']</option><option>//form[@id='changePassword']/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#newPassword</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=newPassword<datalist><option>id=newPassword</option><option>name=newPassword</option><option>//input[@id='newPassword']</option><option>//form[@id='changePassword']/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#newPassword</option></datalist></td><td>testNewPassword</td>
+</tr>
+<tr><td>click</td><td>id=newPasswordConfirm<datalist><option>id=newPasswordConfirm</option><option>name=newPasswordConfirm</option><option>//input[@id='newPasswordConfirm']</option><option>//form[@id='changePassword']/div[3]/div[2]/input</option><option>//div[3]/div[2]/input</option><option>css=#newPasswordConfirm</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=newPasswordConfirm<datalist><option>id=newPasswordConfirm</option><option>name=newPasswordConfirm</option><option>//input[@id='newPasswordConfirm']</option><option>//form[@id='changePassword']/div[3]/div[2]/input</option><option>//div[3]/div[2]/input</option><option>css=#newPasswordConfirm</option></datalist></td><td>testNewPassword</td>
+</tr>
+<tr><td>click</td><td>id=changePasswordSubmit<datalist><option>id=changePasswordSubmit</option><option>//input[@id='changePasswordSubmit']</option><option>//form[@id='changePassword']/div[4]/div/input</option><option>//div[4]/div/input</option><option>css=#changePasswordSubmit</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:8090/#/login<datalist><option>http://localhost:8090/#/login</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=username<datalist><option>id=username</option><option>//input[@id='username']</option><option>//form[@id='myLogin']/div[2]/div/div/input</option><option>//input</option><option>css=#username</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=username<datalist><option>id=username</option><option>//input[@id='username']</option><option>//form[@id='myLogin']/div[2]/div/div/input</option><option>//input</option><option>css=#username</option></datalist></td><td>testUser</td>
+</tr>
+<tr><td>click</td><td>id=password<datalist><option>id=password</option><option>//input[@id='password']</option><option>//form[@id='myLogin']/div[2]/div/div[2]/input</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=password<datalist><option>id=password</option><option>//input[@id='password']</option><option>//form[@id='myLogin']/div[2]/div/div[2]/input</option><option>//div[2]/input</option><option>css=#password</option></datalist></td><td>testNewPassword</td>
+</tr>
+<tr><td>click</td><td>id=login_submit<datalist><option>id=login_submit</option><option>//button[@id='login_submit']</option><option>//form[@id='myLogin']/div[2]/button</option><option>//div[2]/button</option><option>css=#login_submit</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:8090/#/opportunities<datalist><option>http://localhost:8090/#/opportunities</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Change_Password_Invalid_Old_Password</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8090/#/profile<datalist><option>http://localhost:8090/#/profile</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=editProfileButton<datalist><option>id=editProfileButton</option><option>//button[@id='editProfileButton']</option><option>//li[5]/button</option><option>css=#editProfileButton</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=changePasswordButton<datalist><option>id=changePasswordButton</option><option>//button[@id='changePasswordButton']</option><option>//li[5]/button</option><option>css=#changePasswordButton</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=oldPassword<datalist><option>id=oldPassword</option><option>name=oldPassword</option><option>//input[@id='oldPassword']</option><option>//form[@id='changePassword']/div/div[2]/input</option><option>//input</option><option>css=#oldPassword</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=oldPassword<datalist><option>id=oldPassword</option><option>name=oldPassword</option><option>//input[@id='oldPassword']</option><option>//form[@id='changePassword']/div/div[2]/input</option><option>//input</option><option>css=#oldPassword</option></datalist></td><td>testWrongPassword</td>
+</tr>
+<tr><td>click</td><td>id=newPassword<datalist><option>id=newPassword</option><option>name=newPassword</option><option>//input[@id='newPassword']</option><option>//form[@id='changePassword']/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#newPassword</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=newPassword<datalist><option>id=newPassword</option><option>name=newPassword</option><option>//input[@id='newPassword']</option><option>//form[@id='changePassword']/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#newPassword</option></datalist></td><td>testNewPassword</td>
+</tr>
+<tr><td>click</td><td>id=newPasswordConfirm<datalist><option>id=newPasswordConfirm</option><option>name=newPasswordConfirm</option><option>//input[@id='newPasswordConfirm']</option><option>//form[@id='changePassword']/div[3]/div[2]/input</option><option>//div[3]/div[2]/input</option><option>css=#newPasswordConfirm</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=newPasswordConfirm<datalist><option>id=newPasswordConfirm</option><option>name=newPasswordConfirm</option><option>//input[@id='newPasswordConfirm']</option><option>//form[@id='changePassword']/div[3]/div[2]/input</option><option>//div[3]/div[2]/input</option><option>css=#newPasswordConfirm</option></datalist></td><td>testNewPassword</td>
+</tr>
+<tr><td>click</td><td>id=changePasswordSubmit<datalist><option>id=changePasswordSubmit</option><option>//input[@id='changePasswordSubmit']</option><option>//form[@id='changePassword']/div[4]/div/input</option><option>//div[4]/div/input</option><option>css=#changePasswordSubmit</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:8090/#/changepassword<datalist><option>http://localhost:8090/#/changepassword</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Change_Password_Blank_New_Password</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8090/#/profile<datalist><option>http://localhost:8090/#/profile</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=editProfileButton<datalist><option>id=editProfileButton</option><option>//button[@id='editProfileButton']</option><option>//li[5]/button</option><option>css=#editProfileButton</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=changePasswordButton<datalist><option>id=changePasswordButton</option><option>//button[@id='changePasswordButton']</option><option>//li[5]/button</option><option>css=#changePasswordButton</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=oldPassword<datalist><option>id=oldPassword</option><option>name=oldPassword</option><option>//input[@id='oldPassword']</option><option>//form[@id='changePassword']/div/div[2]/input</option><option>//input</option><option>css=#oldPassword</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=oldPassword<datalist><option>id=oldPassword</option><option>name=oldPassword</option><option>//input[@id='oldPassword']</option><option>//form[@id='changePassword']/div/div[2]/input</option><option>//input</option><option>css=#oldPassword</option></datalist></td><td>testPassword</td>
+</tr>
+<tr><td>click</td><td>id=changePasswordSubmit<datalist><option>id=changePasswordSubmit</option><option>//input[@id='changePasswordSubmit']</option><option>//form[@id='changePassword']/div[4]/div/input</option><option>//div[4]/div/input</option><option>css=#changePasswordSubmit</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:8090/#/changepassword<datalist><option>Ensure no fields are empty</option><option>http://localhost:8090/#/changepassword</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Change_Password_Mismatched_New_Passwords</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost:8090/#/profile<datalist><option>http://localhost:8090/#/profile</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=editProfileButton<datalist><option>id=editProfileButton</option><option>//button[@id='editProfileButton']</option><option>//li[5]/button</option><option>css=#editProfileButton</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=changePasswordButton<datalist><option>id=changePasswordButton</option><option>//button[@id='changePasswordButton']</option><option>//li[5]/button</option><option>css=#changePasswordButton</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>id=oldPassword<datalist><option>id=oldPassword</option><option>name=oldPassword</option><option>//input[@id='oldPassword']</option><option>//form[@id='changePassword']/div/div[2]/input</option><option>//input</option><option>css=#oldPassword</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=oldPassword<datalist><option>id=oldPassword</option><option>name=oldPassword</option><option>//input[@id='oldPassword']</option><option>//form[@id='changePassword']/div/div[2]/input</option><option>//input</option><option>css=#oldPassword</option></datalist></td><td>testPassword</td>
+</tr>
+<tr><td>click</td><td>id=newPassword<datalist><option>id=newPassword</option><option>name=newPassword</option><option>//input[@id='newPassword']</option><option>//form[@id='changePassword']/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#newPassword</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=newPassword<datalist><option>id=newPassword</option><option>name=newPassword</option><option>//input[@id='newPassword']</option><option>//form[@id='changePassword']/div[2]/div[2]/input</option><option>//div[2]/div[2]/input</option><option>css=#newPassword</option></datalist></td><td>testNewPassword</td>
+</tr>
+<tr><td>click</td><td>id=newPasswordConfirm<datalist><option>id=newPasswordConfirm</option><option>name=newPasswordConfirm</option><option>//input[@id='newPasswordConfirm']</option><option>//form[@id='changePassword']/div[3]/div[2]/input</option><option>//div[3]/div[2]/input</option><option>css=#newPasswordConfirm</option></datalist></td><td></td>
+</tr>
+<tr><td>type</td><td>id=newPasswordConfirm<datalist><option>id=newPasswordConfirm</option><option>name=newPasswordConfirm</option><option>//input[@id='newPasswordConfirm']</option><option>//form[@id='changePassword']/div[3]/div[2]/input</option><option>//div[3]/div[2]/input</option><option>css=#newPasswordConfirm</option></datalist></td><td>testDifferentPassword</td>
+</tr>
+<tr><td>click</td><td>id=changePasswordSubmit<datalist><option>id=changePasswordSubmit</option><option>//input[@id='changePasswordSubmit']</option><option>//form[@id='changePassword']/div[4]/div/input</option><option>//div[4]/div/input</option><option>css=#changePasswordSubmit</option></datalist></td><td></td>
+</tr>
+<tr><td>assertLocation</td><td>http://localhost:8090/#/changepassword<datalist><option>http://localhost:8090/#/changepassword</option></datalist></td><td></td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
 <tr><td rowspan="1" colspan="3">Register_User_Password_Mismatch</td></tr>
 </thead>
 <tbody>

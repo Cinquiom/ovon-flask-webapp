@@ -1,7 +1,10 @@
 'use strict';
 
 var LoginController = function($scope, $route, $location, $rootScope, $http, userPersistenceService, api) {
+	$scope.errorMessage = "";
+	
     $scope.submit = function() {
+		$scope.errorMessage = "";
         $http.post(api.signIn, $scope.user)
         .then(function(response) {
         	$rootScope.loggedIn = true;
@@ -12,7 +15,7 @@ var LoginController = function($scope, $route, $location, $rootScope, $http, use
             $location.path('/opportunities');
             $route.reload();
         }, function(errResponse) {
-        	alert(errResponse.data.errorMessage);
+        	$scope.errorMessage = errResponse.data.errorMessage;
         })
     }
 };

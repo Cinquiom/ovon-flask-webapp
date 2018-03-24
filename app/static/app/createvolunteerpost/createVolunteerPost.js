@@ -1,6 +1,6 @@
 'use strict';
 
-var CreateVolunteerPostController = function($scope, $http, $route, $location, api) {
+var CreateVolunteerPostController = function($scope, $http, $route, $location, VolunteerService, api) {
 	
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
@@ -8,6 +8,41 @@ var CreateVolunteerPostController = function($scope, $http, $route, $location, a
 	
 	$scope.errors = {};
 	$scope.ActivityPost = {};
+	$scope.tagEntries = "";
+	$scope.Tags = [];
+	
+	$scope.addTags = function() {
+		//loop to identify tags in the tagEntries string and make them into a list of JSON objects
+		var tagName = "";
+		for (var i = 0; i < $scope.tagEntries.length; i++) {
+			if ($scope.tagEntries[i] != ' ') {
+				tagName += $scope.tagEntries[i];
+				if(i == ($scope.tagEntries.length) - 1) {
+					$scope.Tags = $scope.Tags.concat([{name: tagName}]);
+					tagName = "";
+				}
+			}
+			else {
+				$scope.Tags = $scope.Tags.concat([{name: tagName}]);
+				tagName = "";
+			}
+		}
+		
+		var vols = []; 
+		VolunteerService.getVolunteerPosts().then(function(data) {
+			angular.copy(data, vols);
+			
+			$http.put(api.TagsForVolunteer + vols[vols.length - 1].id + '/', $scope.Tags)
+		 	.then(
+	       function (response) {
+	           alert("Tags added!");
+	       },
+	       function (errResponse) {
+	      	 console.log(errResponse);
+	      	 alert(errResponse.data.errorMessage);
+	       });
+		});
+	}
 	
 	$scope.validateVolunteerPost = function(ActivityPost) {
 		var errors = {};
@@ -28,7 +63,8 @@ var CreateVolunteerPostController = function($scope, $http, $route, $location, a
 			 $http.post(api.postVolunteerPool, ActivityPost)
 			 	.then(
                   function (response) {
-                      alert("Volunteer Pool Entry succeeded!");
+                      //alert("Volunteer Pool Entry succeeded!");
+                      $scope.addTags();
                       $location.path("/volunteers");
               		  $route.reload();
                   },

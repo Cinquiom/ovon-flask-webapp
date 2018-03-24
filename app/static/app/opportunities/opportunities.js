@@ -1,10 +1,13 @@
 'use strict';
 
-var OpportunitiesController = function($scope, $http, $location, $route, api) {
+var OpportunitiesController = function($scope, $http, $location, $route, $filter, api) {
 	
 	// Specifying simple JSON objects in the javascript itself
 	$scope.filters = ["Manual Labour", "People", "Animals"];
 	$scope.title = "Opportunities";
+	$scope.filteredOps = [];
+	$scope.textFilteredOps = [];
+	var opsWithTag = [];
 	
 	$scope.linkToEnterVolunteerPool = function() {
 		$location.path("/createvolunteerpost");
@@ -24,6 +27,35 @@ var OpportunitiesController = function($scope, $http, $location, $route, api) {
               alert("Opportunity Added to Favourites!");
           });
 	}
+	
+    function UniqueArraybyId(collection, keyname) {
+        var output = [], 
+            keys = [];
+
+        angular.forEach(collection, function(item) {
+            var key = item[keyname];
+            if(keys.indexOf(key) === -1) {
+                keys.push(key);
+                output.push(item);
+            }
+        });
+        return output;
+    };
+	
+	$scope.$watch('searchOpportunities', function(searchText) {
+		$scope.textFilteredOps = $filter('filter')($scope.filteredOps, searchText);
+		$http.get(api.getOpportunitiesWithTag + searchText + '/').then(function(response) {
+			opsWithTag = response.data;
+			var mixedOps = $scope.textFilteredOps.concat(opsWithTag);
+			$scope.ops = UniqueArraybyId(mixedOps, 'id');			
+		})
+		.catch(function (data) {
+			if (searchText != undefined) {
+				$scope.ops = $scope.textFilteredOps;
+			}			
+		});
+		
+	});
 	
 	$scope.onOrganizationRating = function(rating, org_id) {
 
@@ -61,5 +93,6 @@ var OpportunitiesController = function($scope, $http, $location, $route, api) {
 	
 	$http.get(api.postOpportunity).then(function(response) {
 		$scope.ops = response.data;
+		$scope.filteredOps = $scope.ops;
 	});
 };

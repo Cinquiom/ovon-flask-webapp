@@ -24,7 +24,7 @@
  			<button class="editProfileButtonNoZoom" ng-click="linkToPostOpportunity()">Post Opportunity</button>
  			</li>
    		</ul>
-   		<div id="container" style="padding-top: 30px">
+<!--    		<div id="container" style="padding-top: 30px">
     		<h4>Filter Your Search</h4>
     		<div class="funkyradio" ng-repeat="filter in filters">
      			<div class="funkyradio-primary">
@@ -32,10 +32,18 @@
       				<label for="checkbox{{$index+1}}">{{filter}}</label>
      			</div>
     		</div>
-   		</div> 
+   		</div> --> 
  	</div>
   <div class="col-lg-8">
-   <h1 style="text-align: center">{{title}}</h1>
+  	<table id="feedTitleTable">
+  		<tr>
+  			<td id="feedTitleOneThirdWidth"></td>
+  			<td><h1 style="text-align: center">{{title}}</h1></td>
+  			<td id="feedTitleOneThirdWidth">
+  				<input type='text' id="searchBox" ng-model='searchOpportunities' placeholder="Search Opportunities" />
+  			</td>
+  		</tr>
+  	</table>
    <div id="scrollableFeedParent">
    <div id="scrollableFeedChild">
    <div id="opportunitiesArea"> 

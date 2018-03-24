@@ -520,8 +520,8 @@ label:hover:before {
   position: relative;
   display: block;
   width: 9em;
-  height: 2em;
-  line-height: 3;
+  /*height: 2em;*/
+  /*line-height: 3; */
   background: #F7C32E;
   overflow: hidden;
   border-radius: .25em;
@@ -567,4 +567,15 @@ label:hover:before {
 
 a.ng-binding {
 	color: #000000;
+}
+
+#searchBox{
+    width: 100%;
+    border: medium none;
+    background: #F7C32E;
+    height: 30px;
+    /*margin-top: 10px;*/
+    padding-left: 5px;
+    border-radius: .25em;
+  	border: 2px solid black;
 }

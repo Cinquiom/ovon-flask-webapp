@@ -1,10 +1,13 @@
 'use strict';
 
-var VolunteerPoolController = function($scope, $http, $location, api) {
+var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 	
 	// Specifying simple JSON objects in the javascript itself
 	$scope.filters = ["Manual Labour", "People", "Animals"];
 	$scope.title = "Volunteers";
+	$scope.filteredVols = [];
+	$scope.textFilteredVols = [];
+	var volsWithTag = [];
 	
 	$scope.chosenOrganization = {};
 	$scope.chosenOrganizationName = {};
@@ -14,6 +17,35 @@ var VolunteerPoolController = function($scope, $http, $location, api) {
 		$location.path("/createvolunteerpost");
 		$route.reload();
 	}
+	
+	function UniqueArraybyId(collection, keyname) {
+        var output = [], 
+            keys = [];
+
+        angular.forEach(collection, function(item) {
+            var key = item[keyname];
+            if(keys.indexOf(key) === -1) {
+                keys.push(key);
+                output.push(item);
+            }
+        });
+        return output;
+    };
+    
+    $scope.$watch('searchVolunteers', function(searchText) {
+		$scope.textFilteredVols = $filter('filter')($scope.filteredVols, searchText);
+		$http.get(api.getVolunteersWithTag + searchText + '/').then(function(response) {
+			volsWithTag = response.data;
+			var mixedVols = $scope.textFilteredVols.concat(volsWithTag);
+			$scope.volunteers = UniqueArraybyId(mixedVols, 'id');			
+		})
+		.catch(function (data) {
+			if (searchText != undefined) {
+				$scope.volunteers = $scope.textFilteredVols;
+			}			
+		});
+		
+	});
 	
 	//function to get user organization data for 'Browse As' dropdown
 	$http.get(api.getUserOrganizations).then(function(response) {
@@ -91,5 +123,6 @@ var VolunteerPoolController = function($scope, $http, $location, api) {
 	
 	$http.get(api.postVolunteerPool).then(function(response) {
 		$scope.volunteers = response.data;
+		$scope.filteredVols = $scope.volunteers;
 	});
 };

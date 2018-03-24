@@ -23,12 +23,22 @@ class TagsByOpportunityResource(Resource):
     def get(self, opp_id, tag_id=None):
         return jsonify([x.serialize for x in OpportunityPost.query.get(opp_id).tags])
     
-    def put(self, opp_id, tag_id):
+    def put(self, opp_id, tag_id=None):
         opportunity = OpportunityPost.query.get(opp_id)
-        tag = Tag.query.get(tag_id)
+        #tag = Tag.query.get(tag_id)
         
         if current_user.is_authenticated and opportunity.organization in current_user.organizations:
-            opportunity.tags.append(tag)
+            content = request.json
+            for x in range (0, len(content)):
+                tag = Tag(**content[x])
+                
+                try:
+                    existingTag = Tag.query.filter_by(name = tag.name).one()
+                    tag = existingTag
+                except:
+                    pass
+                                    
+                opportunity.tags.append(tag)
                 
             db.session.commit()
             return "", 200
@@ -52,12 +62,22 @@ class TagsByActivityResource(Resource):
     def get(self, act_id, tag_id=None):
         return jsonify([x.serialize for x in ActivityPost.query.get(act_id).tags])
     
-    def put(self, act_id, tag_id):
+    def put(self, act_id, tag_id=None):
         activity = ActivityPost.query.get(act_id)
-        tag = Tag.query.get(tag_id)
+        #tag = Tag.query.get(tag_id)
         
         if current_user.is_authenticated and activity in current_user.activity_posts:
-            activity.tags.append(tag)
+            content = request.json
+            for x in range (0, len(content)):
+                tag = Tag(**content[x])
+                
+                try:
+                    existingTag = Tag.query.filter_by(name = tag.name).one()
+                    tag = existingTag
+                except:
+                    pass
+                                    
+                activity.tags.append(tag)
                 
             db.session.commit()
             return "", 200
@@ -78,12 +98,14 @@ class TagsByActivityResource(Resource):
 
 # /api/tags/<tag_id>/opportunities/
 class OpportunityByTagResource(Resource):
-    def get(self, tag_id):
+    def get(self, tag_name):        
+        tag_id = Tag.query.filter_by(name = tag_name).one().id
         return jsonify([x.serialize for x in Tag.query.get(tag_id).opportunities])
     
 # /api/tags/<tag_id>/activities/
 class ActivityByTagResource(Resource):
-    def get(self, tag_id):
+    def get(self, tag_name):
+        tag_id = Tag.query.filter_by(name = tag_name).one().id
         return jsonify([x.serialize for x in Tag.query.get(tag_id).activities])
 
         

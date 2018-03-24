@@ -34,6 +34,12 @@
                         <textarea ng-model="OpportunityPost.description" class="form-control" id="post_description" name="post_description" placeholder="describe the opportunity here"></textarea>
                     </div>
                     <br/>
+                    <div class="form-group">
+                    	<label class="entryFormLabel">Add keywords to make the opportunity easier for users to find (Separate each keyword with a space):</label>
+                        <label for="post_description" class="sr-only">Add keywords to make the opportunity easier for users to find (Separate each keyword with a space):</label>
+                        <textarea ng-model="tagEntries" class="form-control" id="post_tags" name="post_tags" placeholder="enter the keywords here"></textarea>
+                    </div>
+                    <br/>
                     <label for="organizationSelect"> Select Organization: </label>
 				    <select name="organizationSelect" id="organizationSelect" ng-options="name as name for name in userOrganizationNames" ng-model="chosenOrganizationName">
 				    </select>

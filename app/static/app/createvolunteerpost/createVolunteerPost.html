@@ -34,7 +34,13 @@
                     	<label class="entryFormLabel">Briefly describe yourself and the type of volunteer activities you would like to partake in.</label>
                         <label for="post_description" class="sr-only">Briefly describe yourself and the type of volunteer activities you would like to partake in.</label>
                         <textarea ng-model="ActivityPost.description" class="form-control" id="post_description" name="post_description" placeholder="describe yourself here"></textarea>
-                    </div>   
+                    </div>
+                    <div class="form-group">
+                    	<label class="entryFormLabel">Add keywords to make yourself easier for Recruiters to find (Separate each keyword with a space):</label>
+                        <label for="post_tag" class="sr-only">Add keywords to make the opportunity easier for users to find (Separate each keyword with a space):</label>
+                        <textarea ng-model="tagEntries" class="form-control" id="post_tags" name="post_tags" placeholder="enter the keywords here"></textarea>
+                    </div>
+                    <br/>   
                     <div class="form-group login-group-checkbox">                        
                     </div>          
                 </div>

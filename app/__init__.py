@@ -40,10 +40,10 @@ api.add_resource(OpportunityFavedResource,       '/api/opportunities/favourites/
 api.add_resource(OrganizationFavesResource,      '/api/organizations/favourites/<int:org_id>/')
 api.add_resource(VolunteerFavedResource,         '/api/volunteers/favourites/<int:volunteer_id>/<int:org_id>/', '/api/volunteers/favourites/')
 api.add_resource(TagResource,                    '/api/tags/', '/api/tags/<int:tag_id>/')
-api.add_resource(OpportunityByTagResource,       '/api/tags/<int:tag_id>/opportunities/')
-api.add_resource(ActivityByTagResource,          '/api/tags/<int:tag_id>/activities/')
-api.add_resource(TagsByOpportunityResource,      '/api/opportunities/<int:opp_id>/tags/', '/api/opportunities/<int:opp_id>/tags/<int:tag_id>/')
-api.add_resource(TagsByActivityResource,         '/api/activities/<int:act_id>/tags/', '/api/activities/<int:act_id>/tags/<int:tag_id>/')
+api.add_resource(OpportunityByTagResource,       '/api/tags/opportunities/<string:tag_name>/')
+api.add_resource(ActivityByTagResource,          '/api/tags/activities/<string:tag_name>/')
+api.add_resource(TagsByOpportunityResource,      '/api/opportunities/tags/<int:opp_id>/', '/api/opportunities/tags/<int:opp_id>/<int:tag_id>/')
+api.add_resource(TagsByActivityResource,         '/api/activities/tags/<int:act_id>/', '/api/activities/tags/<int:act_id>/<int:tag_id>/')
 
 @app.route('/')
 def index():

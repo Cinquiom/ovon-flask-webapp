@@ -1,11 +1,14 @@
-import string, random
+import string, random, re
 
 from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_user
+from sqlalchemy.exc import IntegrityError
 
 from app import db
 from app.modules.user import User
 from app.modules.util.email.SMTPEmailer import SMTPEmailer
+
+EMAIL_REGEX = r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -27,19 +30,24 @@ def signin():
 @mod_auth.route('/register/', methods=['POST'])
 def register():
     content = request.json
-    errors = {}
     
-    u = User(content['username'],
-             content['email'],
-             content['password'],
-             content['fullname'],
-             True) 
-             #content['agreed'])
-    
-    db.session.add(u)
-    db.session.commit()
+    try:
+        reg_email = re.match(EMAIL_REGEX,
+                             content['email']).group(0)
+        u = User(content['username'],
+                 content['email'],
+                 content['password'],
+                 content['fullname'],
+                 content['gender']) 
+        
+        db.session.add(u)
+        db.session.commit()
+    except IntegrityError as e:
+        return jsonify({"errorMessage": "Account with email or username already exists."}), 409 # Conflict
+    except AttributeError:
+        return jsonify({"errorMessage": "Email was invalid."}), 400 # Bad Request
 
-    return "", 201 # Created
+    return jsonify(u.serialize), 201 # Created
 
 """
     Returns the user's username.

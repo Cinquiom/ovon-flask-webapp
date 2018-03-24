@@ -10,23 +10,27 @@
                         <label for="reg_username" class="sr-only">Email address</label>
                         <input ng-model="user.username" type="text" class="form-control" id="reg_username" name="reg_username" placeholder="username">
                     </div>
+					<span style="color:red" ng-show="errors.username">{{errors.username}}</span>
                     <div class="form-group">
                         <label for="reg_password" class="sr-only">Password</label>
                         <input ng-model="user.password" type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password">
                     </div>
+					<span style="color:red" ng-show="errors.password">{{errors.password}}</span>
                     <div class="form-group">
                         <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
                         <input ng-model="user.passwordconfirm" type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">
                     </div>
-
+					<span style="color:red" ng-show="errors.passwordconfirm">{{errors.passwordconfirm}}</span>
                     <div class="form-group">
                         <label for="reg_email" class="sr-only">Email</label>
                         <input ng-model="user.email" type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email">
                     </div>
+					<span style="color:red" ng-show="errors.email">{{errors.email}}</span>
                     <div class="form-group">
                         <label for="reg_fullname" class="sr-only">Full Name</label>
                         <input ng-model="user.fullname" type="text" class="form-control" id="reg_fullname" name="reg_fullname" placeholder="full name">
                     </div>
+					<span style="color:red" ng-show="errors.fullname">{{errors.fullname}}</span>
                     <!--<div class="form-group">
                         <label style="margin-bottom: 0px;">Date of Birth:</label>
                         <input ng-model="user.birthdate" style="padding-top: 0px;" type="text" class="form-control" id="reg_birthDate" name="reg_birthDate" placeholder="YYYY-MM-DD">
@@ -34,17 +38,20 @@
                     </div>-->
 
                     <div class="form-group login-group-checkbox">
-                        <input ng-model="user.gender" type="radio" class="" name="reg_gender" id="male" placeholder="username">
+                        <input ng-model="user.gender" type="radio" class="" name="reg_gender" id="male" placeholder="male" ng-value="true">
                         <label for="male">Male</label>
 
-                        <input type="radio" class="" name="reg_gender" id="female" placeholder="username">
+                        <input ng-model="user.gender" type="radio" class="" name="reg_gender" id="female" placeholder="female" ng-value="false">
                         <label for="female">Female</label>
                     </div>
+					<span style="color:red" ng-show="errors.gender">{{errors.gender}}</span>
 
 <!--                     <div class="form-group login-group-checkbox">
                         <input ng-model="user.agreed" type="checkbox" class="" id="reg_agree" name="reg_agree">
                         <label for="reg_agree">I agree with the <a href="#">terms</a></label>
                     </div> -->
+				<span style="color:red" ng-show="errors.response">{{errors.response}}</span>
+				<span style="color:green" ng-show="success">{{success}}</span>
                 </div>
                 <button type="submit" id="reg_submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
             </div>

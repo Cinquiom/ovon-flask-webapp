@@ -8,7 +8,7 @@ class User(UserMixin, db.Model):
     __table_args__ = {'extend_existing': True} 
     
     id              = db.Column(db.Integer, primary_key=True)
-    username        = db.Column(db.String(128), nullable=False)
+    username        = db.Column(db.String(128), nullable=False, unique=True)
     email           = db.Column(db.String(128), nullable=False, unique=True)
     password_hash   = db.Column(db.String(192), nullable=False)
     fullname        = db.Column(db.String(192), nullable=False)

@@ -68,16 +68,25 @@ def forgotpassword():
         user.verify_code = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(32))
         db.session.commit()
         SMTPEmailer().sendmail(user.username, content['email'], user.verify_code)
-    return "", 202 # Always return successful, even if we don't find an email address
+        return "", 202 # Always return successful, even if we don't find an email address
+    else:
+        return jsonify({"errorMessage": "Could not find specified email."}), 404 # Not Found
+
 
 @mod_auth.route('/resetpassword/<code>', methods=['POST'])
 def resetpassword(code):
     content = request.json
     user = User.query.filter_by(verify_code=code).first()
-    if user and content['password'] == content['password2']:
+    
+    if not user: return jsonify({"errorMessage": "Could not find account with specified code."}), 404 # Not Found
+    
+    if content['password'] == content['password2']:
         user.set_password(content['password'])
+        user.verify_code = None
         db.session.commit()
-    return "", 204
+        return "", 200
+    else:
+        return jsonify({"errorMessage": "Passwords do not match."}), 400
 
 @mod_auth.route('/updateProfile/', methods=['POST'])
 def updateProfile():

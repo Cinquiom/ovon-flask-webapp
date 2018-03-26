@@ -82,13 +82,17 @@ def resetpassword(code):
 @mod_auth.route('/updateProfile/', methods=['POST'])
 def updateProfile():
     content = request.json
-    user = User.query.filter_by(username=request.cookies.get('userName')).first()
-    if user:
-        user.set_fullName(content['profileFullName'])
-        user.set_email(content['profileEmail'])
-        user.set_bio(content['profileBio'])
-        db.session.commit()
-    return "", 202
+    if current_user.is_authenticated:
+        current_user.fullname = content['profileFullName']
+        current_user.bio = content['profileBio']
+        current_user.email = content['profileEmail']
+        
+        try:
+            db.session.commit()
+        except IntegrityError as e:
+            return jsonify({"errorMessage": "Email is already in use."}), 409 # Conflict
+        
+    return "", 200
 
 @mod_auth.route('/changePassword/', methods=['POST'])
 def changePassword():

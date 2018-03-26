@@ -2,6 +2,8 @@
 
 var ChangePasswordController = function($scope, $http, userPersistenceService, $route, $location, api) {
     
+	$scope.errors = {};
+	
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
 	});
@@ -23,25 +25,23 @@ var ChangePasswordController = function($scope, $http, userPersistenceService, $
     
     $scope.changePassword = function() {
         
-        var errors = {};
+        $scope.errors = {};
         
         //Error checking for empty fields
         if(!$scope.oldPassword) {
-            errors.oldPassword = "Old password is blank";
+            $scope.errors.oldPassword = "Old password is blank";
         }
-        else if(!$scope.newPassword1) {
-            errors.newPassword1 = "New password is blank";
+        if(!$scope.newPassword1) {
+            $scope.errors.newPassword1 = "New password is blank";
         }
-        else if(!$scope.newPassword2) {
-            errors.newPassword2 = "Confirm password is blank";
-        }
+        if(!$scope.newPassword2) {
+            $scope.errors.newPassword2 = "Confirm password is blank";
+        } else if (!angular.equals($scope.newPassword1, $scope.newPassword2)) {
+			$scope.errors.newPassword2 = "Passwords do not match";
+		}
         
         //Checking if the error list is not empty
-        if(!angular.equals(errors, {})) {
-            console.log(errors);
-            alert("Ensure no fields are empty"); //Eventually change this from being an alert
-        }
-        else {
+        if(angular.equals($scope.errors, {})) {
             var passwordObject = JSON.stringify({
             oldPassword: $scope.oldPassword,
             newPassword1: $scope.newPassword1,
@@ -55,7 +55,7 @@ var ChangePasswordController = function($scope, $http, userPersistenceService, $
                     $route.reload();
                 },
                 function(errResponse){
-                    console.log(errResponse);
+                    $scope.errors.oldPassword = errResponse.data.errorMessage;
                 });
         }
         

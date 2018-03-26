@@ -27,34 +27,48 @@
     <h5 class="card-title">Update Information</h5>
     <form id="updateProfile" ng-submit="updateInfo()">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 offset-lg-3">
                 <label>Full name</label>
             </div>
-            <div class="col-lg-9">
-                <input type="text" ng-model="profileFullName" value="{{profileFullName}}" name="name" id="fullname"/>
+            <div class="col-lg-6 col-sm-1">
+			    <div class="row">
+                    <input type="text" ng-model="profileFullName" value="{{profileFullName}}" name="name" id="fullname"/>
+				</div>
+				<div class="row">
+					<span style="color:red" ng-show="errors.profileFullName">Error: {{errors.profileFullName}}</span>
+				</div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 offset-lg-3">
                 <label>Email</label>
             </div>
-            <div class="col-lg-9">
-                <input type="text" ng-model="profileEmail" value="{{profileEmail}}" name="email" id="email"/>
+            <div class="col-lg-6 col-sm-1">
+				<div class="row">
+					<input type="text" ng-model="profileEmail" value="{{profileEmail}}" name="email" id="email"/>
+				</div>
+				<div class="row">
+					<span style="color:red" ng-show="errors.profileEmail">Error: {{errors.profileEmail}}</span>
+				</div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 offset-lg-3">
                 <label>Summary</label>
             </div>
-            <div class="col-lg-9">
-                <textarea ng-model="profileBio" value="{{profileBio}}" rows="5" cols="30" name="summary" id="summary"></textarea>
+            <div class="col-lg-6 col-sm-1">
+			    <div class="row">
+                    <textarea ng-model="profileBio" value="{{profileBio}}" rows="5" cols="30" name="summary" id="summary"></textarea>
+				</div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 offset-lg-3">
             </div>
-            <div class="col-lg-9">
-                <input type="submit" value="Save Changes" class="editProfileButtonNoZoom"/>
+            <div class="col-lg-6 col-sm-1">
+			    <div class="row">
+                    <input type="submit" value="Save Changes" class="editProfileButtonNoZoom"/>
+				</div>
             </div>
         </div>
     </form>

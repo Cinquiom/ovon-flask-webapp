@@ -93,30 +93,52 @@ def updateProfile():
 @mod_auth.route('/changePassword/', methods=['POST'])
 def changePassword():
     content = request.json
-    user = User.query.filter_by(username=request.cookies.get('userName')).first()
-    if user and content['newPassword1'] == content['newPassword2']:
-        user.set_password(content['newPassword1'])
-        db.session.commit()
-    return "", 202
+    if current_user.is_authenticated:
+        user = User.query.get(current_user.id)
+        
+        if not current_user.check_password(content['oldPassword']):
+            print "Wrong password."
+            return jsonify({"errorMessage": "Wrong password."}), 401
+        
+        if content['newPassword1'] == content['newPassword2']:
+            user.set_password(content['newPassword1'])
+            db.session.commit()
+            return "", 202
+        else:
+            return jsonify({"errorMessage": "Passwords do not match."}), 400
+           
+    print "Not logged in"     
+    return "", 401
 
 #methods for user data retrieval on profile display page    
 @mod_auth.route('/getProfileEmail/', methods=['GET'])
 def getProfileEmail():
-    profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['email']
-    return profileInfo, 200
+    if current_user.is_authenticated:
+        return User.query.get(current_user.id).email, 200
+    else:
+        return "", 401
 
 @mod_auth.route('/getProfileFullName/', methods=['GET'])
 def getProfileFullName():
-    profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['fullname']
-    return profileInfo, 200
+    if current_user.is_authenticated:
+        return User.query.get(current_user.id).fullname, 200
+    else:
+        return "", 401
     
 @mod_auth.route('/getProfileCreationDate/', methods=['GET'])
 def getProfileCreationDate():
-    profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['date_created']
-    creationDate = profileInfo.strftime('%d/%m/%Y')
-    return creationDate, 200
+    if current_user.is_authenticated:
+        profileInfo = User.query.get(current_user.id).date_created
+        creationDate = profileInfo.strftime('%d/%m/%Y')
+        return creationDate, 200
+    else:
+        return "", 401
 
 @mod_auth.route('/getProfileBio/', methods=['GET'])
 def getProfileBio():
-    profileInfo = User.query.filter_by(username=request.cookies.get('userName')).first()['bio']
-    return profileInfo, 200
+    if current_user.is_authenticated:
+        bio = User.query.get(current_user.id).bio
+        return bio if bio else "", 200
+    else:
+        return "", 401
+    

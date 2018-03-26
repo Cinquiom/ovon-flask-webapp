@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row">
+    </div>
+    
+    <div class="row">
+        <div class="col-md-3" style="padding-left: 5%">
+            <h4 style="padding-top: 15%">Menu</h4>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="nav in navtop">
+                    <a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <h1 class="text-center">My Organizations</h1>
+            <div id="scrollableFeedParent">
+                <div id="scrollableFeedChild">
+                    <div id="opportunitiesArea">
+                        <div class="card mt-4" ng-repeat="org in orgs" style="background: #2196F3">
+                            <div class="card-body">
+                                <h2 class="card-title text-center">{{org.name}}</h2>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h3 class="text-center">Favourited Users</h3>
+                                        <div ng-repeat="user in favouritedUsers">
+                                            <h4>{{user.volunteer.fullName}}</h4>
+                                            <h5>Email: {{user.volunteer.email}}</h5>
+                                            <h5>Availability: {{user.volunteer.availability}}</h5>
+                                            <h5>Description: {{user.volunteer.description}}</h5>
+                                            <h5>Rating:</h5>
+                                            <jk-rating-stars rating="user.volunteer.averageRating" read-only="true"></jk-rating-stars>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h3 class="text-center">Interested Users</h3>
+                                        <div ng-repeat="user in interestedUsers">
+                                            <h4>{{user.fullname}}</h4>
+                                            <h5>Email: {{user.email}}</h5>
+                                            <h5>Summary: {{user.bio}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

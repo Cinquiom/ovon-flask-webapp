@@ -27,7 +27,9 @@ OVONApp.constant('api', {
     getOpportunitiesWithTag: apiURL + '/api/tags/opportunities/',
     getVolunteersWithTag: apiURL + '/api/tags/activities/',
     TagsForOpportunity: apiURL + '/api/opportunities/tags/',
-    TagsForVolunteer: apiURL + '/api/activities/tags/'
+    TagsForVolunteer: apiURL + '/api/activities/tags/',
+    organizationFavourites: apiURL + '/api/organizations/favourites/',
+    getUserInfo: apiURL + '/api/users/'
     
     
 });
@@ -45,6 +47,7 @@ OVONApp.controller("UploadProfilePictureController", UploadProfilePictureControl
 OVONApp.controller("CreateVolunteerPostController", CreateVolunteerPostController);
 OVONApp.controller("CreateOpportunityPostController", CreateOpportunityPostController);
 OVONApp.controller("RegisterOrganizationController", RegisterOrganizationController);
+OVONApp.controller("MyOrganizationsController", MyOrganizationsController);
 
 
 OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
@@ -220,6 +223,11 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
         state("/loginTest", {
             url: "/loginTest",
             templateUrl: "static/app/login/loginTest.html"
+        }).
+        state("/myorganizations", {
+            url: "/myorganizations",
+            templateUrl: "static/app/myorganizations/myOrganizations.html",
+            controller: "MyOrganizationsController"
         });
 
     $locationProvider.hashPrefix('');

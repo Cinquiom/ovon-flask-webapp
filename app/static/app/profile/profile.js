@@ -19,6 +19,11 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 		$location.path("/registerorganization");
 		$route.reload();
 	}
+	
+	$scope.linkToMyOrganizations = function() {
+	    $location.path("/myorganizations");
+	    $route.reload();S
+	}
 		
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;

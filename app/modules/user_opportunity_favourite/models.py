@@ -21,5 +21,6 @@ class UserOpportunityFave(db.Model):
     def serialize(self):
         return {
             "user": self.user.username,
+            "user_id": self.user.id,
             "opportunity": self.opportunity.serialize
             }

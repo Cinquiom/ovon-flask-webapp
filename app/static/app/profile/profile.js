@@ -22,7 +22,7 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 	
 	$scope.linkToMyOrganizations = function() {
 	    $location.path("/myorganizations");
-	    $route.reload();S
+	    $route.reload();
 	}
 		
 	$http.get('/static/json/navtop.json').then(function(response) {
@@ -56,6 +56,10 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 	
 	$http.get(api.volunteerFavourited).then(function(response) {
 		$scope.interestedOrgs = response.data;
+	});
+	
+	$http.get(api.getCurrentUser).then(function(response) {
+	    $scope.userID = response.data.id;
 	});
 	
 	$scope.removeFromDesiredOps = function(opp_id) {

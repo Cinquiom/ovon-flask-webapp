@@ -17,9 +17,9 @@ var MyOrganizationsController = function($scope, $http, $route, $location, api) 
         });
         
         $http.get(api.postOpportunity + $scope.orgs[0].id).then(function(response){
-            var ops = response.data;
-            for (var op in ops) {
-                $http.get(api.opportunityFavourites + ops[op].id).then(function(response){
+            var organizationOpportunities = response.data;
+            for (var opportunitiy in organizationOpportunities) {
+                $http.get(api.opportunityFavourites + organizationOpportunities[opportunitiy].id).then(function(response){
                     var interestedUser = response.data;
                     
                     for (var user in interestedUser) {

@@ -29,7 +29,11 @@ OVONApp.constant('api', {
     TagsForOpportunity: apiURL + '/api/opportunities/tags/',
     TagsForVolunteer: apiURL + '/api/activities/tags/',
     organizationFavourites: apiURL + '/api/organizations/favourites/',
-    getUserInfo: apiURL + '/api/users/'
+    getUserInfo: apiURL + '/api/users/',
+    upload: apiURL + '/api/upload/',
+    getUserAvatar: apiURL + '/api/avatars/',
+    getUserResume: apiURL + '/api/resumes/',
+    getCurrentUser: apiURL + '/api/currentuser/'
     
     
 });

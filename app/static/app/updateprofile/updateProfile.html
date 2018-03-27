@@ -33,17 +33,13 @@
                         <label>Full name</label>
                         <input type="text" class="form-control" ng-model="profileFullName" value="{{profileFullName}}" name="name" id="fullname"/>
                     </div>
-                    <div class="row">
-                        <span style="color:red" ng-show="errors.profileFullName">Error: {{errors.profileFullName}}</span>
-                    </div>
+                    <span style="color:red" ng-show="errors.profileFullName">Error: {{errors.profileFullName}}</span>
                     <br/>
                     <div class="form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" ng-model="profileEmail" value="{{profileEmail}}" name="email" id="email"/>                       
                     </div>
-                    <div class="row">
-                        <span style="color:red" ng-show="errors.profileEmail">Error: {{errors.profileEmail}}</span>
-                    </div>
+                    <span style="color:red" ng-show="errors.profileEmail">Error: {{errors.profileEmail}}</span>
                     <br/>
                     <div class="form-group">
                         <label>Summary</label>

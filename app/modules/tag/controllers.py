@@ -98,14 +98,20 @@ class TagsByActivityResource(Resource):
 
 # /api/tags/<tag_id>/opportunities/
 class OpportunityByTagResource(Resource):
-    def get(self, tag_name):        
-        tag_id = Tag.query.filter_by(name = tag_name).one().id
-        return jsonify([x.serialize for x in Tag.query.get(tag_id).opportunities])
+    def get(self, tag_name):
+        try:
+            tag_id = Tag.query.filter_by(name = tag_name).one().id
+            return jsonify([x.serialize for x in Tag.query.get(tag_id).opportunities])   
+        except:
+            return "", 401        
     
 # /api/tags/<tag_id>/activities/
 class ActivityByTagResource(Resource):
     def get(self, tag_name):
-        tag_id = Tag.query.filter_by(name = tag_name).one().id
-        return jsonify([x.serialize for x in Tag.query.get(tag_id).activities])
+        try:
+            tag_id = Tag.query.filter_by(name = tag_name).one().id
+            return jsonify([x.serialize for x in Tag.query.get(tag_id).activities])
+        except:
+            return "", 401
 
         

@@ -2,6 +2,8 @@
 
 var UpdateProfileController = function($scope, $http, $route, $location, api) {
 	
+	$scope.errors = {};
+	
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
 	});
@@ -38,22 +40,18 @@ var UpdateProfileController = function($scope, $http, $route, $location, api) {
     
     $scope.updateInfo = function() {
     
-        var errors = {};
+        $scope.errors = {};
         
         //Error checking for empty fields
         if(!$scope.profileFullName) {
-            errors.profileFullName = "Full name is blank";
+            $scope.errors.profileFullName = "Full name is blank";
         }
         else if(!$scope.profileEmail) {
-            errors.profileEmail = "Email is blank";
+            $scope.errors.profileEmail = "Email is blank";
         }        
         
         //Checking if the error list is not empty
-        if(!angular.equals(errors, {})) {
-            console.log(errors);
-            alert("Ensure no fields are empty"); //Eventually change this from being an alert
-        }
-        else{
+        if(angular.equals($scope.errors, {})) {
             var profileInfoObject = JSON.stringify({
             profileFullName: $scope.profileFullName,
             profileEmail: $scope.profileEmail,
@@ -66,7 +64,7 @@ var UpdateProfileController = function($scope, $http, $route, $location, api) {
                     $route.reload();
                 },
                 function(errResponse){
-                    console.log(errResponse);
+                    $scope.errors.profileEmail = errResponse.data.errorMessage;
                 });
         }
     };

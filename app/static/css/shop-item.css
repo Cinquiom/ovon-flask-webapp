@@ -11,7 +11,7 @@ html {
 body {
   padding-top: 54px;
   margin-bottom: 50px; 
-  background: #8084DB;
+  background: #E6ECF0;
 }
 
 footer {
@@ -26,6 +26,10 @@ footer {
   body {
     padding-top: 56px;
   }
+}
+
+.bg-purple {
+	background-color: #8084DB; !important
 }
 
 .container-fluid {

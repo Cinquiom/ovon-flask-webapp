@@ -21,18 +21,29 @@
         </ul>
     </div>
 
-  <div class="col-lg-8">
-   <div class="card mt-4 text-center" style="background: #2196F3">
-    <div class="card-body">
-    <h5 class="card-title">Upload Profile Picture</h5>
-        <form action="/api/upload/" method="post" enctype = "multipart/form-data">
-            <div class="row">
-                <input type="file" name="avatar" ng-model="avatar">
-                <input type="submit">
+    <div class="col-lg-8">
+        <div class="card mt-4 text-center" style="background: #2196F3">
+            <div class="card-body">
+            <h5 class="card-title">Upload Profile Picture</h5>
+                <form action="/api/upload/" method="post" enctype = "multipart/form-data">
+                    <div class="row">
+                        <input type="file" name="avatar" ng-model="avatar">
+                        <input type="submit">
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+        <div class="card mt-4 text-center" style="background: #2196F3">
+            <div class="card-body">
+            <h5 class="card-title">Upload Resume</h5>
+                <form action="/api/upload/" method="post" enctype = "multipart/form-data">
+                    <div class="row">
+                        <input type="file" name="resume" ng-model="resume">
+                        <input type="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-   </div>
-  </div>
  </div>
 </div>

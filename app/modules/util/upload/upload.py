@@ -26,7 +26,7 @@ def upload():
         elif 'resume' in request.files:
             filename = resumes.save(request.files['resume'])
             print filename
-            current_user.avatar = filename
+            current_user.resume = filename
     except UploadNotAllowed:
         return "", 400
     

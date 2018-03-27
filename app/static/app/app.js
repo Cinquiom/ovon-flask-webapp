@@ -38,6 +38,7 @@ OVONApp.constant('api', {
     
 });
 
+OVONApp.controller("DefaultController", DefaultController);
 OVONApp.controller("OpportunitiesController", OpportunitiesController);
 OVONApp.controller("VolunteerPoolController", VolunteerPoolController);
 OVONApp.controller("ProfileController", ProfileController);
@@ -61,18 +62,6 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
                       resolve: {
                           "check": function($location, $rootScope, userPersistenceService, $cookies, $window) {
                               if(!($cookies.get('loggedInAlready') || userPersistenceService.getCookieData("loggedInAlready") == false)) {
-                            	  $location.path('/login')
-                            	  $window.location.href = "/#/login"
-                            	  $window.location.reload()
-                                                                    
-                              }
-                          }
-                      },
-                  }).
-        when('/default', {
-                      resolve: {
-                          "check": function($location, $rootScope, userPersistenceService, $cookies, $window) {
-                              if(!($cookies.get('loggedInAlready') || userPersistenceService.getCookieData("loggedInAlready") == false && $location.path() != '/register')) {
                             	  $location.path('/login')
                             	  $window.location.href = "/#/login"
                             	  $window.location.reload()
@@ -222,7 +211,7 @@ OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $lo
         }).
         state("/default", {
             url: "/default",
-            templateUrl: "templates/index.html"
+            templateUrl: "static/app/default/default.html"
         }).
         state("/loginTest", {
             url: "/loginTest",

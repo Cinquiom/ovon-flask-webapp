@@ -7,7 +7,9 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 	$scope.title = "Opportunities";
 	$scope.filteredOps = [];
 	$scope.textFilteredOps = [];
+	$scope.userOrgs = [];
 	var opsWithTag = [];
+	var tagsForOp = [];
 	
 	$scope.linkToEnterVolunteerPool = function() {
 		$location.path("/createvolunteerpost");
@@ -88,6 +90,36 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 
 	};
 	
+	$scope.isOwnOpportunity = function() {
+		$http.get(api.getUserOrganizations).then(function(response) {
+			$scope.userOrgs = response.data;
+			for (var i = 0; i < $scope.userOrgs.length; i++) {
+				for (var j = 0; j < $scope.ops.length; j++) {
+					if ($scope.userOrgs[i].id == $scope.ops[j].org_id) {
+						$scope.ops[j].isCurrentUsersOp = true;
+					}
+				}
+			}
+		});
+	}
+	
+	$scope.removeOpportunity = function(opp_id) {
+		
+		$http.get(api.TagsForOpportunity + opp_id + '/').then(function(response) {
+			tagsForOp = response.data;
+			for (var i = 0; i < tagsForOp.length; i ++) {
+				$http.delete(api.TagsForOpportunity + opp_id + '/' + tagsForOp[i].id + '/').then(function(response) {
+					
+				});
+			}
+			$http.delete(api.postOpportunity + opp_id + '/').then(function(response) {
+				
+			});
+			
+		});
+		
+	}
+	
 	// Typically how we will be pulling data, except
 	// the URL will be a REST endpoint with a dynamically-generated
 	// JSON object at that location
@@ -100,6 +132,8 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 			$scope.ops = response.data;
 			$scope.filteredOps = $scope.ops;
 		});
+		
+		$scope.isOwnOpportunity();
 		
 	}
 	

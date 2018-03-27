@@ -54,7 +54,8 @@
     		<tr>
     			<td><h3 class="card-title">{{op.organization}}</h3></td>
     			<td id="tableDataRightSide">
-					<button class="editProfileButtonNoZoom" ng-click="addToDesiredOps(op.id)"><h4>+</h4></button>
+    				<span ng-show="op.isCurrentUsersOp"><button class="editProfileButtonNoZoom" ng-click="removeOpportunity(op.id)">Remove Opportunity</button></span>
+					<button class="editProfileButtonNoZoom" ng-click="addToDesiredOps(op.id)">Favourite</button>					
                 </td>
     		</tr>
     	</table>     

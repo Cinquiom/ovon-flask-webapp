@@ -40,6 +40,15 @@ footer {
   display: flex;
 }
 
+.card {
+	border: 2px solid #555555;
+}
+
+.list-group {
+	border: 2px solid #555555;
+	border-radius: 7px;
+}
+
 .list-group li {
   flex: 1;
   text-align: center;
@@ -461,7 +470,7 @@ label:hover:before {
 	overflow: hidden;
 	position: relative;
 	height: 100vh;
-	border: 1px solid black;	
+	/*border: 1px solid black;*/	
 }
 
 #scrollableFeedChild {

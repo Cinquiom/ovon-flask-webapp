@@ -60,8 +60,12 @@ var UpdateProfileController = function($scope, $http, $route, $location, api) {
             $http.post(api.updateProfile, profileInfoObject)
             .then(
                 function(response){
-                    $location.path("/profile");
-                    $route.reload();
+                    $scope.errors = {};
+                    $scope.success = "Update successful! Redirecting to profile...";
+                    setTimeout(function() {
+                        $location.path("/profile");
+                        $route.reload();
+                    }, 3000);
                 },
                 function(errResponse){
                     $scope.errors.profileEmail = errResponse.data.errorMessage;

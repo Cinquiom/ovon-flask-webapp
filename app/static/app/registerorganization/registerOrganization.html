@@ -23,20 +23,22 @@
                         <label for="org_name" class="sr-only">What is the name of your organization?</label>
                         <input ng-model="Organization.name" type="text" class="form-control" id="org_name" name="org_name" placeholder="Organization Name">
                     </div>
+                    <span style="color:red" ng-show="errors.name">{{errors.name}}</span>
                     <br/>
                     <div class="form-group">
                     	<label id="entryFormLabelBold" class="entryFormLabel">Organization Contact Information:</label>
                     	<br/>
                     	<label for="org_email" class="sr-only">email</label>
                         <input ng-model="Organization.email" type="text" class="form-control" id="org_email" name="org_email" placeholder="Email">                         						                      
-                    </div>   
+                    </div>
+                    <span style="color:red" ng-show="errors.email">{{errors.email}}</span>
                     <div class="form-group">
  						<label for="org_phone" class="sr-only">phone</label>
                         <input ng-model="Organization.phone" ng-pattern="phoneNumberPattern" ng-required="phoneRequirement" type="text" class="form-control" id="org_phone" name="org_phone" placeholder="Phone Number">
  					</div>
- 					 
-                    <div class="form-group login-group-checkbox">                        
-                    </div>          
+                    <span style="color:red" ng-show="errors.phoneNumber">{{errors.phoneNumber}}</span>
+                    <span style="color:red" ng-show="errors.response">{{errors.response}}</span>
+				    <span style="color:green" ng-show="success">{{success}}</span>      
                 </div>
                 <button type="submit" id="registerorg_submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
             </div>

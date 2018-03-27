@@ -47,3 +47,15 @@ class OpportunityResource(Resource):
         else:
             return "", 401
         
+    def delete(self, org_id):
+        if current_user.is_authenticated:
+            try:
+                desiredOpportunityToDelete = OpportunityPost.query.filter_by(id=org_id).one()
+                #org.rated_users.remove(ratingToDelete)
+                db.session.delete(desiredOpportunityToDelete)
+                db.session.commit()
+                return "", 201
+            except:
+                return "noOpportunity", 201
+        else:
+            return "", 401

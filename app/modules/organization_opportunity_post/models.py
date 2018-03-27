@@ -49,5 +49,6 @@ class OpportunityPost(db.Model):
             "email": self.organization.email,
             "org_id": self.organization_id,
             "averageRating": self.getAverageRating(self.organization_id),
+            "isCurrentUsersOp": False
             }
     

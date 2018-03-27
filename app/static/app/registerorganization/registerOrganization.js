@@ -24,39 +24,37 @@ var RegisterOrganizationController = function($scope, $http, $route, $location, 
 	})();
 	
 	$scope.validateOrganization = function(Organization) {
-		var errors = {};
+		$scope.errors = {};
 		
 		if (!Organization.name) {
-			errors.name = "Please provide your organization's name.";
+			$scope.errors.name = "Please provide your organization's name.";
 		}
 		
 		if (!Organization.email) {
-			errors.email = "Please provide an email address.";
+			$scope.errors.email = "Please provide an email address.";
 		} else if (!emailRegex.test(Organization.email.toString())) {
-			errors.email = "Email is not valid";
+			$scope.errors.email = "Please enter a valid email address.";
 		}
 		
 		if (!Organization.phone) {
-			errors.phone = "Please provide a phone number.";
+			$scope.errors.phoneNumber = "Please provide a phone number.";
 		} else if ($scope.phoneNumberPattern === false) {
-			errors.phone = "Invalid Phone Number";
+			$scope.errors.phoneNumber = "Please enter a valid phone number.";
 		}
 			
 		
-		if (!angular.equals(errors, {})) {
-			console.log(errors);
-			alert("Invalid entry submission, please try again.");
-		}	else {
+		if (angular.equals($scope.errors, {})) {
 			 $http.post(api.registerOrganization, Organization)
 			 	.then(
                   function (response) {
-                      alert("Organization Registered!");
-                      $location.path("/profile");
-              		  $route.reload();
+                      $scope.success = "Organization registered successfully!";
+                      setTimeout(function() {
+						  $location.path("/myorganizations");
+						  $route.reload();
+					  }, 3000);
                   },
                   function (errResponse) {
-                 	 console.log(errResponse);
-                 	 alert(errResponse.data.errorMessage);
+                 	 $scope.errors.response = errResponse.data.errorMessage;
                   }
               );
 		}

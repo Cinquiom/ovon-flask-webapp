@@ -29,20 +29,22 @@
                         <label for="post_availability" class="sr-only">When are you available to volunteer?</label>
                         <input ng-model="ActivityPost.availability" type="text" class="form-control" id="post_availability" name="post_availability" placeholder="enter the dates and times you are available here">
                     </div>
+                    <span style="color:red" ng-show="errors.availability">{{errors.availability}}</span>
                     <br/>
                     <div class="form-group">
                     	<label class="entryFormLabel">Briefly describe yourself and the type of volunteer activities you would like to partake in.</label>
                         <label for="post_description" class="sr-only">Briefly describe yourself and the type of volunteer activities you would like to partake in.</label>
                         <textarea ng-model="ActivityPost.description" class="form-control" id="post_description" name="post_description" placeholder="describe yourself here"></textarea>
                     </div>
+					<span style="color:red" ng-show="errors.description">{{errors.description}}</span>
                     <div class="form-group">
                     	<label class="entryFormLabel">Add keywords to make yourself easier for Recruiters to find (Separate each keyword with a space):</label>
                         <label for="post_tag" class="sr-only">Add keywords to make the opportunity easier for users to find (Separate each keyword with a space):</label>
                         <textarea ng-model="tagEntries" class="form-control" id="post_tags" name="post_tags" placeholder="enter the keywords here"></textarea>
                     </div>
-                    <br/>   
-                    <div class="form-group login-group-checkbox">                        
-                    </div>          
+                    <br/>     
+                    <span style="color:red" ng-show="errors.response">{{errors.response}}</span>
+				    <span style="color:green" ng-show="success">{{success}}</span>      
                 </div>
                 <button type="submit" id="volunteerpool_submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
             </div>

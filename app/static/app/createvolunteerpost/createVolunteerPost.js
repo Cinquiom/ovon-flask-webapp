@@ -35,42 +35,38 @@ var CreateVolunteerPostController = function($scope, $http, $route, $location, V
 			$http.put(api.TagsForVolunteer + vols[vols.length - 1].id + '/', $scope.Tags)
 		 	.then(
 	       function (response) {
-	           alert("Tags added!");
 	       },
 	       function (errResponse) {
-	      	 console.log(errResponse);
-	      	 alert(errResponse.data.errorMessage);
+	      	 $scope.errors.response = errResponse.data.errorMessage;
 	       });
 		});
 	}
 	
 	$scope.validateVolunteerPost = function(ActivityPost) {
-		var errors = {};
+		$scope.errors = {};
 		
 		if (!ActivityPost.availability) {
-			errors.availability = "Please provide your availability.";
+			$scope.errors.availability = "Please provide your availability.";
 		}
 		
 		if (!ActivityPost.description) {
-			errors.description = "Please describe yourself.";
+			$scope.errors.description = "Please describe yourself.";
 		}
 			
 		
-		if (!angular.equals(errors, {})) {
-			console.log(errors);
-			alert("Invalid entry submission, please try again.");
-		}	else {
+		if (angular.equals($scope.errors, {})) {
 			 $http.post(api.postVolunteerPool, ActivityPost)
 			 	.then(
                   function (response) {
-                      //alert("Volunteer Pool Entry succeeded!");
+                      $scope.success = "Volunteer Pool Entry succeeded!";
                       $scope.addTags();
-                      $location.path("/volunteers");
-              		  $route.reload();
+					  setTimeout(function() {
+						  $location.path("/volunteers");
+						  $route.reload();
+					  }, 2000);
                   },
                   function (errResponse) {
-                 	 console.log(errResponse);
-                 	 alert(errResponse.data.errorMessage);
+                 	 $scope.errors.response = errResponse.data.errorMessage;
                   }
               );
 		}

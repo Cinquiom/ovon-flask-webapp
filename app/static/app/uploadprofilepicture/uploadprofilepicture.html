@@ -24,24 +24,36 @@
     <div class="col-lg-8">
         <div class="card mt-4 text-center" style="background: #2196F3">
             <div class="card-body">
+            <div class="login-form-1">
             <h5 class="card-title">Upload Profile Picture</h5>
-                <form action="/api/upload/" method="post" enctype = "multipart/form-data">
-                    <div class="row">
-                        <input type="file" name="avatar" ng-model="avatar">
-                        <input type="submit">
+                <form class="text-left" action="/api/upload/" method="post" ng-submit="routeToProfile()" enctype = "multipart/form-data">
+                    <div class="main-login-form">
+                        <div class="login-group">
+                            <div class="form-group">
+                                <input type="file" name="avatar" ng-model="avatar">
+                            </div>
+                        </div>
                     </div>
+                    <input class="editProfileButtonNoZoom" type="submit">
                 </form>
+            </div>
             </div>
         </div>
         <div class="card mt-4 text-center" style="background: #2196F3">
             <div class="card-body">
+            <div class="login-form-1">
             <h5 class="card-title">Upload Resume</h5>
-                <form action="/api/upload/" method="post" enctype = "multipart/form-data">
-                    <div class="row">
-                        <input type="file" name="resume" ng-model="resume">
-                        <input type="submit">
+                <form class="text-left" action="/api/upload/" method="post" ng-submit="routeToProfile()" enctype = "multipart/form-data">
+                    <div class="main-login-form">
+                        <div class="login-group">
+                            <div class="form-group">
+                                <input type="file" name="resume" ng-model="resume">
+                            </div>
+                        </div>
                     </div>
+                    <input class="editProfileButtonNoZoom" type="submit">
                 </form>
+            </div>
             </div>
         </div>
     </div>

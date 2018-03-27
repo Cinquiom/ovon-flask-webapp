@@ -20,5 +20,10 @@ var UploadProfilePictureController = function($scope, $http, userPersistenceServ
         $location.path("/uploadprofilepicture");
         $route.reload();
     };
+    
+    $scope.routeToProfile = function() {
+        $location.path("/profile");
+        $route.reload();
+    };
         
 };

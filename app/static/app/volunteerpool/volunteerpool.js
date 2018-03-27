@@ -39,13 +39,12 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 			volsWithTag = response.data;
 			var mixedVols = $scope.textFilteredVols.concat(volsWithTag);
 			$scope.volunteers = UniqueArraybyId(mixedVols, 'id');			
-		})
-		.catch(function (data) {
-			if (searchText != undefined) {
-				$scope.volunteers = $scope.textFilteredVols;
-			}			
-		});
-		
+		},
+        function (errResponse) {
+       	 if (errResponse.status == 401 && searchText != undefined) {
+       		 $scope.volunteers = $scope.textFilteredVols;
+       	 }
+        });	
 	});
 	
 	//function to get user organization data for 'Browse As' dropdown

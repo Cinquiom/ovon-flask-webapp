@@ -50,17 +50,15 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 			opsWithTag = response.data;
 			var mixedOps = $scope.textFilteredOps.concat(opsWithTag);
 			$scope.ops = UniqueArraybyId(mixedOps, 'id');			
-		})
-		.catch(function (data) {
-			if (searchText != undefined) {
-				$scope.ops = $scope.textFilteredOps;
-			}
-			else {
-				$scope.getOpportunityPosts();
-			}
-			
-		});
-		
+		},
+        function (errResponse) {
+        	 if (errResponse.status == 401 && searchText != undefined) {
+        		 $scope.ops = $scope.textFilteredOps;
+        	 }
+        	 else {
+        		 $scope.getOpportunityPosts();
+        	 }
+         });		
 	});
 	
 	$scope.onOrganizationRating = function(rating, op) {

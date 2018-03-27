@@ -35,7 +35,7 @@ class OpportunityPost(db.Model):
                 ratingSum += ratings[x].get('rating')
             return (ratingSum/len(ratings))
         else:
-            return ratingSum
+            return ratingSum   
     
     @property
     def serialize(self):
@@ -48,6 +48,6 @@ class OpportunityPost(db.Model):
             "phone": self.organization.phone,
             "email": self.organization.email,
             "org_id": self.organization_id,
-            "averageRating": self.getAverageRating(self.organization_id)
+            "averageRating": self.getAverageRating(self.organization_id),
             }
     

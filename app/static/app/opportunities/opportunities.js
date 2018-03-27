@@ -52,23 +52,28 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 		.catch(function (data) {
 			if (searchText != undefined) {
 				$scope.ops = $scope.textFilteredOps;
-			}			
+			}
+			else {
+				$scope.getOpportunityPosts();
+			}
+			
 		});
 		
 	});
 	
-	$scope.onOrganizationRating = function(rating, org_id) {
+	$scope.onOrganizationRating = function(rating, op) {
 
 		if (rating > 0) {
 			var ratingObject = JSON.stringify({rating: rating});
-			$http.post(api.organizationRating + org_id + '/', ratingObject)
+			$http.post(api.organizationRating + op.org_id + '/', ratingObject)
 		 	.then(
 	          function (response) {
 	              alert("Thank you for your rating!");
+	              $scope.getOpportunityPosts();
 	          });
 		}
 		else {
-			$http.delete(api.organizationRating + org_id + '/')
+			$http.delete(api.organizationRating + op.org_id + '/')
 			.then(
 				function (response) {
 					if (response.data != "noRating") {
@@ -80,9 +85,8 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 					
 				});
 		}
-		
 
-	}
+	};
 	
 	// Typically how we will be pulling data, except
 	// the URL will be a REST endpoint with a dynamically-generated
@@ -91,8 +95,12 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 		$scope.navtop = response.data;
 	});
 	
-	$http.get(api.postOpportunity).then(function(response) {
-		$scope.ops = response.data;
-		$scope.filteredOps = $scope.ops;
-	});
+	$scope.getOpportunityPosts = function() {
+		$http.get(api.postOpportunity).then(function(response) {
+			$scope.ops = response.data;
+			$scope.filteredOps = $scope.ops;
+		});
+		
+	}
+	
 };

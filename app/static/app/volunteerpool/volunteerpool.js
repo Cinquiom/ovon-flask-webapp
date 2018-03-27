@@ -12,6 +12,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 	$scope.chosenOrganization = {};
 	$scope.chosenOrganizationName = {};
 	$scope.userOrganizationNames = [];
+	$scope.viewingAsOrg = false;
 	
 	$scope.linkToEnterVolunteerPool = function() {
 		$location.path("/createvolunteerpost");
@@ -56,6 +57,15 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		}
 		
 		$scope.chosenOrganizationName = $scope.userOrganizationNames[0];
+	});
+	
+	$scope.$watch('chosenOrganizationName', function() {
+		if ($scope.chosenOrganizationName != "volunteer") {
+			$scope.viewingAsOrg = true;
+		}
+		else {
+			$scope.viewingAsOrg = false;
+		}
 	});
 	
 	$scope.getChosenOrganization = function() {

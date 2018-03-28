@@ -68,12 +68,12 @@
                 <tr>
                     <td><h5>Organization Rating:</h5></td>
                     <td></td>
-                    <td id="rateCenter"><h5>Rate:</h5></td>
+                    <td id="rateCenter"><span ng-hide="op.isCurrentUsersOp"><h5>Rate:</h5></span></td>
                 </tr>
                 <tr>
                     <td><jk-rating-stars rating="op.averageRating" read-only="true"></jk-rating-stars></td>
                     <td></td>
-                	<td id="tableDataRightSide"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op)"></jk-rating-stars></td>
+                	<td id="tableDataRightSide"><span ng-hide="op.isCurrentUsersOp"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op)"></span></jk-rating-stars></td>
             	</tr>
         	</table>
                     			

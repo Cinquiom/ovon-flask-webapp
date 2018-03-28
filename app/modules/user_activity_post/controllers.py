@@ -24,7 +24,7 @@ class ActivityResource(Resource):
             return jsonify(posts.serialize)
         else:
             posts = ActivityPost.query.all()            
-            return jsonify(reversed([x.serialize for x in posts]))
+            return jsonify(list(reversed([x.serialize for x in posts])))
 
     """
         Creates a new post.

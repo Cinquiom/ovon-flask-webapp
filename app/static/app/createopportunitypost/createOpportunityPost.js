@@ -1,6 +1,6 @@
 'use strict';
 
-var CreateOpportunityPostController = function($scope, $http, api, OpportunitiesService, $log) {
+var CreateOpportunityPostController = function($scope, $http, api, OpportunitiesService, $log, $location, $route) {
 	
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
@@ -44,11 +44,9 @@ var CreateOpportunityPostController = function($scope, $http, api, Opportunities
 			$http.put(api.TagsForOpportunity + ops[ops.length - 1].id + '/', $scope.Tags)
 		 	.then(
 	       function (response) {
-	           alert("Tags added!");
 	       },
 	       function (errResponse) {
-	      	 console.log(errResponse);
-	      	 alert(errResponse.data.errorMessage);
+	      	 $scope.errors.response = errResponse.data.errorMessage;
 	       });
 		});
 		
@@ -56,22 +54,22 @@ var CreateOpportunityPostController = function($scope, $http, api, Opportunities
 	}
 	
 	$scope.validateOpportunityPost = function(OpportunityPost) {
-		var errors = {};
+		$scope.errors = {};
 		
 		if (!OpportunityPost.location) {
-			errors.location = "Please provide a location.";
+			$scope.errors.location = "Please provide a location.";
 		}
 		
 		if (!OpportunityPost.description) {
-			errors.description = "Please describe the opportunity.";
+			$scope.errors.description = "Please describe the opportunity.";
 		}
 		
 		if (!OpportunityPost.when) {
-			errors.when = "Please say when the opportunity is occurring.";
+			$scope.errors.when = "Please say when the opportunity is occurring.";
 		}
 		
 		if (!$scope.chosenOrganizationName) {
-			errors.organization = "Please choose an organization.";
+			$scope.errors.organization = "Please choose an organization.";
 		}
 		else {
 			for (var i = 0; i < $scope.organizations.length; i++) {
@@ -84,19 +82,20 @@ var CreateOpportunityPostController = function($scope, $http, api, Opportunities
 		
 			
 		
-		if (!angular.equals(errors, {})) {
-			console.log(errors);
-			alert("Invalid post submission, please try again.");
-		}	else {			
+		if (angular.equals($scope.errors, {})) {			
 			 $http.post(api.postOpportunity + $scope.chosenOrganization.id + '/', OpportunityPost)
 			 	.then(
                   function (response) {
-                      //alert("The opportunity has been posted!");
                 	  $scope.addTags();
+					  $scope.errors = {}
+                      $scope.success = "The opportunity has been posted!";
+					  setTimeout(function() {
+						  $location.path("/opportunities");
+						  $route.reload();
+					  }, 3000);
                   },
                   function (errResponse) {
-                 	 console.log(errResponse);
-                 	 alert(errResponse.data.errorMessage);
+                 	 $scope.errors.response = errResponse.data.errorMessage;
                   }
               );			 
 		}

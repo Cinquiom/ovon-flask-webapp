@@ -25,7 +25,6 @@ var MyOrganizationsController = function($scope, $http, $route, $location, api) 
                     for (var user in interestedUser) {
                         $http.get(api.getUserInfo + interestedUser[user].user_id).then(function(response){
                             $scope.interestedUsers.push(response.data);
-                            console.log(response.data);
                         });
                     }
                 });

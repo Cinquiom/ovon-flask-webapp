@@ -22,12 +22,12 @@
                                 <div class="row">
                                     <div class="col-md-5">
                                         <h3 class="text-center">Favourited Users</h3>
-                                        <div ng-repeat="user in favouritedUsers">
-                                            <h4>{{user.volunteer.fullName}}</h4>
-                                            <h5>Email: {{user.volunteer.email}}</h5>
-                                            <h5>Availability: {{user.volunteer.availability}}</h5>
-                                            <h5>Description: {{user.volunteer.description}}</h5>
-                                            <h5>Rating:</h5>
+                                        <div class="card mt-4" style="background: #f7c32e" ng-repeat="user in favouritedUsers">
+                                            <h4 class="card-title">{{user.volunteer.fullName}}</h4>
+                                            <h6>Email: {{user.volunteer.email}}</h6>
+                                            <h6>Availability: {{user.volunteer.availability}}</h6>
+                                            <h6>Description: {{user.volunteer.description}}</h6>
+                                            <h6>Rating:</h6>
                                             <jk-rating-stars rating="user.volunteer.averageRating" read-only="true"></jk-rating-stars>
                                         </div>
                                     </div>
@@ -35,10 +35,10 @@
                                     </div>
                                     <div class="col-md-5">
                                         <h3 class="text-center">Interested Users</h3>
-                                        <div ng-repeat="user in interestedUsers">
-                                            <h4>{{user.fullname}}</h4>
-                                            <h5>Email: {{user.email}}</h5>
-                                            <h5>Summary: {{user.bio}}</h5>
+                                        <div class="card mt-4" style="background: #f7c32e" ng-repeat="user in interestedUsers">
+                                            <h4 class="card-title">{{user.fullname}}</h4>
+                                            <h6>Email: {{user.email}}</h6>
+                                            <h6>Summary: {{user.bio}}</h6>
                                         </div>
                                     </div>
                                 </div>

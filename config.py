@@ -30,6 +30,7 @@ class Config(object):
     # Uploads
     
     UPLOADS_DEFAULT_DEST = os.path.join(BASE_DIR, 'uploads')
+    ENV = "dev"
 
 class ProductionConfig(Config):
     ENV = "prod"

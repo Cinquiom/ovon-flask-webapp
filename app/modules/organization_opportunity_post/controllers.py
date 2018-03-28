@@ -24,7 +24,7 @@ class OpportunityResource(Resource):
             posts = [x.serialize for x in OpportunityPost.query.all()]
         
 
-        return jsonify(posts)
+        return jsonify(reversed(posts))
 
 
     """

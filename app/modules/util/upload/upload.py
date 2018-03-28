@@ -27,6 +27,7 @@ def upload():
             filename = resumes.save(request.files['resume'])
             print filename
             current_user.resume = filename
+        db.session.commit()
     except UploadNotAllowed:
         return "", 400
     

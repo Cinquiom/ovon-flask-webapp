@@ -27,17 +27,37 @@ var UploadProfilePictureController = function($scope, $http, userPersistenceServ
     };
     
     $scope.uploadPicture = function() {
-        $http.post(api.upload, $scope.avatar).then(function(response) {
-            $location.path("/profile");
-            $route.reload();
-        });
+        $scope.errors = {};
+        
+        if(document.getElementById("avatar").files.length == 0) {
+            $scope.errors.avatar = "Please select an image";
+        }
+        
+        
+        if(angular.equals($scope.errors, {})) {
+            $http.post(api.upload, $scope.avatar)
+            .then(function(response) {               
+                    $location.path("/profile");
+                    $route.reload();
+                });
+        }
     };
     
     $scope.uploadResume = function() {
-        $http.post(api.upload, $scope.resume).then(function(response) {
-            $location.path("/profile");
-            $route.reload();
-        });
+        $scope.errors = {};
+        
+        if(document.getElementById("resume").files.length == 0) {
+            $scope.errors.resume = "Please select a file";
+        }
+        
+        
+        if(angular.equals($scope.errors, {})) {
+            $http.post(api.upload, $scope.resume)
+            .then(function(response) {               
+                    $location.path("/profile");
+                    $route.reload();
+                });
+        }
     };
         
 };

@@ -30,8 +30,9 @@
                     <div class="main-login-form">
                         <div class="login-group">
                             <div class="form-group">
-                                <input type="file" name="avatar" ng-model="avatar">
+                                <input type="file" id="avatar" name="avatar" ng-model="avatar">
                             </div>
+                            <span style="color:red" ng-show="errors.avatar">Error: {{errors.avatar}}</span>
                         </div>
                     </div>
                     <input class="editProfileButtonNoZoom" type="submit">
@@ -47,8 +48,9 @@
                     <div class="main-login-form">
                         <div class="login-group">
                             <div class="form-group">
-                                <input type="file" name="resume" ng-model="resume">
+                                <input type="file" id="resume" name="resume" ng-model="resume">
                             </div>
+                            <span style="color:red" ng-show="errors.resume">Error: {{errors.resume}}</span>
                         </div>
                     </div>
                     <input class="editProfileButtonNoZoom" type="submit">

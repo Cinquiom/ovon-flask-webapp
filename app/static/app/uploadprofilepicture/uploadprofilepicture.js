@@ -25,5 +25,19 @@ var UploadProfilePictureController = function($scope, $http, userPersistenceServ
         $location.path("/profile");
         $route.reload();
     };
+    
+    $scope.uploadPicture = function() {
+        $http.post(api.upload, $scope.avatar).then(function(response) {
+            $location.path("/profile");
+            $route.reload();
+        });
+    };
+    
+    $scope.uploadResume = function() {
+        $http.post(api.upload, $scope.resume).then(function(response) {
+            $location.path("/profile");
+            $route.reload();
+        });
+    };
         
 };

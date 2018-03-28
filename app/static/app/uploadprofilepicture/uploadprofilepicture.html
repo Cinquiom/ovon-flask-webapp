@@ -26,7 +26,7 @@
             <div class="card-body">
             <div class="login-form-1">
             <h5 class="card-title">Upload Profile Picture</h5>
-                <form class="text-left" action="/api/upload/" method="post" enctype = "multipart/form-data">
+                <form class="text-left" ng-submit="uploadPicture()" enctype = "multipart/form-data">
                     <div class="main-login-form">
                         <div class="login-group">
                             <div class="form-group">
@@ -43,7 +43,7 @@
             <div class="card-body">
             <div class="login-form-1">
             <h5 class="card-title">Upload Resume</h5>
-                <form class="text-left" action="/api/upload/" method="post" enctype = "multipart/form-data">
+                <form class="text-left" ng-submit="uploadResume()" enctype = "multipart/form-data">
                     <div class="main-login-form">
                         <div class="login-group">
                             <div class="form-group">

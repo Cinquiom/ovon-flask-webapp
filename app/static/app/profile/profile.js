@@ -68,6 +68,9 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
           function (response) {
         	  if (response.data != "noOpp") {
 					alert("Desired Opportunity has been removed");
+					$http.get(api.userFavourites).then(function(response) {
+						$scope.desiredOps = response.data;
+					});
 				}
 				else {
 					alert("Opportunity not found.");

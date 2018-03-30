@@ -112,7 +112,7 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 				});
 			}
 			$http.delete(api.postOpportunity + opp_id + '/').then(function(response) {
-				
+				$scope.getOpportunityPosts();
 			});
 			
 		});

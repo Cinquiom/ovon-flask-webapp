@@ -16,7 +16,6 @@ class ActivityResource(Resource):
     """
         If a post ID is supplied, returns a single post.
         Otherwise, gets all posts.
-        @TODO: add query parameter filtering
     """
     def get(self, post_id=None):
         if post_id:
@@ -28,7 +27,6 @@ class ActivityResource(Resource):
 
     """
         Creates a new post.
-        @TODO: Error checking and handling
     """
     def post(self):
         if current_user.is_authenticated:
@@ -45,3 +43,12 @@ class ActivityResource(Resource):
         else:
             return "", 401
         
+    def delete(self, post_id):
+        ap = ActivityPost.query.get(post_id)
+        if current_user.is_authenticated and ap in current_user.activity_posts:
+            db.session.delete(ap)
+            db.session.commit()
+            
+            return "", 200
+        else:
+            return "", 401

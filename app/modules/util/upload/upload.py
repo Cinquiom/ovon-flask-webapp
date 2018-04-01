@@ -21,13 +21,10 @@ def upload():
     try:
         if 'avatar' in request.files:
             filename = avatars.save(request.files['avatar'])
-            print filename
             current_user.avatar = filename
         elif 'resume' in request.files:
             filename = resumes.save(request.files['resume'])
-            print filename
             current_user.resume = filename
-        db.session.commit()
     except UploadNotAllowed:
         return "", 400
     
@@ -38,7 +35,7 @@ def upload():
 def show_avatar(user_id):
     user = User.query.get(user_id)
     if user.avatar is None:
-        return "", 404
+        return send_from_directory(os.path.join(app.config['UPLOADS_DEFAULT_DEST'], 'avatars'), "default.png")
     return send_from_directory(os.path.join(app.config['UPLOADS_DEFAULT_DEST'], 'avatars'), user.avatar)
 
 @mod_uploads.route('/api/resumes/<int:user_id>/', methods=['GET'])

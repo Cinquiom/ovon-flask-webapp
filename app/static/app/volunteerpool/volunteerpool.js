@@ -128,7 +128,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 			 	.then(
 		          function (response) {
 		              alert("Thank you for your rating!");
-		              $scope.getVolunteerPosts();
+		              //$scope.getVolunteerPosts();
 		          });
 			}
 			else {

@@ -52,7 +52,7 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 			$scope.ops = UniqueArraybyId(mixedOps, 'id');			
 		},
         function (errResponse) {
-        	 if (errResponse.status == 401 && searchText != undefined) {
+        	 if ((errResponse.status == 401 || errResponse.status == 404) && searchText != undefined) {
         		 $scope.ops = $scope.textFilteredOps;
         	 }
         	 else {

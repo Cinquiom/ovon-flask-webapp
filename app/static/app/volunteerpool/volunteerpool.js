@@ -43,7 +43,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 			$scope.volunteers = UniqueArraybyId(mixedVols, 'id');			
 		},
         function (errResponse) {
-       	 if (errResponse.status == 401 && searchText != undefined) {
+       	 if ((errResponse.status == 401 || errResponse.status == 404) && searchText != undefined) {
        		 $scope.volunteers = $scope.textFilteredVols;
        	 }
        	 else {
@@ -70,6 +70,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		else {
 			$scope.viewingAsOrg = false;
 		}
+		scope.getVolunteerPosts();
 	});
 	
 	$scope.getChosenOrganization = function() {
@@ -86,6 +87,8 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 			for (var i = 0; i < $scope.volunteers.length; i++) {
 				if ($scope.currentUser.id == $scope.volunteers[i].user_id) {
 					$scope.volunteers[i].isCurrentUsersVolunteerPost = true;
+					if ($scope.viewingAsOrg == true) {
+					}
 				}
 			}
 		});

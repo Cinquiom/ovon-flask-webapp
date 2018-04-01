@@ -32,7 +32,7 @@ var CreateVolunteerPostController = function($scope, $http, $route, $location, V
 		VolunteerService.getVolunteerPosts().then(function(data) {
 			angular.copy(data, vols);
 			
-			$http.put(api.TagsForVolunteer + vols[vols.length - 1].id + '/', $scope.Tags)
+			$http.put(api.TagsForVolunteer + vols[0].id + '/', $scope.Tags)
 		 	.then(
 	       function (response) {
 	       },

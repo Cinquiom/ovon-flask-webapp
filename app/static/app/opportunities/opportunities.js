@@ -69,7 +69,7 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 		 	.then(
 	          function (response) {
 	              alert("Thank you for your rating!");
-	              $scope.getOpportunityPosts();
+	              //$scope.getOpportunityPosts();
 	          });
 		}
 		else {

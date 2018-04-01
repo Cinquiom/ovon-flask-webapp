@@ -16,7 +16,7 @@ var MyOrganizationsController = function($scope, $http, $route, $location, api) 
             //console.log(response.data);
         });
         
-        $http.get(api.postOpportunity + $scope.orgs[0].id).then(function(response){
+/*        $http.get(api.postOpportunity + $scope.orgs[0].id).then(function(response){
             var organizationOpportunities = response.data;
             for (var opportunitiy in organizationOpportunities) {
                 $http.get(api.opportunityFavourites + organizationOpportunities[opportunitiy].id).then(function(response){
@@ -29,7 +29,7 @@ var MyOrganizationsController = function($scope, $http, $route, $location, api) 
                     }
                 });
             }
-        });
+        });*/
         
     });
 };

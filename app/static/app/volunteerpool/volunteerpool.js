@@ -64,12 +64,14 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 	});
 	
 	$scope.$watch('chosenOrganizationName', function() {
+		
 		if ($scope.chosenOrganizationName != "volunteer") {
 			$scope.viewingAsOrg = true;
 		}
 		else {
 			$scope.viewingAsOrg = false;
-		}
+		}		
+		$scope.getVolunteerPosts();
 	});
 	
 	$scope.getChosenOrganization = function() {
@@ -86,6 +88,9 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 			for (var i = 0; i < $scope.volunteers.length; i++) {
 				if ($scope.currentUser.id == $scope.volunteers[i].user_id) {
 					$scope.volunteers[i].isCurrentUsersVolunteerPost = true;
+					if ($scope.viewingAsOrg == true) {
+						$scope.volunteers[i].isOwnedByViewingCorp = true;
+					}
 				}
 			}
 		});

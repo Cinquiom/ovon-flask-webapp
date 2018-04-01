@@ -65,12 +65,12 @@
                     				<tr>
                     					<td><h5>Average Rating:</h5></td>
                     					<td></td>
-                    					<td id="rateCenter"><span ng-show="viewingAsOrg && !volunteer.isOwnedByViewingCorp"><h5>Rate:</h5></span></td>
+                    					<td id="rateCenter"><span ng-show="viewingAsOrg"><h5>Rate:</h5></span></td>
                     				</tr>
                     				<tr>
                     					<td><jk-rating-stars rating="volunteer.averageRating" read-only="true"></jk-rating-stars></td>
                     					<td></td>
-                    					<td id="tableDataRightSide"><span ng-show="viewingAsOrg && !volunteer.isOwnedByViewingCorp"><jk-rating-stars rating="rating" on-rating="onVolunteerRating(rating, volunteer.user_id)"></span></jk-rating-stars></td>
+                    					<td id="tableDataRightSide"><span ng-show="viewingAsOrg"><jk-rating-stars rating="rating" on-rating="onVolunteerRating(rating, volunteer.user_id)"></span></jk-rating-stars></td>
                     				</tr>
                     			</table>
                     			

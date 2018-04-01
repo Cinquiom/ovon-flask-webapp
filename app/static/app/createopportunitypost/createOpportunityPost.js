@@ -41,7 +41,7 @@ var CreateOpportunityPostController = function($scope, $http, api, Opportunities
 		OpportunitiesService.getOpportunityPosts().then(function(data) {
 			angular.copy(data, ops);
 			
-			$http.put(api.TagsForOpportunity + ops[0].id + '/', $scope.Tags)
+			$http.put(api.TagsForOpportunity + ops[ops.length - 1].id + '/', $scope.Tags)
 		 	.then(
 	       function (response) {
 	       },

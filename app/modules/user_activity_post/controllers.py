@@ -9,7 +9,6 @@ from flask_restful import Resource
 from app import db
 from app.modules.user import User
 from app.modules.user_activity_post.models import ActivityPost
-from app.modules.rating import OrganizationToUserRate
 
 class ActivityResource(Resource):
 
@@ -46,6 +45,7 @@ class ActivityResource(Resource):
     def delete(self, post_id):
         ap = ActivityPost.query.get(post_id)
         if current_user.is_authenticated and ap in current_user.activity_posts:
+            
             db.session.delete(ap)
             db.session.commit()
             

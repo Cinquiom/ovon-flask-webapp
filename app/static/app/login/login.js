@@ -1,6 +1,6 @@
 'use strict';
 
-var LoginController = function($scope, $route, $location, $rootScope, $http, userPersistenceService, api) {
+var LoginController = function($scope, $route, $location, $window, $rootScope, $http, userPersistenceService, api) {
 	$scope.errorMessage = "";
 	
     $scope.submit = function() {
@@ -14,6 +14,8 @@ var LoginController = function($scope, $route, $location, $rootScope, $http, use
         	userPersistenceService.setCookieData_LoggedInAlready();
             $location.path('/opportunities');
             $route.reload();
+            $window.location.href = "/#/opportunities";
+            $window.location.reload();
         }, function(errResponse) {
         	$scope.errorMessage = errResponse.data.errorMessage;
         })

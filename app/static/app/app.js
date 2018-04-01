@@ -245,7 +245,31 @@ OVONApp.directive('header', [ '$rootScope', function ($rootScope) {
         replace: true,
         scope: {username: '='}, // This is one of the cool things :). Will be explained in post.
         templateUrl: "/static/app/core/header.html",
-        controller: ['$scope', '$filter', function ($scope, $filter) {
+        controller: ['$scope', '$filter', '$http', '$route', 'userPersistenceService', '$location', '$window', function ($scope, $filter, $http, $route, userPersistenceService, $location, $window) {
+        	$scope.notLoggedIn = true;
+        	$scope.loggedInUser = "";
+        	
+        	$scope.logout = function() {
+        		$http.get(apiURL + '/auth/signout/').then(function(response){
+        		});
+        		userPersistenceService.clearCookieData();
+        		$route.reload();
+        		$location.path('/login')
+                $window.location.href = "/#/login"
+            	$window.location.reload()
+        	}
+        	
+        	$http.get(apiURL + '/api/currentuser/').then(function(response){
+                if (response.status == 200) {
+                	$scope.notLoggedIn = false;
+                	$scope.loggedInUser = response.data.username;
+                }
+            },
+            function (errResponse) {
+            	if (errResponse.status == 401) {
+            		$scope.notLoggedIn = true;
+            	}
+             });
         }]
     }
 }]);

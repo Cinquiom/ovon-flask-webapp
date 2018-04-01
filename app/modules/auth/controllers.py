@@ -7,6 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from app import db
 from app.modules.user import User
 from app.modules.util.email.SMTPEmailer import SMTPEmailer
+from flask_login.utils import logout_user
 
 EMAIL_REGEX = r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
 
@@ -26,6 +27,12 @@ def signin():
 
     if current_user.is_authenticated:
         return "", 204
+    
+@mod_auth.route('/signout/', methods =['GET'])
+def signout():
+    logout_user()
+    return "", 200
+    
 
 @mod_auth.route('/register/', methods=['POST'])
 def register():

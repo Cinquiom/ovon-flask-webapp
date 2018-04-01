@@ -53,7 +53,7 @@
 					    			<td><h3 class="card-title">{{volunteer.fullName}} ({{volunteer.user}})</h3></td>
 					    			<td id="tableDataRightSide">
 					    				<span ng-show="volunteer.isCurrentUsersVolunteerPost"><button class="editProfileButtonNoZoom" ng-click="removeVolunteerPost(volunteer.id)">Remove Entry</button></span>
-										<button class="editProfileButtonNoZoom" ng-click="addToDesiredVolunteers(volunteer.user_id)">Favourite</button>
+										<button ng-show="viewingAsOrg && !volunteer.isOwnedByViewingCorp" class="editProfileButtonNoZoom" ng-click="addToDesiredVolunteers(volunteer.user_id)">Favourite</button>
 					                </td>
 					    		</tr>
 					    	</table>

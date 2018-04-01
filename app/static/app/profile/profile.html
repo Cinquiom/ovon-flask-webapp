@@ -3,137 +3,142 @@
  </div>
  
  <div class="row">
- 	<div class="col-lg-3" >
- 		<h4 style="padding-top: 15%">Menu</h4>
- 		<ul class="list-group">
-   			<li class="list-group-item" ng-repeat="nav in navtop">
-   				<a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
-   			</li>
-   			<li class="list-group-item">
-	 			<button class="editProfileButtonNoZoom" ng-click="linkToRegisterOrganization()">Register Organization</button>	
- 			</li>
- 			<li class="list-group-item">
+    <div class="col-lg-3" >
+        <h4 style="padding-top: 15%">Menu</h4>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="nav in navtop">
+                <a ng-href="#/{{nav.state}}" class="list-group-item active">{{nav.name}}</a>
+            </li>
+            <li class="list-group-item">
+                <button class="editProfileButtonNoZoom" ng-click="linkToRegisterOrganization()">Register Organization</button>  
+            </li>
+            <li class="list-group-item">
                 <button class="editProfileButtonNoZoom" ng-click="linkToMyOrganizations()">My Organizations</button>  
             </li>
-   			<li class="list-group-item">
- 			<button class="editProfileButtonNoZoom" id="editProfile" ng-click="linkToUpdateProfile()">Edit Profile</button>
- 			</li>	
-   		</ul>
- 	</div>
- 	
- 	<div class="col-lg-6">
-  	<h1 class="profileNameHeader" style="text-align: center">{{title}}</h1>
-   <div class="card mt-4" style="background: #2196F3">
+            <li class="list-group-item">
+            <button class="editProfileButtonNoZoom" id="editProfile" ng-click="linkToUpdateProfile()">Edit Profile</button>
+            </li>   
+        </ul>
+    </div>
+    
+    <div class="col-lg-3">
+    <div class="row">
+        <h4 style="padding-top: 15%"></h4>
+    </div>
+    <div class="card mt-4 text-center" style="background: #2196F3">
+        <div id="container" style="padding-top: 50px text-center">
+            <img class="card-img-top img-fluid" src="/api/avatars/{{userID}}/" alt="Cannot be displayed" style="width: 250px; height: 250px"/>
+            <div class="row">
+            </div>
+        </div>        
+    </div>
+    </div>
+  
+    <div class="col-lg-6">
+    <h1 class="profileNameHeader" style="text-align: center">{{title}}</h1>
+    <div class="card mt-4" style="background: #2196F3">
     <div class="card-body">
-    	<table class="table table-striped">
-    		<tbody>
-    			<tr>
-    			<td><label class = "profileInfoField">Name:</label></td>
-    			<td><label>{{profileFullName}}</label></td>
-    			</tr>
-    			<tr>
-    			<td><label class = "profileInfoField">Email:</label></td>
-    			<td><label>{{profileEmail}}</label></td>
-    			</tr>
-    			<tr>
-    			<td><label class = "profileInfoField">Proud Volunteer Since:</label></td>
-    			<td><label>{{profileCreationDate}}</label></td>
-    			</tr>
-    			<tr>
-    			<td><label class = "profileInfoField">Resume:</label></td>
-    			<td><a href="/api/resumes/{{userID}}/">resume.pdf</a></td>
-    			</tr>
-    		</tbody>
-    	</table>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                <td><label class = "profileInfoField">Name:</label></td>
+                <td><label>{{profileFullName}}</label></td>
+                </tr>
+                <tr>
+                <td><label class = "profileInfoField">Email:</label></td>
+                <td><label>{{profileEmail}}</label></td>
+                </tr>
+                <tr>
+                <td><label class = "profileInfoField">Proud Volunteer Since:</label></td>
+                <td><label>{{profileCreationDate}}</label></td>
+                </tr>
+                <tr>
+                <td><label class = "profileInfoField">Biography:</label></td>
+                <td><label>{{profileBio}}</label></td>
+                </tr>
+                <tr>
+                <td><label class = "profileInfoField">Resume:</label></td>
+                <td><a href="/api/resumes/{{userID}}/">resume.pdf</a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
    </div> <br/>
    <tabs>
         <pane heading="Desired Opportunities" active="data.desiredOps">
-        	<div id="scrollableFeedParent">
-			   <div id="scrollableFeedChild">
-			   <div id="opportunitiesArea"> 
-			   <div class="card mt-4" style="background: #2196F3" ng-repeat="desiredOp in desiredOps">
-			    <!--<img class="card-img-top img-fluid" src="/static/images/{{op.image}}" alt=""/>-->
-			    <div class="card-body">
-				    <table id="cardDisplayTable">
-	    				<tr>
-	    					<td><h3 class="card-title">{{desiredOp.opportunity.organization}}</h3></td>
-	    					<td id="tableDataRightSide">
-								<button class="editProfileButtonNoZoom" ng-click="removeFromDesiredOps(desiredOp.opportunity.id)">Unfavourite</button>
-	                		</td>
-	    				</tr>
-	    			</table>
-			     <h5>Location: {{desiredOp.opportunity.location}}</h5>
-			     <p class="card-text">{{desiredOp.opportunity.description}}</p>
-			     <h5>Contact: {{desiredOp.opportunity.email}}, {{desiredOp.opportunity.phone}}</h5>
-				 <!--<p class="card-text"><a href="#">Read more</a> </p>-->
-				 <div id="AverageRatingContainer">
-			            <table id="ratingDisplayTable">
-			                <tr>
-			                    <td><h5>Organization Rating:</h5></td>
-			                    <td></td>
-			                    <!--<td id="rateCenter"><h5>Rate:</h5></td>-->
-			                </tr>
-			                <tr>
-			                    <td><jk-rating-stars rating="desiredOp.opportunity.averageRating" read-only="true"></jk-rating-stars></td>
-			                    <td></td>
-			                	<!--<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op.org_id)"></jk-rating-stars></td>-->
-			            	</tr>
-			        	</table>
-			                    			
-			    	</div>
-			    </div>
-			   </div>
-			   </div>
-			   </div>
-			</div>
+            <div id="scrollableFeedParent">
+               <div id="scrollableFeedChild">
+               <div id="opportunitiesArea"> 
+               <div class="card mt-4" style="background: #2196F3" ng-repeat="desiredOp in desiredOps">
+                <!--<img class="card-img-top img-fluid" src="/static/images/{{op.image}}" alt=""/>-->
+                <div class="card-body">
+                    <table id="cardDisplayTable">
+                        <tr>
+                            <td><h3 class="card-title">{{desiredOp.opportunity.organization}}</h3></td>
+                            <td id="tableDataRightSide">
+                                <button class="editProfileButtonNoZoom" ng-click="removeFromDesiredOps(desiredOp.opportunity.id)">Unfavourite</button>
+                            </td>
+                        </tr>
+                    </table>
+                 <h5>Location: {{desiredOp.opportunity.location}}</h5>
+                 <p class="card-text">{{desiredOp.opportunity.description}}</p>
+                 <h5>Contact: {{desiredOp.opportunity.email}}, {{desiredOp.opportunity.phone}}</h5>
+                 <!--<p class="card-text"><a href="#">Read more</a> </p>-->
+                 <div id="AverageRatingContainer">
+                        <table id="ratingDisplayTable">
+                            <tr>
+                                <td><h5>Organization Rating:</h5></td>
+                                <td></td>
+                                <!--<td id="rateCenter"><h5>Rate:</h5></td>-->
+                            </tr>
+                            <tr>
+                                <td><jk-rating-stars rating="desiredOp.opportunity.averageRating" read-only="true"></jk-rating-stars></td>
+                                <td></td>
+                                <!--<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op.org_id)"></jk-rating-stars></td>-->
+                            </tr>
+                        </table>
+                                            
+                    </div>
+                </div>
+               </div>
+               </div>
+               </div>
+            </div>
         </pane>
         <pane ng-repeat="pane in panes" heading="{{pane.title}}" active="pane.active">
-        	<div id="scrollableFeedParent">
-			   <div id="scrollableFeedChild">
-			   <div id="opportunitiesArea"> 
-			   <div class="card mt-4" style="background: #2196F3" ng-repeat="interestedOrg in interestedOrgs">
-			    <!--<img class="card-img-top img-fluid" src="/static/images/{{op.image}}" alt=""/>-->
-			    <div class="card-body">
-				    <h3 class="card-title">{{interestedOrg.name}}</h3>
-			     	<h5>Represented by: {{interestedOrg.owner}}</h5>
-			     	<h5>Contact: {{interestedOrg.email}}, {{interestedOrg.phone}}</h5>
-				 	<!--<p class="card-text"><a href="#">Read more</a> </p>-->
-				 	<div id="AverageRatingContainer">
-			            <table id="ratingDisplayTable">
-			                <tr>
-			                    <td><h5>Rating:</h5></td>
-			                    <td></td>
-			                    <!--<td id="rateCenter"><h5>Rate:</h5></td>-->
-			                </tr>
-			                <tr>
-			                    <td><jk-rating-stars rating="interestedOrg.averageRating" read-only="true"></jk-rating-stars></td>
-			                    <td></td>
-			                	<!--<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op.org_id)"></jk-rating-stars></td>-->
-			            	</tr>
-			        	</table>
-			                    			
-			    	</div>
-			    </div>
-			   </div>
-			   </div>
-			   </div>
-			</div>
+            <div id="scrollableFeedParent">
+               <div id="scrollableFeedChild">
+               <div id="opportunitiesArea"> 
+               <div class="card mt-4" style="background: #2196F3" ng-repeat="interestedOrg in interestedOrgs">
+                <!--<img class="card-img-top img-fluid" src="/static/images/{{op.image}}" alt=""/>-->
+                <div class="card-body">
+                    <h3 class="card-title">{{interestedOrg.organization.name}}</h3>
+                    <h5>Represented by: {{interestedOrg.organization.owner}}</h5>
+                    <h5>Contact: {{interestedOrg.organization.email}}, {{interestedOrg.organization.phone}}</h5>
+                    <!--<p class="card-text"><a href="#">Read more</a> </p>-->
+                    <div id="AverageRatingContainer">
+                        <table id="ratingDisplayTable">
+                            <tr>
+                                <td><h5>Rating:</h5></td>
+                                <td></td>
+                                <!--<td id="rateCenter"><h5>Rate:</h5></td>-->
+                            </tr>
+                            <tr>
+                                <td><jk-rating-stars rating="interestedOrg.averageRating" read-only="true"></jk-rating-stars></td>
+                                <td></td>
+                                <!--<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op.org_id)"></jk-rating-stars></td>-->
+                            </tr>
+                        </table>
+                                            
+                    </div>
+                </div>
+               </div>
+               </div>
+               </div>
+            </div>
         </pane>
    </tabs>     
   </div> 
-  <div class="col-lg-3">
-  	<div class="card mt-4 text-center" style="background: #2196F3">
-  		<div id="container" style="padding-top: 50px text-center">
-    		<img class="card-img-top img-fluid" src="/api/avatars/{{userID}}/" alt="Cannot be displayed" style="width: 250px; height: 250px"/>
-    		<div class="row">
-    		</div>
-   		</div>
-   		<div class ="card mt-3" style="background: #F7C32E">
-   		<label>{{profileBio}}</label>
-   		</div>   		
-  	</div>
-  </div>
 
  </div>
 </div>

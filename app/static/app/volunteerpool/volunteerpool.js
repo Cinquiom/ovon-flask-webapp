@@ -7,7 +7,9 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 	$scope.title = "Volunteers";
 	$scope.filteredVols = [];
 	$scope.textFilteredVols = [];
+	$scope.currentUser = [];
 	var volsWithTag = [];
+	var tagsForVol = [];
 	
 	$scope.chosenOrganization = {};
 	$scope.chosenOrganizationName = {};
@@ -44,6 +46,9 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
        	 if (errResponse.status == 401 && searchText != undefined) {
        		 $scope.volunteers = $scope.textFilteredVols;
        	 }
+       	 else {
+       		$scope.getVolunteerPosts();
+       	 }
         });	
 	});
 	
@@ -75,6 +80,34 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		}
 	}
 	
+	$scope.isOwnVolunteerPost = function() {
+		$http.get(api.getCurrentUser).then(function(response) {
+			$scope.currentUser = response.data;
+			for (var i = 0; i < $scope.volunteers.length; i++) {
+				if ($scope.currentUser.id == $scope.volunteers[i].user_id) {
+					$scope.volunteers[i].isCurrentUsersVolunteerPost = true;
+				}
+			}
+		});
+	}
+	
+	$scope.removeVolunteerPost = function(post_id) {
+		
+		$http.get(api.TagsForVolunteer + post_id + '/').then(function(response) {
+			tagsForVol = response.data;
+			for (var i = 0; i < tagsForVol.length; i ++) {
+				$http.delete(api.TagsForVolunteer + post_id + '/' + tagsForVol[i].id + '/').then(function(response) {
+					
+				});
+			}
+			$http.delete(api.postVolunteerPool + post_id + '/').then(function(response) {
+				$scope.getVolunteerPosts();
+			});
+			
+		});
+		
+	}
+	
 	$scope.onVolunteerRating = function(rating, volunteer_id) {
 		//get the user's currently selected organization
 		
@@ -90,6 +123,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 			 	.then(
 		          function (response) {
 		              alert("Thank you for your rating!");
+		              $scope.getVolunteerPosts();
 		          });
 			}
 			else {
@@ -130,8 +164,14 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		$scope.navtop = response.data;
 	});
 	
-	$http.get(api.postVolunteerPool).then(function(response) {
-		$scope.volunteers = response.data;
-		$scope.filteredVols = $scope.volunteers;
-	});
+	$scope.getVolunteerPosts = function() {
+		$http.get(api.postVolunteerPool).then(function(response) {
+			$scope.volunteers = response.data;
+			$scope.filteredVols = $scope.volunteers;
+			
+			$scope.isOwnVolunteerPost();
+		});
+	}
+	
+	
 };

@@ -46,7 +46,8 @@ class ActivityPost(db.Model):
             "user": self.user.username,
             "fullName": self.user.fullname,
             "email": self.user.email,
-            "averageRating": self.get_average_rating(self.user_id)
+            "averageRating": self.get_average_rating(self.user_id),
+            "isCurrentUsersVolunteerPost": False
             }
     
 

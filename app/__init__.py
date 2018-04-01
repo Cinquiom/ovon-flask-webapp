@@ -18,8 +18,9 @@ from app.modules.organization import OrganizationResource
 from app.modules.organization_opportunity_post import OpportunityResource
 from app.modules.organization import UserOrganizationResource
 from app.modules.rating import UserToOrganizationRateResource, OrganizationToUserRateResource
-from app.modules.user_opportunity_favourite import UserFavesResource, OpportunityFavedResource
-from app.modules.organization_volunteer_favourite import OrganizationFavesResource, VolunteerFavedResource
+# from app.modules.user_opportunity_favourite import UserFavesResource, OpportunityFavedResource
+# from app.modules.organization_volunteer_favourite import OrganizationFavesResource, VolunteerFavedResource
+from app.modules.favourites import UserFavesResource, OpportunityFavedResource, OrganizationFavesResource, VolunteerFavedResource
 from app.modules.tag import TagResource, TagsByActivityResource, TagsByOpportunityResource, OpportunityByTagResource, ActivityByTagResource
 
 from app.modules.auth.controllers import mod_auth as auth_module

@@ -50,7 +50,7 @@ class OpportunityResource(Resource):
     def delete(self, org_id):
         if current_user.is_authenticated:
             try:
-                desiredOpportunityToDelete = OpportunityPost.query.filter_by(id=org_id).one()
+                desiredOpportunityToDelete = OpportunityPost.query.get(org_id)
                 #org.rated_users.remove(ratingToDelete)
                 db.session.delete(desiredOpportunityToDelete)
                 db.session.commit()

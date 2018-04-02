@@ -43,7 +43,7 @@ var UploadProfilePictureController = function($scope, $http, userPersistenceServ
             })
             .then(function(response){
                 $scope.errors = {};
-                $scope.success = "Upload successful! Redirecting to profile...";
+                $scope.successImage = "Upload successful! Redirecting to profile...";
                 setTimeout(function() {
                     $location.path("/profile");
                     $route.reload();
@@ -51,26 +51,41 @@ var UploadProfilePictureController = function($scope, $http, userPersistenceServ
             },
             function(errResponse){
                 if(errResponse.status == 400){
-                    $scope.errors.invalid = "Invalid file type";
+                    $scope.errors.invalidImage = "Invalid file type";
                 }
             });
         }
     };
     
     $scope.uploadResume = function() {
+        $scope.errors = {};
         var resume = $scope.resume;
         var uploadURL = '/api/upload/';
         
-        var fd = new FormData();
-        fd.append('resume', resume);
-        $http.post(uploadURL, fd, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
-        })
-        .then(function(response){
-            $location.path("/profile");
-            $route.reload();
-        });
+        if(document.getElementById("resume").files.length == 0){
+            $scope.errors.resume = "Please select a file";
+        }
+        else{
+            var fd = new FormData();
+            fd.append('resume', resume);
+            $http.post(uploadURL, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+            .then(function(response){
+                $scope.errors = {};
+                $scope.successFile = "Upload successful! Redirecting to profile...";
+                setTimeout(function() {
+                    $location.path("/profile");
+                    $route.reload();
+                }, 3000);
+            },
+            function(errResponse){
+                if(errResponse.status == 400){
+                    $scope.errors.invalidFile = "Invalid file type";
+                }
+            });
+        }
     };
         
 };

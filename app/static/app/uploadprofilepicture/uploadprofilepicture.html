@@ -22,10 +22,11 @@
     </div>
 
     <div class="col-lg-8">
+    <h4 style="padding-top: 6%"></h4>
         <div class="card mt-4 text-center" style="background: #2196F3">
             <div class="card-body">
             <div class="login-form-1">
-            <h5 class="card-title">Upload Profile Picture</h5>
+            <h4 class="card-title">Upload Profile Picture</h4>
             	<form class="text-left" ng-submit="uploadPicture()" enctype = "multipart/form-data">
                 <!--<form class="text-left" ng-submit="uploadPicture()" enctype = "multipart/form-data">-->
                     <div class="main-login-form">
@@ -34,8 +35,8 @@
                                 <input type="file" file-model="avatar" id="avatar" name="avatar">
                             </div>
                             <span style="color:red" ng-show="errors.avatar">Error: {{errors.avatar}}</span>
-                            <span style="color:red" ng-show="errors.invalid">Error: {{errors.invalid}}</span>
-                            <span style="color:green" ng-show="success">{{success}}</span>
+                            <span style="color:red" ng-show="errors.invalidImage">Error: {{errors.invalidImage}}</span>
+                            <span style="color:green" ng-show="successImage">{{successImage}}</span>
                         </div>
                     </div>
                     <input class="editProfileButtonNoZoom" type="submit">
@@ -54,6 +55,8 @@
                                 <input type="file" file-model="resume" id="resume" name="resume">
                             </div>
                             <span style="color:red" ng-show="errors.resume">Error: {{errors.resume}}</span>
+                            <span style="color:red" ng-show="errors.invalidFile">Error: {{errors.invalidFile}}</span>
+                            <span style="color:green" ng-show="successFile">{{successFile}}</span>
                         </div>
                     </div>
                     <input class="editProfileButtonNoZoom" type="submit">

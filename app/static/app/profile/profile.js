@@ -57,6 +57,7 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 	    $scope.userID = response.data.id;
 	});
 	
+	
 	$scope.removeFromDesiredOps = function(opp_id) {
 		$http.delete(api.opportunityFavourites + opp_id + '/')
 	 	.then(

@@ -28,36 +28,49 @@ var UploadProfilePictureController = function($scope, $http, userPersistenceServ
     
     $scope.uploadPicture = function() {
         $scope.errors = {};
+        var avatar = $scope.avatar;
+        var uploadURL = '/api/upload/';
         
         if(document.getElementById("avatar").files.length == 0) {
             $scope.errors.avatar = "Please select an image";
         }
-        
-        
-        if(angular.equals($scope.errors, {})) {
-            $http.post(api.upload, $scope.avatar)
-            .then(function(response) {               
+        else {        
+            var fd = new FormData();
+            fd.append('avatar', avatar);
+            $http.post(uploadURL, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+            .then(function(response){
+                $scope.errors = {};
+                $scope.success = "Upload successful! Redirecting to profile...";
+                setTimeout(function() {
                     $location.path("/profile");
                     $route.reload();
-                });
+                }, 3000);
+            },
+            function(errResponse){
+                if(errResponse.status == 400){
+                    $scope.errors.invalid = "Invalid file type";
+                }
+            });
         }
     };
     
     $scope.uploadResume = function() {
-        $scope.errors = {};
+        var resume = $scope.resume;
+        var uploadURL = '/api/upload/';
         
-        if(document.getElementById("resume").files.length == 0) {
-            $scope.errors.resume = "Please select a file";
-        }
-        
-        
-        if(angular.equals($scope.errors, {})) {
-            $http.post(api.upload, $scope.resume)
-            .then(function(response) {               
-                    $location.path("/profile");
-                    $route.reload();
-                });
-        }
+        var fd = new FormData();
+        fd.append('resume', resume);
+        $http.post(uploadURL, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .then(function(response){
+            $location.path("/profile");
+            $route.reload();
+        });
     };
         
 };

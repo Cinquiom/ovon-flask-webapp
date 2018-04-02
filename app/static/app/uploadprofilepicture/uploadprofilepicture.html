@@ -26,14 +26,16 @@
             <div class="card-body">
             <div class="login-form-1">
             <h5 class="card-title">Upload Profile Picture</h5>
-            	<form class="text-left" action="/api/upload/" method="post" enctype = "multipart/form-data">
+            	<form class="text-left" ng-submit="uploadPicture()" enctype = "multipart/form-data">
                 <!--<form class="text-left" ng-submit="uploadPicture()" enctype = "multipart/form-data">-->
                     <div class="main-login-form">
                         <div class="login-group">
                             <div class="form-group">
-                                <input type="file" id="avatar" name="avatar" ng-model="avatar">
+                                <input type="file" file-model="avatar" id="avatar" name="avatar">
                             </div>
                             <span style="color:red" ng-show="errors.avatar">Error: {{errors.avatar}}</span>
+                            <span style="color:red" ng-show="errors.invalid">Error: {{errors.invalid}}</span>
+                            <span style="color:green" ng-show="success">{{success}}</span>
                         </div>
                     </div>
                     <input class="editProfileButtonNoZoom" type="submit">
@@ -49,7 +51,7 @@
                     <div class="main-login-form">
                         <div class="login-group">
                             <div class="form-group">
-                                <input type="file" id="resume" name="resume" ng-model="resume">
+                                <input type="file" file-model="resume" id="resume" name="resume">
                             </div>
                             <span style="color:red" ng-show="errors.resume">Error: {{errors.resume}}</span>
                         </div>

@@ -8,6 +8,7 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 	$scope.filteredOps = [];
 	$scope.textFilteredOps = [];
 	$scope.userOrgs = [];
+	$scope.ops = [];
 	var opsWithTag = [];
 	var tagsForOp = [];
 	
@@ -89,7 +90,6 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 	};
 	
 	$scope.isOwnOpportunity = function() {
-		$scope.ops = [];
 		$http.get(api.getUserOrganizations).then(function(response) {
 			$scope.userOrgs = response.data;
 			for (var i = 0; i < $scope.userOrgs.length; i++) {

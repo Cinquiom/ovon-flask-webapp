@@ -1,6 +1,6 @@
 # OVON Webapp
 
-To set up this project, you need to have the followong libraries:
+To set up this project, you need to have the following libraries:
 
 `flask flask-sqlalchemy flask-restful flask-uploads flask-login pymysql`
 

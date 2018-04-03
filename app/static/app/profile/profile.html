@@ -27,7 +27,7 @@
     </div>
     <div class="card mt-4 text-center" style="background: #2196F3">
         <div id="container" style="padding-top: 50px text-center">
-            <img class="card-img-top img-fluid" src="/api/avatars/{{userID}}/" alt="Cannot be displayed" style="width: 250px; height: 250px"/>
+            <img class="card-img-top img-fluid" ng-src="/api/avatars/{{userID}}" alt="Cannot be displayed" style="width: 250px; height: 250px"/>
             <div class="row">
             </div>
         </div>        
@@ -74,15 +74,15 @@
                 <div class="card-body">
                     <table id="cardDisplayTable">
                         <tr>
-                            <td><h3 class="card-title">{{desiredOp.opportunity.organization}}</h3></td>
+                            <td><h3 class="card-title">{{desiredOp.organization}}</h3></td>
                             <td id="tableDataRightSide">
-                                <button class="editProfileButtonNoZoom" ng-click="removeFromDesiredOps(desiredOp.opportunity.id)">Unfavourite</button>
+                                <button class="editProfileButtonNoZoom" ng-click="removeFromDesiredOps(desiredOp.id)">Unfavourite</button>
                             </td>
                         </tr>
                     </table>
-                 <h5>Location: {{desiredOp.opportunity.location}}</h5>
-                 <p class="card-text">{{desiredOp.opportunity.description}}</p>
-                 <h5>Contact: {{desiredOp.opportunity.email}}, {{desiredOp.opportunity.phone}}</h5>
+                 <h5>Location: {{desiredOp.location}}</h5>
+                 <p class="card-text">{{desiredOp.description}}</p>
+                 <h5>Contact: {{desiredOp.email}}, {{desiredOp.phone}}</h5>
                  <!--<p class="card-text"><a href="#">Read more</a> </p>-->
                  <div id="AverageRatingContainer">
                         <table id="ratingDisplayTable">
@@ -92,7 +92,7 @@
                                 <!--<td id="rateCenter"><h5>Rate:</h5></td>-->
                             </tr>
                             <tr>
-                                <td><jk-rating-stars rating="desiredOp.opportunity.averageRating" read-only="true"></jk-rating-stars></td>
+                                <td><jk-rating-stars rating="desiredOp.averageRating" read-only="true"></jk-rating-stars></td>
                                 <td></td>
                                 <!--<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op.org_id)"></jk-rating-stars></td>-->
                             </tr>

@@ -18,7 +18,7 @@ OVONApp.constant('api', {
     postVolunteerPool: apiURL + '/api/activity/',
     registerOrganization: apiURL + '/api/organizations/',
     postOpportunity: apiURL + '/api/organizations/opportunities/',
-    getUserOrganizations: apiURL + '/api/userOrganizations/',
+    getUserOrganizations: apiURL + '/api/currentuser/organizations/',
     volunteerRating: apiURL + '/api/users/ratings/',
     organizationRating: apiURL + '/api/organizations/ratings/',
     userFavourites: apiURL + '/api/users/favourites/',

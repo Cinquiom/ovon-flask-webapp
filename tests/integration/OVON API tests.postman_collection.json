@@ -1,0 +1,869 @@
+{
+	"info": {
+		"name": "OVON API tests",
+		"_postman_id": "234a4012-5cf6-be7e-7eb8-b82480c46371",
+		"description": "Testing the OVON API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"description": "",
+			"item": [
+				{
+					"name": "register testuser - /auth/register/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"testuser\",\n\t\"password\": \"testpassword\",\n\t\"email\": \"test@email.com\",\n\t\"fullname\": \"Test User\",\n\t\"gender\": true\n}"
+						},
+						"url": {
+							"raw": "localhost:8090/auth/register/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"auth",
+								"register",
+								""
+							]
+						},
+						"description": "Registers a new account called testuser"
+					},
+					"response": []
+				},
+				{
+					"name": "login testuser - /auth/signin/",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "71c87b83-b5ee-4587-b171-33cedbe1c541",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"testuser\",\n\t\"password\": \"testpassword\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8090/auth/signin/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"auth",
+								"signin",
+								""
+							]
+						},
+						"description": "Logs in a user named testuser with a test password"
+					},
+					"response": []
+				},
+				{
+					"name": "currentuser - /api/currentuser/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8090/api/currentuser",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"currentuser"
+							]
+						},
+						"description": "Checks the status of the current user"
+					},
+					"response": []
+				},
+				{
+					"name": "resetpassword",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"newpass\",\n\t\"password2\": \"newpass\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/auth/resetpassword/KK1HDPYMLQWBDALYCOLM8DTXVUYWGBLI",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"auth",
+								"resetpassword",
+								"KK1HDPYMLQWBDALYCOLM8DTXVUYWGBLI"
+							]
+						},
+						"description": "Initializes a password reset"
+					},
+					"response": []
+				},
+				{
+					"name": "logout - /auth/signout/",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "71c87b83-b5ee-4587-b171-33cedbe1c541",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"testuser\",\n\t\"password\": \"testpassword\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8090/auth/signout/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"auth",
+								"signout",
+								""
+							]
+						},
+						"description": "Logs in a user named testuser with a test password"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "organizations",
+			"description": "",
+			"item": [
+				{
+					"name": "make OVON Inc. org - /api/organizations/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"OVON Inc.\",\n\t\"email\": \"test@ovon.club\",\n\t\"phone\": \"(123) 456-7890\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/organizations/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"organizations",
+								""
+							]
+						},
+						"description": "Creates an organization called OVON Inc."
+					},
+					"response": []
+				},
+				{
+					"name": "get all organizations - /api/organizations/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"OVON Inc.\",\n\t\"email\": \"test@ovon.club\",\n\t\"phone\": \"(123) 456-7890\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/organizations/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"organizations",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get organization 1 - /api/organizations/1/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"OVON Inc.\",\n\t\"email\": \"test@ovon.club\",\n\t\"phone\": \"(123) 456-7890\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/organizations/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"organizations",
+								"1",
+								""
+							]
+						},
+						"description": "Gets OVON Inc."
+					},
+					"response": []
+				},
+				{
+					"name": "get current user's organizations - /api/currentuser/organizations/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"OVON Inc.\",\n\t\"email\": \"test@ovon.club\",\n\t\"phone\": \"(123) 456-7890\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/currentuser/organizations/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"currentuser",
+								"organizations",
+								""
+							]
+						},
+						"description": "Gets OVON Inc."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "opportunities",
+			"description": "",
+			"item": [
+				{
+					"name": "get opportunities from org 1 - /api/organizations/1/opportunities/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"OVON Inc.\",\n\t\"email\": \"test@ovon.club\",\n\t\"phone\": \"(123) 456-7890\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/organizations/opportunities/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"organizations",
+								"opportunities",
+								"1",
+								""
+							]
+						},
+						"description": "Retrieves all opportunityies by org 1"
+					},
+					"response": []
+				},
+				{
+					"name": "get all opportunities - /api/opportunities/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"OVON Inc.\",\n\t\"email\": \"test@ovon.club\",\n\t\"phone\": \"(123) 456-7890\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/opportunities/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"opportunities",
+								""
+							]
+						},
+						"description": "Returns all opportunities posted on the site"
+					},
+					"response": []
+				},
+				{
+					"name": "create opportunity for Org 1 - /api/organizations/opportunities/1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"location\": \"123 Fake Street\",\n\t\"description\": \"A description\",\n\t\"when\": \"now\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/organizations/opportunities/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"organizations",
+								"opportunities",
+								"1",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rating",
+			"description": "",
+			"item": [
+				{
+					"name": "make second user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"testuser2\",\n\t\"password\": \"testpassword2\",\n\t\"email\": \"test2@email.com\",\n\t\"fullname\": \"Test User #2\",\n\t\"agreed\": true\n}"
+						},
+						"url": {
+							"raw": "localhost:8090/api/users/1/ratings/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"users",
+								"1",
+								"ratings",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/organizations/1/rate/2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/organizations/1/rate/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"organizations",
+								"1",
+								"rate",
+								"2"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/2/ratings/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"location\": \"123 Fake Street\",\n\t\"description\": \"A description\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/users/2/ratings/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"users",
+								"2",
+								"ratings",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/organizations/1/ratings/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 5\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/organizations/1/ratings/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"organizations",
+								"1",
+								"ratings",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/organizations/1/ratings/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"location\": \"123 Fake Street\",\n\t\"description\": \"A description\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/organizations/1/ratings/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"organizations",
+								"1",
+								"ratings",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "favourites",
+			"description": "",
+			"item": [
+				{
+					"name": "/api/organizations/1/rate/2 copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/organizations/1/rate/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"organizations",
+								"1",
+								"rate",
+								"2"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/organizations/1/rate/2 copy copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/opportunities/1/favourites/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"opportunities",
+								"1",
+								"favourites",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/organizations/1/rate/2 copy copy copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/opportunities/1/favourites/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"opportunities",
+								"1",
+								"favourites",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tags",
+			"description": "Tests the tag endpoints.",
+			"item": [
+				{
+					"name": "/api/tags/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/tags/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"tags",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/opportunities/1/tags/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/tags/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"tags",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/tags/1/opportunities/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/tags/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"tags",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/api/opportunities/1/tags/",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rating\": 3\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/opportunities/1/tags/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"opportunities",
+								"1",
+								"tags",
+								"1",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "uploads",
+			"description": "Tests the upload functionality",
+			"item": [
+				{
+					"name": "/api/uploads/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"value": "",
+									"description": "",
+									"type": "file"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/upload/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"upload",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -70,7 +70,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		else {
 			$scope.viewingAsOrg = false;
 		}
-		scope.getVolunteerPosts();
+		$scope.getVolunteerPosts();
 	});
 	
 	$scope.getChosenOrganization = function() {

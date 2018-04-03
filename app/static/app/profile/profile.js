@@ -51,6 +51,7 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 	
 	$http.get(api.volunteerFavourited).then(function(response) {
 		$scope.interestedOrgs = response.data;
+		console.log(response.data);
 	});
 	
 	$http.get(api.getCurrentUser).then(function(response) {

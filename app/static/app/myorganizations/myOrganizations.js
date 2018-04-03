@@ -12,6 +12,7 @@ var MyOrganizationsController = function($scope, $http, $route, $location, api) 
         $scope.orgs = response.data;
         
         $http.get(api.organizationFavourites + $scope.orgs[0].id).then(function(response){
+			
             $scope.favouritedUsers = response.data;
             //console.log(response.data);
         });

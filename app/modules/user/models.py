@@ -66,7 +66,9 @@ class User(UserMixin, db.Model):
             "fullname": self.fullname,
             "date_created": self.date_created,
             "gender": "Male" if self.gender else "Female",
-            "bio": self.bio
+            "bio": self.bio,
+            "avatar": self.avatar,
+            "resume": self.resume
             }
     
 @login_manager.user_loader

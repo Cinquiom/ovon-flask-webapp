@@ -30,16 +30,17 @@ def upload():
     
     db.session.commit()
     return "", 204
-
 @mod_uploads.route('/api/avatars/<int:user_id>/', methods=['GET'])
-def show_avatar(user_id):
+@mod_uploads.route('/api/avatars/<int:user_id>/<string:filename>', methods=['GET'])
+def show_avatar(user_id, filename=None):
     user = User.query.get(user_id)
     if user.avatar is None:
         return send_from_directory(os.path.join(app.config['UPLOADS_DEFAULT_DEST'], 'avatars'), "default.png")
     return send_from_directory(os.path.join(app.config['UPLOADS_DEFAULT_DEST'], 'avatars'), user.avatar)
 
 @mod_uploads.route('/api/resumes/<int:user_id>/', methods=['GET'])
-def show_resume(user_id):
+@mod_uploads.route('/api/resumes/<int:user_id>/<string:filename>', methods=['GET'])
+def show_resume(user_id, filename=None):
     user = User.query.get(user_id)
     if user.resume is None:
         return "", 404

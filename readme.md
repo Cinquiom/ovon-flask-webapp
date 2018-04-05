@@ -1,10 +1,8 @@
-To set up this project, you need to have python-virtualenv installed on your computer.
-Enter the following commands in your respective terminal:
+# OVON Webapp
 
-virtualenv env
-env/bin/pip install flask flask-sqlalchemy flask-login pymysql
+To set up this project, you need to have the following libraries:
 
-To run the application, enter this command:
+`flask flask-sqlalchemy flask-restful flask-uploads flask-login pymysql`
 
-env/bin/python run.py
+To run the application on localhost, start the `run.py` file.
 

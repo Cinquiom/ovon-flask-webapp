@@ -56,6 +56,8 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 	
 	$http.get(api.getCurrentUser).then(function(response) {
 	    $scope.userID = response.data.id;
+	    $scope.avatar = response.data.avatar;
+	    $scope.resume = response.data.resume;
 	});
 	
 	

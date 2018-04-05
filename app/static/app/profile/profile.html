@@ -27,7 +27,7 @@
     </div>
     <div class="card mt-4 text-center" style="background: #48abf9">
         <div id="container" style="padding-top: 50px text-center">
-            <img class="card-img-top img-fluid" ng-src="/api/avatars/{{userID}}" alt="Cannot be displayed" style="width: 250px; height: 250px"/>
+            <img class="card-img-top img-fluid" ng-src="/api/avatars/{{userID}}/{{avatar}}" alt="Cannot be displayed" style="width: 250px; height: 250px"/>
             <div class="row">
             </div>
         </div>        
@@ -54,11 +54,12 @@
                 </tr>
                 <tr>
                 <td><label class = "profileInfoField">Biography:</label></td>
-                <td><label>{{profileBio}}</label></td>
+                <td ng-if="profileBio"><label>{{profileBio}}</label></td>
+                <td ng-if="!profileBio"><label>No bio specified.</label></td>
                 </tr>
-                <tr>
+                <tr ng-if="resume">
                 <td><label class = "profileInfoField">Resume:</label></td>
-                <td><a href="/api/resumes/{{userID}}/">resume.pdf</a></td>
+                <td><a href="/api/resumes/{{userID}}/{{resume}}">{{resume}}</a></td>
                 </tr>
             </tbody>
         </table>
@@ -116,21 +117,21 @@
                     <h5>Represented by: {{interestedOrg.owner}}</h5>
                     <h5>Contact: {{interestedOrg.email}}, {{interestedOrg.phone}}</h5>
                     <!--<p class="card-text"><a href="#">Read more</a> </p>-->
-                    <div id="AverageRatingContainer">
+                    <!--<div id="AverageRatingContainer">
                         <table id="ratingDisplayTable">
                             <tr>
                                 <td><h5>Rating:</h5></td>
                                 <td></td>
-                                <!--<td id="rateCenter"><h5>Rate:</h5></td>-->
+                                <!--<td id="rateCenter"><h5>Rate:</h5></td>
                             </tr>
                             <tr>
                                 <td><jk-rating-stars rating="interestedOrg.averageRating" read-only="true"></jk-rating-stars></td>
                                 <td></td>
-                                <!--<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op.org_id)"></jk-rating-stars></td>-->
+                                <!--<td id="rateRightSide"><jk-rating-stars rating="rating" on-rating="onOrganizationRating(rating, op.org_id)"></jk-rating-stars></td>
                             </tr>
                         </table>
                                             
-                    </div>
+                    </div>-->
                 </div>
                </div>
                </div>

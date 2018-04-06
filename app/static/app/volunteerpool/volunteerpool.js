@@ -4,6 +4,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 	
 	$scope.title = "Volunteers";
 	$scope.filteredVols = [];
+	$scope.volunteers = [];
 	$scope.textFilteredVols = [];
 	$scope.currentUser = [];
 	var volsWithTag = [];
@@ -19,23 +20,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		$route.reload();
 	}
 	
-	//method to remove entries in a list with duplicate keys.
-	//used to remove volunteer pool entries in the list of entries which have identical id to another entry in the list
-	function UniqueArraybyId(collection, keyname) {
-        var output = [], 
-            keys = [];
-
-        angular.forEach(collection, function(item) {
-            var key = item[keyname];
-            if(keys.indexOf(key) === -1) {
-                keys.push(key);
-                output.push(item);
-            }
-        });
-        return output;
-    };
-    
-    /*
+	/*
      * watches for changes in the volunteers search input field.
      * when the content of the search input changes, the volunteer pool is filtered by the entered content.
      * the entries with a tag identical to or text like the entered content are shown in the feed.
@@ -76,14 +61,32 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 	 * the selected organization is not 'volunteer'
 	 */
 	$scope.$watch('chosenOrganizationName', function() {
-		if ($scope.chosenOrganizationName != "volunteer") {
+		if ($scope.chosenOrganizationName != "volunteer" && $scope.chosenOrganizationName != undefined) {
 			$scope.viewingAsOrg = true;
 		}
 		else {
 			$scope.viewingAsOrg = false;
 		}
-		$scope.getVolunteerPosts();
+		//$scope.getVolunteerPosts();
 	});
+	
+	//method to remove entries in a list with duplicate keys.
+	//used to remove volunteer pool entries in the list of entries which have identical id to another entry in the list
+	function UniqueArraybyId(collection, keyname) {
+        var output = [], 
+            keys = [];
+
+        angular.forEach(collection, function(item) {
+            var key = item[keyname];
+            if(keys.indexOf(key) === -1) {
+                keys.push(key);
+                output.push(item);
+            }
+        });
+        return output;
+    }
+    
+    
 	
 	//method to get the data associated with the selected organization from the 'view as' dropdown
 	$scope.getChosenOrganization = function() {
@@ -196,7 +199,6 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		$http.get(api.postVolunteerPool).then(function(response) {
 			$scope.volunteers = response.data;
 			$scope.filteredVols = $scope.volunteers;
-			
 			$scope.isOwnVolunteerPost();
 		});
 	}

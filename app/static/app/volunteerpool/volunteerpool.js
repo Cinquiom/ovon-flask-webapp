@@ -2,8 +2,6 @@
 
 var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 	
-	// Specifying simple JSON objects in the javascript itself
-	$scope.filters = ["Manual Labour", "People", "Animals"];
 	$scope.title = "Volunteers";
 	$scope.filteredVols = [];
 	$scope.textFilteredVols = [];
@@ -21,6 +19,8 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		$route.reload();
 	}
 	
+	//method to remove entries in a list with duplicate keys.
+	//used to remove volunteer pool entries in the list of entries which have identical id to another entry in the list
 	function UniqueArraybyId(collection, keyname) {
         var output = [], 
             keys = [];
@@ -35,6 +35,13 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
         return output;
     };
     
+    /*
+     * watches for changes in the volunteers search input field.
+     * when the content of the search input changes, the volunteer pool is filtered by the entered content.
+     * the entries with a tag identical to or text like the entered content are shown in the feed.
+     * if the entered content does not match a tag in the database, only text filtering is performed,
+     * if the entered content is blank all entries are shown
+     */
     $scope.$watch('searchVolunteers', function(searchText) {
 		$scope.textFilteredVols = $filter('filter')($scope.filteredVols, searchText);
 		$http.get(api.getVolunteersWithTag + searchText + '/').then(function(response) {
@@ -52,7 +59,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
         });	
 	});
 	
-	//function to get user organization data for 'Browse As' dropdown
+	//function to get user organization data for 'View As' dropdown
 	$http.get(api.getUserOrganizations).then(function(response) {
 		$scope.organizations = response.data;
 		$scope.userOrganizationNames.push("volunteer");
@@ -63,6 +70,11 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		$scope.chosenOrganizationName = $scope.userOrganizationNames[0];
 	});
 	
+	/*
+	 * watches for a change of selected organization in the 'View As' dropdown.
+	 * reloads the list of volunteer pool entries to include the ability to rate and/or favourite them in the event
+	 * the selected organization is not 'volunteer'
+	 */
 	$scope.$watch('chosenOrganizationName', function() {
 		if ($scope.chosenOrganizationName != "volunteer") {
 			$scope.viewingAsOrg = true;
@@ -73,6 +85,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		$scope.getVolunteerPosts();
 	});
 	
+	//method to get the data associated with the selected organization from the 'view as' dropdown
 	$scope.getChosenOrganization = function() {
 		for (var i = 0; i < $scope.organizations.length; i++) {
 			if ($scope.organizations[i].name == $scope.chosenOrganizationName) {
@@ -81,6 +94,9 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		}
 	}
 	
+	/*
+	 * method to ascertain which entries in the feed were created by the current user
+	 */
 	$scope.isOwnVolunteerPost = function() {
 		$http.get(api.getCurrentUser).then(function(response) {
 			$scope.currentUser = response.data;
@@ -94,6 +110,9 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		});
 	}
 	
+	/*
+	 * method to remove one of the current user's entries when they select the remove entry button
+	 */
 	$scope.removeVolunteerPost = function(post_id) {
 		
 		$http.get(api.TagsForVolunteer + post_id + '/').then(function(response) {
@@ -111,6 +130,10 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		
 	}
 	
+	/*
+	 * method to add organization's rating of a volunteer to that volunteer's list of ratings.
+	 * if the user selects the minus button beside the rating stars, their existing rating of that volunteer is removed
+	 */
 	$scope.onVolunteerRating = function(rating, volunteer_id) {
 		//get the user's currently selected organization
 		
@@ -145,6 +168,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		}
 	}
 	
+	//method for user to add a chosen volunteer to the browsing organization's favourites
 	$scope.addToDesiredVolunteers = function(volunteer_id) {
 		if ($scope.chosenOrganizationName == "volunteer") {
 			
@@ -160,13 +184,14 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 		
 	}
 	
-	// Typically how we will be pulling data, except
-	// the URL will be a REST endpoint with a dynamically-generated
-	// JSON object at that location
+	//gets the main side menu options
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
 	});
 	
+	//method to get all the volunteer pool entries from the server.
+	//also checks which of them belong to the current user so those posts can have a remove entry button
+	//and can't be rated and/or favourited by the current user
 	$scope.getVolunteerPosts = function() {
 		$http.get(api.postVolunteerPool).then(function(response) {
 			$scope.volunteers = response.data;

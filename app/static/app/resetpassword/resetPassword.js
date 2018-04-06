@@ -4,6 +4,11 @@ var ResetPasswordController = function($scope, $http, $location, $stateParams, $
 	
 	$scope.errors = {};
 	
+	/*
+	 * method to check the user's new password entry for validity.
+	 * if there is an error with the entry, an error message is shown to the user,
+	 * otherwise the user's entry is posted to the resetPassword endpoint
+	 */
 	$scope.validateNewPassword = function(userPassword) {
 		$scope.errors = {};
 		
@@ -19,6 +24,7 @@ var ResetPasswordController = function($scope, $http, $location, $stateParams, $
 			.then(
                   function (response) {
                 	  $scope.errors = {};
+                	  //on a successful password reset the user is redirected to login
                       $scope.success = "Your password has been reset!  Redirecting to login...";
 					  setTimeout(function() {
 						  $location.path("/login");

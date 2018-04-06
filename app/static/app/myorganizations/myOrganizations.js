@@ -8,6 +8,7 @@ var MyOrganizationsController = function($scope, $http, $route, $location, api) 
         $scope.navtop = response.data;
     });
     
+    //gets the current user's organization, then gets their organization's favourite users to display
     $http.get(api.getUserOrganizations).then(function(response){
         $scope.orgs = response.data;
         

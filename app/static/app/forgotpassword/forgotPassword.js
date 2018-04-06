@@ -8,6 +8,10 @@ var ForgotPasswordController = function($scope, $http, api) {
 	
 	$scope.errors = {};
 	
+	/*
+	 * method to check for errors with user email entry and pass the entered email address to the forgotPassword endpoint
+	 * if errors are found, a message revealing the errors to the user is displayed instead
+	 */
 	$scope.validateEmail = function(userEmail) {
 		$scope.errors = {};
 		
@@ -34,6 +38,7 @@ var ForgotPasswordController = function($scope, $http, api) {
 		}
 	};
 	
+	//runs the validateEmail method with the entered email address as the parameter
 	$scope.submitEmail = function() {
 		$scope.validateEmail($scope.userEmail)
 	};

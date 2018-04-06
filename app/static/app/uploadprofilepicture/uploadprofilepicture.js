@@ -26,6 +26,10 @@ var UploadProfilePictureController = function($scope, $http, userPersistenceServ
         $route.reload();
     };
     
+    /*
+     * method to upload the user's chosen image file to the uploadURL endpoint.
+     * if the chosen file is not of an image type, an error message is displayed instead.
+     */
     $scope.uploadPicture = function() {
         $scope.errors = {};
         var avatar = $scope.avatar;
@@ -57,6 +61,10 @@ var UploadProfilePictureController = function($scope, $http, userPersistenceServ
         }
     };
     
+    /*
+     * method to upload the user's chosen file to the uploadURL endpoint as their resume.
+     * if the chosen file is not a valid type to display, an error message is displayed instead
+     */
     $scope.uploadResume = function() {
         $scope.errors = {};
         var resume = $scope.resume;

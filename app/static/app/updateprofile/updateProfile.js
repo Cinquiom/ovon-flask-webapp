@@ -38,6 +38,10 @@ var UpdateProfileController = function($scope, $http, $route, $location, api) {
         $scope.profileBio = response.data;
     });
     
+    /*
+     * method to update the user's profile with the information entered in the input fields.
+     * if there are no errors with the user's input, the inputted information is posted to the updateProfile endpoint
+     */
     $scope.updateInfo = function() {
     
         $scope.errors = {};

@@ -23,6 +23,12 @@ var ChangePasswordController = function($scope, $http, userPersistenceService, $
         $route.reload();
     };
     
+    /*
+     * method to change the user's password to their inputted new password by posting the new password input to 
+     * the changePassword endpoint.
+     * if the new password entry has no errors, the user is redirected to login,
+     * if it does have errors, an error message is displayed instead
+     */
     $scope.changePassword = function() {
         
         $scope.errors = {};

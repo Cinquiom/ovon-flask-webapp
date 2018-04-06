@@ -2,8 +2,6 @@
 
 var OpportunitiesController = function($scope, $http, $location, $route, $filter, api) {
 	
-	// Specifying simple JSON objects in the javascript itself
-	$scope.filters = ["Manual Labour", "People", "Animals"];
 	$scope.title = "Opportunities";
 	$scope.filteredOps = [];
 	$scope.textFilteredOps = [];
@@ -22,6 +20,7 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 		$route.reload();
 	}
 	
+	//method for user to add a chosen opportunity post to their favourites
 	$scope.addToDesiredOps = function(opp_id) {
 		
 		$http.post(api.opportunityFavourites + opp_id + '/')
@@ -31,6 +30,8 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
           });
 	}
 	
+	//method to remove entries in a list with duplicate keys.
+	//used to remove opportunities in the list of opportunities which have identical id to another opportunity in the list
     function UniqueArraybyId(collection, keyname) {
         var output = [], 
             keys = [];
@@ -45,6 +46,13 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
         return output;
     };
 	
+    /*
+     * watches for changes in the opportunities search input field.
+     * when the content of the search input changes, the opportunities list is filtered by the entered content.
+     * the opportunities with a tag identical to or text like the entered content are shown in the feed.
+     * if the entered content does not match a tag in the database, only text filtering is performed,
+     * if the entered content is blank all opportunities are shown
+     */
 	$scope.$watch('searchOpportunities', function(searchText) {
 		$scope.textFilteredOps = $filter('filter')($scope.filteredOps, searchText);
 		$http.get(api.getOpportunitiesWithTag + searchText + '/').then(function(response) {
@@ -62,6 +70,10 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
          });		
 	});
 	
+	/*
+	 * method to add user's rating of an opportunity to its organization's list of ratings.
+	 * if the user selects the minus button beside the rating stars, their existing rating of that opportunity is removed
+	 */
 	$scope.onOrganizationRating = function(rating, op) {
 
 		if (rating > 0) {
@@ -89,6 +101,9 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 
 	};
 	
+	/*
+	 * method to ascertain which opportunities in the feed were created by the current user
+	 */
 	$scope.isOwnOpportunity = function() {
 		$http.get(api.getUserOrganizations).then(function(response) {
 			$scope.userOrgs = response.data;
@@ -102,6 +117,9 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 		});
 	}
 	
+	/*
+	 * method to remove one of the current user's opportunity posts when they select the remove opportunity button
+	 */
 	$scope.removeOpportunity = function(opp_id) {
 		
 		$http.get(api.TagsForOpportunity + opp_id + '/').then(function(response) {
@@ -119,13 +137,14 @@ var OpportunitiesController = function($scope, $http, $location, $route, $filter
 		
 	}
 	
-	// Typically how we will be pulling data, except
-	// the URL will be a REST endpoint with a dynamically-generated
-	// JSON object at that location
+	//gets the main side menu options
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
 	});
 	
+	//method to get all the opportunity posts from the server.
+	//also checks which of them belong to the current user so those posts can have a remove opportunity button
+	//and can't be rated and/or favourited by the current user
 	$scope.getOpportunityPosts = function() {
 		$http.get(api.postOpportunity).then(function(response) {
 			$scope.ops = response.data;

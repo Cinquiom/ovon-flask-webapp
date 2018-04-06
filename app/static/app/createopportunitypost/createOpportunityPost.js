@@ -20,6 +20,10 @@ var CreateOpportunityPostController = function($scope, $http, api, Opportunities
 		}
 	});
 	
+	/*
+	 * addTags method turns the string of user tag entries into a list of separate tag JSON objects
+	 * then it passes the created opportunity's tags to the TagsForOpportunity endpoint
+	 */
 	$scope.addTags = function() {
 		//loop to identify tags in the tagEntries string and make them into a list of JSON objects
 		var tagName = "";
@@ -53,6 +57,10 @@ var CreateOpportunityPostController = function($scope, $http, api, Opportunities
 		
 	}
 	
+	/*
+	 * method to check for errors with user form entry and pass the opportunity post to the postOpportunity endpoint
+	 * if errors are found, a message revealing the errors to the user is displayed instead
+	 */
 	$scope.validateOpportunityPost = function(OpportunityPost) {
 		$scope.errors = {};
 		
@@ -101,6 +109,7 @@ var CreateOpportunityPostController = function($scope, $http, api, Opportunities
 		}
 	};
 	
+	//runs the validateOpportunityPost method with the newly created opportunity post as the parameter
 	$scope.submit = function() {
 		$scope.validateOpportunityPost($scope.OpportunityPost)
 	};

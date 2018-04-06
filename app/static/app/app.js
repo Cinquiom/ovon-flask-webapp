@@ -1,8 +1,20 @@
 'use strict';
 
-// The main 'app' object
+/*
+ * Project Title: OVON
+ * Developers: Hayden Lowes, Eric Kuz, Brandon Hudy
+ * Project Description: OVON is a web application designed to help volunteers find volunteer opportunities in their
+ * community, as well as help non-profit organizations find volunteers by allowing the non profit organizations to
+ * search through a feed of willing volunteers to work for them.
+ */
+
+/*
+ * The main application module
+ * -defines all angular controllers, config settings, directives, and services used by the view
+ */
 var OVONApp = angular.module('OVONApp', ['ui.router', 'ui.bootstrap', 'ngRoute', 'ngCookies', 'ngSQLite', 'jkAngularRatingStars']);
 
+//These constants store the URLs of Flask endpoints to help abstract front-end http requests from the back end endpoints
 OVONApp.constant('api', {
 	signIn: apiURL + '/auth/signin/',
     register: apiURL + '/auth/register/',
@@ -38,6 +50,8 @@ OVONApp.constant('api', {
     
 });
 
+//All Angular controllers are instantiated here with the exception of the header controller
+//For the most part, each different view functionality has it's own controller
 OVONApp.controller("DefaultController", DefaultController);
 OVONApp.controller("OpportunitiesController", OpportunitiesController);
 OVONApp.controller("VolunteerPoolController", VolunteerPoolController);
@@ -54,9 +68,11 @@ OVONApp.controller("CreateOpportunityPostController", CreateOpportunityPostContr
 OVONApp.controller("RegisterOrganizationController", RegisterOrganizationController);
 OVONApp.controller("MyOrganizationsController", MyOrganizationsController);
 
-
+//Configures URL routing for the OVON application 
 OVONApp.config(function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider) {
 
+	//for all views except login, register, and forgot password, the user is routed to the login view
+	//if their user session cookie is no longer set
     $routeProvider.
         when('/opportunities', {
                       resolve: {
@@ -234,16 +250,20 @@ OVONApp.directive('footer', function () {
         replace: true,
         templateUrl: "static/app/core/footer.html",
         controller: ['$scope', '$filter', function ($scope, $filter) {
-            // Your behaviour goes here :)
         }]
     }
 });
 
+/*
+ * header directive is responsible for the content which appears in the header of the application
+ * when user is logged in, displays a logout link and a welcome message to the user
+ * when user is logged out, provides links to login and register an OVON account
+ */
 OVONApp.directive('header', [ '$rootScope', function ($rootScope) {
     return {
         restrict: 'A', 
         replace: true,
-        scope: {username: '='}, // This is one of the cool things :). Will be explained in post.
+        scope: {username: '='},
         templateUrl: "/static/app/core/header.html",
         controller: ['$scope', '$filter', '$http', '$route', 'userPersistenceService', '$location', '$window', function ($scope, $filter, $http, $route, userPersistenceService, $location, $window) {
         	$scope.notLoggedIn = true;

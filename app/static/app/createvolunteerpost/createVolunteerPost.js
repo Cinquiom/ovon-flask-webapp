@@ -11,6 +11,10 @@ var CreateVolunteerPostController = function($scope, $http, $route, $location, V
 	$scope.tagEntries = "";
 	$scope.Tags = [];
 	
+	/*
+	 * addTags method turns the string of user tag entries into a list of separate tag JSON objects
+	 * then it passes the volunteer pool entry's tags to the TagsForVolunteer endpoint
+	 */
 	$scope.addTags = function() {
 		//loop to identify tags in the tagEntries string and make them into a list of JSON objects
 		var tagName = "";
@@ -42,6 +46,10 @@ var CreateVolunteerPostController = function($scope, $http, $route, $location, V
 		});
 	}
 	
+	/*
+	 * method to check for errors with user form entry and pass the volunteer pool entry to the postVolunteerPool endpoint
+	 * if errors are found, a message revealing the errors to the user is displayed instead
+	 */
 	$scope.validateVolunteerPost = function(ActivityPost) {
 		$scope.errors = {};
 		
@@ -72,6 +80,7 @@ var CreateVolunteerPostController = function($scope, $http, $route, $location, V
 		}
 	};
 	
+	//runs the validateVolunteerPost method with the new volunteer pool entry as the parameter
 	$scope.submit = function() {
 		$scope.validateVolunteerPost($scope.ActivityPost)
 	};

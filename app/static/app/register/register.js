@@ -6,6 +6,11 @@ var RegisterController = function($scope, $http, api, $route, $location) {
 	
 	$scope.errors = {};
 	
+	/*
+	 * method to check the user's entered information for errors.
+	 * if none are found, the user's info is posted to the register endpoint,
+	 * otherwise an error message is displayed to the user
+	 */
 	$scope.validateUser = function(user) {
 		$scope.errors = {};
 		$scope.success = ""

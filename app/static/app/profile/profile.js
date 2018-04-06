@@ -19,12 +19,13 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 	    $location.path("/myorganizations");
 	    $route.reload();
 	}
-		
+	
+	//gets the main side menu options
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
 	});
 	
-	//GET requests to retrieve user data from the SQLite database
+	//GET requests to retrieve user data from the server
 	$http.get(api.getProfileEmail)
 	.then(function (response) {
 		$scope.profileEmail = response.data;
@@ -45,22 +46,26 @@ var ProfileController = function($scope, $http, userPersistenceService, $route, 
 		$scope.profileBio = response.data;
 	});
 	
+	//gets the user's favourited opportunities
 	$http.get(api.userFavourites).then(function(response) {
 		$scope.desiredOps = response.data;
 	});
 	
+	//gets the organizations interested in the user
 	$http.get(api.volunteerFavourited).then(function(response) {
 		$scope.interestedOrgs = response.data;
 		console.log(response.data);
 	});
 	
+	//gets the user's id, avatar image, and resume
 	$http.get(api.getCurrentUser).then(function(response) {
 	    $scope.userID = response.data.id;
 	    $scope.avatar = response.data.avatar;
 	    $scope.resume = response.data.resume;
 	});
 	
-	
+	//method to remove a favourited opportunity from the list of favourites
+	//noOpp is returned from the delete request if the desired opportunity to remove is not found on the server
 	$scope.removeFromDesiredOps = function(opp_id) {
 		$http.delete(api.opportunityFavourites + opp_id + '/')
 	 	.then(

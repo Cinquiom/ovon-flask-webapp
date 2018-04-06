@@ -2,6 +2,7 @@
 
 var RegisterOrganizationController = function($scope, $http, $route, $location, api) {
 	
+	//gets the main side menu items
 	$http.get('/static/json/navtop.json').then(function(response) {
 		$scope.navtop = response.data;
 	});
@@ -11,6 +12,7 @@ var RegisterOrganizationController = function($scope, $http, $route, $location, 
 	$scope.errors = {};
 	$scope.Organization = {};
 	
+	//regex to check if the user's entered phone number is of a valid phone number format
 	$scope.phoneNumberPattern = (function() {
 	    var regexPhone = /^\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})$/;
 	    return {
@@ -23,6 +25,11 @@ var RegisterOrganizationController = function($scope, $http, $route, $location, 
 	    };
 	})();
 	
+	/*
+	 * method to check the user's entered information for errors.
+	 * the user's information is posted to the registerOrganization endpoint if there are none,
+	 * otherwise an error message is displayed to the user
+	 */
 	$scope.validateOrganization = function(Organization) {
 		$scope.errors = {};
 		

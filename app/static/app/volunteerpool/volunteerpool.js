@@ -35,7 +35,7 @@ var VolunteerPoolController = function($scope, $http, $location, $filter, api) {
 			$scope.volunteers = UniqueArraybyId(mixedVols, 'id');			
 		},
         function (errResponse) {
-       	 if ((errResponse.status == 401 || errResponse.status == 404) && searchText != undefined) {
+       	 if ((errResponse.status == 401) && searchText != undefined) {
        		 $scope.volunteers = $scope.textFilteredVols;
        	 }
        	 else {

@@ -271,6 +271,17 @@ OVONApp.directive('header', [ '$rootScope', function ($rootScope) {
         	
         	$scope.logout = function() {
         		$http.get(apiURL + '/auth/signout/').then(function(response){
+        			$http.get(apiURL + '/api/currentuser/').then(function(response){
+                        if (response.status == 200) {
+                        	$scope.notLoggedIn = false;
+                        	$scope.loggedInUser = response.data.username;
+                        }
+                    },
+                    function (errResponse) {
+                    	if (errResponse.status == 401) {
+                    		$scope.notLoggedIn = true;
+                    	}
+                     });
         		});
         		userPersistenceService.clearCookieData();
         		$route.reload();
@@ -278,6 +289,8 @@ OVONApp.directive('header', [ '$rootScope', function ($rootScope) {
                 $window.location.href = "/#/login"
             	$window.location.reload()
         	}
+        	
+        	
         	
         	$http.get(apiURL + '/api/currentuser/').then(function(response){
                 if (response.status == 200) {
